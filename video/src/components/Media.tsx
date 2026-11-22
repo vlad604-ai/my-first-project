@@ -19,16 +19,18 @@ type Props = {
   fallback?: React.ReactNode;
   style?: React.CSSProperties;
   volume?: number;
+  playbackRate?: number;
 };
 
-const Raw: React.FC<{ src: string; startSec: number; style: React.CSSProperties; volume: number }> = ({
+const Raw: React.FC<{ src: string; startSec: number; style: React.CSSProperties; volume: number; playbackRate?: number }> = ({
   src,
   startSec,
   style,
   volume,
+  playbackRate = 1,
 }) =>
   isVideo(src) ? (
-    <OffthreadVideo src={file(src)} startFrom={sec(startSec)} volume={volume} style={style} />
+    <OffthreadVideo src={file(src)} startFrom={sec(startSec)} volume={volume} playbackRate={playbackRate} style={style} />
   ) : (
     <Img src={file(src)} style={style} />
   );
@@ -46,6 +48,7 @@ export const Media: React.FC<Props> = ({
   fallback,
   style,
   volume = 0,
+  playbackRate = 1,
 }) => {
   const frame = useCurrentFrame();
   const { durationInFrames } = useVideoConfig();
@@ -75,10 +78,10 @@ export const Media: React.FC<Props> = ({
     return (
       <AbsoluteFill style={{ overflow: "hidden", backgroundColor: "#111", ...style }}>
         <AbsoluteFill style={{ filter: "blur(40px) brightness(0.55)", transform: "scale(1.2)" }}>
-          <Raw src={src} startSec={startSec} style={cover} volume={0} />
+          <Raw src={src} startSec={startSec} style={cover} volume={0} playbackRate={playbackRate} />
         </AbsoluteFill>
         <AbsoluteFill style={motion}>
-          <Raw src={src} startSec={startSec} style={{ ...cover, objectFit: "contain" }} volume={volume} />
+          <Raw src={src} startSec={startSec} style={{ ...cover, objectFit: "contain" }} volume={volume} playbackRate={playbackRate} />
         </AbsoluteFill>
       </AbsoluteFill>
     );
@@ -87,7 +90,7 @@ export const Media: React.FC<Props> = ({
   return (
     <AbsoluteFill style={{ overflow: "hidden", backgroundColor: "#111", ...style }}>
       <AbsoluteFill style={motion}>
-        <Raw src={src} startSec={startSec} style={cover} volume={volume} />
+        <Raw src={src} startSec={startSec} style={cover} volume={volume} playbackRate={playbackRate} />
       </AbsoluteFill>
     </AbsoluteFill>
   );

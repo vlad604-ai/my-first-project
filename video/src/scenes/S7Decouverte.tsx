@@ -22,7 +22,7 @@ const DetailLabel: React.FC<{ label: string }> = ({ label }) => {
   return (
     <div style={{ position: "absolute", left: SAFE.left, top: 1040, opacity: o, display: "flex", alignItems: "center", gap: 18 }}>
       <div style={{ width: tw(f, [0, 14], [0, 70]), height: 2, background: C.led }} />
-      <div style={{ fontFamily: F.serif, fontSize: 64, color: C.blanc, textShadow: "0 3px 20px rgba(0,0,0,0.7)" }}>{label}</div>
+      <div style={{ fontFamily: F.serif, fontSize: 60, color: C.blanc, padding: "4px 24px 10px", borderRadius: 12, background: "rgba(13,13,14,0.62)" }}>{label}</div>
     </div>
   );
 };
@@ -41,18 +41,19 @@ export const S7Decouverte: React.FC = () => {
     <AbsoluteFill style={{ backgroundColor: C.noir }}>
       <Series>
         <Series.Sequence durationInFrames={aF}>
-          <Media src={shot.src} push={[1.0, 1.1]} placeholder={{ id: shot.id, title: shot.title, source: shot.source, tone: "warm" }} />
+          <Media src={shot.src} startSec={(shot as { startSec?: number }).startSec ?? 0} push={((shot as { push?: number[] }).push as [number, number]) ?? [1.0, 1.1]} placeholder={{ id: shot.id, title: shot.title, source: shot.source, tone: "warm" }} />
         </Series.Sequence>
-        {S.details.map((d, i) => {
+        {S.details.map((det, i) => {
+          const d = det as typeof det & { focusX?: number; focusY?: number; push?: number[] };
           const useApres = !has(d.src) && has(apres.src);
           return (
             <Series.Sequence key={d.id} durationInFrames={i === S.details.length - 1 ? durationInFrames - aF - each * (S.details.length - 1) : each}>
               <Media
                 src={useApres ? apres.src : d.src}
                 startSec={useApres ? apres.startSec + 1 + i * 1.3 : 0}
-                focusX={useApres ? FOCI[i % FOCI.length][0] : 0.5}
-                focusY={useApres ? FOCI[i % FOCI.length][1] : 0.5}
-                push={useApres ? [1.9, 2.1] : [1.08, 1.2]}
+                focusX={useApres ? FOCI[i % FOCI.length][0] : d.focusX ?? 0.5}
+                focusY={useApres ? FOCI[i % FOCI.length][1] : d.focusY ?? 0.5}
+                push={useApres ? [1.9, 2.1] : ((d.push as [number, number]) ?? [1.08, 1.2])}
                 placeholder={{ id: d.id, title: `Gros plan : ${d.label}`, source: "Photo/vidéo réelle de votre bureau", tone: "warm" }}
               />
               <DetailLabel label={d.label} />

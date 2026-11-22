@@ -17,6 +17,7 @@ export const Dimension: React.FC<{
   const mx = (x1 + x2) / 2;
   const my = (y1 + y2) / 2;
   const tick = 18;
+  const bw = Math.max(150, value.length * 20 + 40);
 
   if (isAngle) {
     const r = 46 * p;
@@ -55,7 +56,7 @@ export const Dimension: React.FC<{
         </>
       )}
       <g opacity={textO} transform={vertical ? `rotate(-90 ${tx} ${ty})` : undefined}>
-        <rect x={tx - 95} y={ty - 40} width={190} height={50} rx={8} fill="rgba(13,13,14,0.75)" />
+        <rect x={tx - bw / 2} y={ty - 40} width={bw} height={50} rx={8} fill="rgba(13,13,14,0.75)" />
         <text x={tx} y={ty - 4} fill={C.led} fontFamily={F.sans} fontSize={34} fontWeight={600} textAnchor="middle">
           {value}
         </text>

@@ -27,11 +27,11 @@
 |---|---|---|---|---|
 | 1 | Paris → 14e | 0:00 | 8 s | 🎬 / banque d'images + 💻 carte animée |
 | 2 | La rencontre | 0:08 | 9 s | 🎬 ou 📱 |
-| 3 | L'étude de l'espace | 0:17 | 10 s | 🎬 ou 📱 + 💻 cotes animées |
+| 3 | L'étude de l'espace | 0:17 | 10 s | 🟧 vos images (vidéo AVANT, photo pièce vide, photo traçage au sol) + 💻 cotes |
 | 4 | La conception | 0:27 | 13 s | 🎬 (2,5 s) + 💻 plan 2D + 💻 configurateur 3D |
 | 5 | Les matériaux | 0:40 | 20 s | 💻 (ou vos photos de matériaux) |
 | 6 | Avant / Après | 1:00 | 11 s | 🟧 **vos deux vidéos** |
-| 7 | Le client découvre | 1:11 | 10 s | 📱 recommandé + 🟧 gros plans réels |
+| 7 | Le client découvre | 1:11 | 10 s | 🟧 vidéo APRÈS + vos photos de détails (plan client à tourner en option) |
 | 8 | Conclusion / CTA | 1:21 | 9 s | 💻 |
 | | **Total** | | **90 s** | |
 
@@ -177,3 +177,20 @@ Si vos vidéos sont filmées sous des angles différents, la transition reste un
 **Fond :** `/assets/images/bureau-final.jpg` s'il existe. Sinon la fin de votre vidéo APRÈS. Sinon une texture noyer et noir.
 **Voix off :** « Vous avez un projet ? Contactez-nous et imaginons ensemble votre futur bureau. »
 **Son :** accord final résolu, la musique s'éteint en 2 s. Image finale tenue 3 s, assez longtemps pour une capture d'écran des coordonnées.
+
+---
+
+## Intégration de vos médias réels (version actuelle)
+
+| Fichier fourni | Traitement | Utilisation |
+|---|---|---|
+| Vidéo AVANT (6,9 s, iPhone HDR) | Conversion HDR → SDR Rec.709, 30 i/s | **S3-A** : 3,4 → 6,4 s (la main présente l'espace). **S6 AVANT** : 0 → 3,2 s ralenti à 62 % (plan large propre, avant l'apparition de la main). |
+| Vidéo APRÈS (10,7 s, iPhone HDR) | Conversion SDR + **suppression du logo Fresh Ride** (suivi image par image + reconstruction du mur bordeaux, images 0 → 72) | **S6 APRÈS** : 0,15 → 3,15 s (révélation en mouvement), puis 4,7 → 7,85 s (plan de face) avec zooms *Plateau blanc brillant · Façade cannelée · Éclairage LED intégré*. **S7-A** : 7,9 → 10,5 s. Le panoramique flou (3,3 → 4,5 s) est écarté. |
+| IMG_7681 (pièce vide) | — | **S3-B** + cotes (hauteur, verrière, angle) |
+| IMG_7696 (traçage au sol) | — | **S3-C** « Traçage à l'échelle 1:1 » |
+| IMG_7769 (comptoir de face, LED) | — | Gros plan **Éclairage LED** (S7) + fond de la **conclusion** (S8) |
+| IMG_7770 (vue de dessus) | — | Gros plans **Assemblages du plateau** et **Plateau & finitions** (S7) |
+| IMG_7771 (intérieur) | **Logo Fresh Ride supprimé** | Gros plans **Rangements** et **Niches intégrées** (S7) |
+
+⚠️ Les valeurs des cotes (2,80 m, 1,20 m) sont indicatives : remplacez-les par vos vraies mesures dans `video/src/content/domova.json` (`scenes.s3.shots[].dimensions`).
+Le script `tools/prepare_media.py` refait tout le traitement à partir des originaux placés dans `sources/`.
