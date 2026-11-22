@@ -1,0 +1,206 @@
+{
+  "_lisezmoi": "Fichier central de la publicité. Modifiez ici les textes, durées, coordonnées, matériaux et chemins des médias. Tous les chemins sont relatifs au dossier /assets. Un fichier absent est remplacé par un écran de repère (placeholder) jusqu'à ce que vous l'ajoutiez.",
+
+  "brand": {
+    "name": "DOMOVA",
+    "tagline": "BUREAUX SUR MESURE",
+    "signature": "Votre espace. Vos idées. Notre savoir-faire.",
+    "promise": "Vous imaginez votre bureau. Nous le concevons et nous le réalisons.",
+    "cta": "Vous avez un projet ? Contactez-nous et imaginons ensemble votre futur bureau.",
+    "logo": "logo/logo.png",
+    "logoAlternatives": ["logo/logo.svg", "logo/logo-blanc.png"]
+  },
+
+  "contacts": [
+    { "type": "instagram", "label": "Instagram", "value": "@domova — à compléter" },
+    { "type": "tiktok", "label": "TikTok", "value": "@domova — à compléter" },
+    { "type": "phone", "label": "Téléphone", "value": "06 00 00 00 00 — à compléter" },
+    { "type": "web", "label": "Site internet", "value": "domova.fr — à compléter" }
+  ],
+
+  "audio": {
+    "music": "audio/music/musique.mp3",
+    "musicVolume": 0.55,
+    "musicVolumeUnderVoice": 0.22,
+    "voiceVolume": 1.0
+  },
+
+  "scenes": {
+    "s1": {
+      "durationSec": 8,
+      "chapter": "PARIS",
+      "voice": "audio/vo/s1.mp3",
+      "vo": "À Paris, chaque espace possède un potentiel. Chez DOMOVA, nous transformons vos idées en réalisations uniques, entièrement pensées pour vous.",
+      "subtitles": [
+        "À Paris, chaque espace possède un potentiel.",
+        "Chez DOMOVA, nous transformons vos idées",
+        "en réalisations uniques, entièrement pensées pour vous."
+      ],
+      "shots": [
+        { "id": "S1-A", "src": "videos/sequences/S1-A.mp4", "durationSec": 4.6, "title": "Vue aérienne de Paris → descente vers le 14e", "source": "IA ou banque d'images — voir prompts/S1.md" },
+        { "id": "S1-B", "src": "videos/sequences/S1-B.mp4", "durationSec": 3.4, "title": "Rue haussmannienne du 14e, niveau trottoir", "source": "IA ou tournage — voir prompts/S1.md" }
+      ],
+      "place": "PARIS 14ᵉ",
+      "coordinates": "48.8331° N · 2.3264° E"
+    },
+    "s2": {
+      "durationSec": 9,
+      "chapter": "01 — LA RENCONTRE",
+      "voice": "audio/vo/s2.mp3",
+      "vo": "Tout commence par une rencontre. Vous avez un projet, une envie, un espace à aménager ? Nous venons à votre rencontre pour comprendre vos besoins.",
+      "subtitles": [
+        "Tout commence par une rencontre.",
+        "Vous avez un projet, une envie,",
+        "un espace à aménager ?",
+        "Nous venons à votre rencontre pour comprendre vos besoins."
+      ],
+      "shots": [
+        { "id": "S2-A", "src": "videos/sequences/S2-A.mp4", "durationSec": 4.4, "title": "Le dirigeant DOMOVA marche dans une rue du 14e", "source": "IA (personnage de référence) — voir prompts/S2.md" },
+        { "id": "S2-B", "src": "videos/sequences/S2-B.mp4", "durationSec": 4.6, "title": "Poignée de main avec le client devant l'immeuble", "source": "IA ou tournage réel — voir prompts/S2.md" }
+      ]
+    },
+    "s3": {
+      "durationSec": 10,
+      "chapter": "02 — L'ÉTUDE DE L'ESPACE",
+      "voice": "audio/vo/s3.mp3",
+      "vo": "Nous étudions votre espace, prenons les mesures et imaginons avec vous un aménagement qui correspond parfaitement à vos attentes.",
+      "subtitles": [
+        "Nous étudions votre espace,",
+        "prenons les mesures",
+        "et imaginons avec vous un aménagement",
+        "qui correspond parfaitement à vos attentes."
+      ],
+      "shots": [
+        { "id": "S3-A", "src": "videos/sequences/S3-A.mp4", "durationSec": 10, "title": "Pièce vide : entrée, observation, prise de mesures", "source": "IA ou tournage — voir prompts/S3.md" }
+      ],
+      "_dimensions": "Repères de cotes affichés par-dessus le plan S3. Coordonnées en pixels dans l'image 1080×1920 : ajustez-les pour qu'ils tombent sur les murs de votre plan réel.",
+      "dimensions": [
+        { "label": "Hauteur sous plafond", "value": "2,80 m", "x1": 845, "y1": 520, "x2": 845, "y2": 1330, "atSec": 1.0 },
+        { "label": "Largeur du mur", "value": "3,40 m", "x1": 300, "y1": 560, "x2": 780, "y2": 560, "atSec": 2.4 },
+        { "label": "Fenêtre", "value": "1,20 m", "x1": 140, "y1": 640, "x2": 140, "y2": 1050, "atSec": 3.8 },
+        { "label": "Angle", "value": "90°", "x1": 780, "y1": 1250, "x2": 780, "y2": 1250, "atSec": 5.2 }
+      ]
+    },
+    "s4": {
+      "durationSec": 13,
+      "chapter": "03 — LA CONCEPTION",
+      "voice": "audio/vo/s4.mp3",
+      "vo": "Nous concevons votre bureau selon vos dimensions, vos envies et votre utilisation. Chaque détail est étudié pour créer un espace fonctionnel, esthétique et parfaitement adapté à votre intérieur.",
+      "subtitles": [
+        "Nous concevons votre bureau selon vos dimensions,",
+        "vos envies et votre utilisation.",
+        "Chaque détail est étudié pour créer un espace",
+        "fonctionnel, esthétique",
+        "et parfaitement adapté à votre intérieur."
+      ],
+      "shots": [
+        { "id": "S4-A", "src": "videos/sequences/S4-A.mp4", "durationSec": 2.5, "title": "Concepteur sur ordinateur, écran avec plan 3D", "source": "IA ou tournage — voir prompts/S4.md" }
+      ],
+      "options": [
+        { "key": "LONGUEUR", "from": "160 cm", "to": "240 cm" },
+        { "key": "FORME", "from": "Droit", "to": "En L" },
+        { "key": "RANGEMENTS", "from": "—", "to": "3 tiroirs" },
+        { "key": "ÉTAGÈRES", "from": "—", "to": "Bibliothèque" },
+        { "key": "ÉCLAIRAGE", "from": "—", "to": "LED 3000 K" },
+        { "key": "FINITION", "from": "Chêne", "to": "Noyer" }
+      ]
+    },
+    "s5": {
+      "durationSec": 20,
+      "chapter": "04 — LES MATÉRIAUX",
+      "voice": "audio/vo/s5.mp3",
+      "vo": "Du mélaminé de qualité aux finitions bois naturel, en passant par les décors noyer, le stratifié et les matériaux haut de gamme, nous vous proposons de nombreuses possibilités. Chaque matériau possède ses caractéristiques et son prix. Nous adaptons votre projet à vos envies et à votre budget, sans négliger la qualité.",
+      "subtitles": [
+        "Du mélaminé de qualité aux finitions bois naturel,",
+        "en passant par les décors noyer, le stratifié",
+        "et les matériaux haut de gamme,",
+        "nous vous proposons de nombreuses possibilités.",
+        "Chaque matériau possède ses caractéristiques et son prix.",
+        "Nous adaptons votre projet à vos envies et à votre budget,",
+        "sans négliger la qualité."
+      ],
+      "priceFactors": ["Matériaux", "Dimensions", "Complexité", "Finitions"],
+      "priceNote": "Le prix varie selon votre projet"
+    },
+    "s6": {
+      "durationSec": 11,
+      "chapter": "05 — LA RÉALISATION",
+      "voice": "audio/vo/s6.mp3",
+      "vo": "Voici ce que nous pouvons réaliser. D'un espace inutilisé à un véritable bureau sur mesure, chaque centimètre est optimisé pour créer un aménagement unique.",
+      "subtitles": [
+        "Voici ce que nous pouvons réaliser.",
+        "D'un espace inutilisé",
+        "à un véritable bureau sur mesure,",
+        "chaque centimètre est optimisé",
+        "pour créer un aménagement unique."
+      ],
+      "realLabel": "Réalisation DOMOVA — images réelles"
+    },
+    "s7": {
+      "durationSec": 10,
+      "chapter": "06 — LA LIVRAISON",
+      "voice": "audio/vo/s7.mp3",
+      "vo": "Notre objectif est simple : transformer votre espace en un lieu qui vous ressemble, avec des matériaux de qualité et une réalisation soignée jusque dans les moindres détails.",
+      "subtitles": [
+        "Notre objectif est simple :",
+        "transformer votre espace en un lieu qui vous ressemble,",
+        "avec des matériaux de qualité",
+        "et une réalisation soignée jusque dans les moindres détails."
+      ],
+      "shots": [
+        { "id": "S7-A", "src": "videos/sequences/S7-A.mp4", "durationSec": 3.4, "title": "Le client découvre son bureau, le dirigeant DOMOVA à ses côtés", "source": "Tournage réel recommandé — voir prompts/S7.md" }
+      ],
+      "details": [
+        { "id": "D1", "src": "images/details/assemblages.jpg", "label": "Assemblages" },
+        { "id": "D2", "src": "images/details/tiroirs.jpg", "label": "Rangements" },
+        { "id": "D3", "src": "images/details/poignees.jpg", "label": "Poignées" },
+        { "id": "D4", "src": "images/details/eclairage.jpg", "label": "Éclairage" },
+        { "id": "D5", "src": "images/details/plateau.jpg", "label": "Plateau & finitions" }
+      ]
+    },
+    "s8": {
+      "durationSec": 9,
+      "chapter": "",
+      "voice": "audio/vo/s8.mp3",
+      "vo": "Vous avez un projet ? Contactez-nous et imaginons ensemble votre futur bureau.",
+      "subtitles": [],
+      "background": "images/bureau-final.jpg"
+    }
+  },
+
+  "beforeAfter": {
+    "_lisezmoi": "Vos deux vidéos réelles. fit = 'cover' (plein écran, recadré autour de focusX/focusY entre 0 et 1) ou 'contain-blur' (vidéo entière, fond flou de la même vidéo — aucun bandeau noir). Les 'details' sont des rapprochements sur la vidéo APRÈS : x/y = centre du zoom (0–1), zoom = facteur.",
+    "avant": { "src": "videos/avant/avant.mp4", "startSec": 0, "fit": "cover", "focusX": 0.5, "focusY": 0.5 },
+    "apres": { "src": "videos/apres/apres.mp4", "startSec": 0, "fit": "cover", "focusX": 0.5, "focusY": 0.5 },
+    "details": [
+      { "atSec": 2.2, "x": 0.5, "y": 0.62, "zoom": 1.7, "label": "Plateau" },
+      { "atSec": 3.6, "x": 0.35, "y": 0.72, "zoom": 2.0, "label": "Rangements intégrés" },
+      { "atSec": 4.8, "x": 0.62, "y": 0.45, "zoom": 1.9, "label": "Matériaux & finitions" }
+    ]
+  },
+
+  "materials": [
+    { "id": "melamine", "name": "Mélaminé haute qualité", "detail": "Résistant · large choix de décors", "price": 1, "texture": "materials/melamine.jpg", "kind": "solid", "colors": ["#ECEAE5", "#DCD8D0"] },
+    { "id": "stratifie", "name": "Stratifié", "detail": "Surface technique · très durable", "price": 2, "texture": "materials/stratifie.jpg", "kind": "fine", "colors": ["#3A3B3E", "#2C2D30"] },
+    { "id": "bois-naturel", "name": "Bois naturel massif", "detail": "Matière vivante · veinage unique", "price": 4, "texture": "materials/bois-naturel.jpg", "kind": "wood", "colors": ["#C99D6B", "#A87A4A"] },
+    { "id": "placage", "name": "Placage bois", "detail": "Vrai bois · rendu noble", "price": 3, "texture": "materials/placage.jpg", "kind": "veneer", "colors": ["#B98C5E", "#946A41"] },
+    { "id": "noyer", "name": "Décor noyer", "detail": "Teinte profonde · chaleureuse", "price": 2, "texture": "materials/noyer.jpg", "kind": "wood", "colors": ["#6B4529", "#4A2E1A"] },
+    { "id": "chene", "name": "Chêne", "detail": "Lumineux · intemporel", "price": 3, "texture": "materials/chene.jpg", "kind": "wood", "colors": ["#D2AE80", "#B48D5E"] },
+    { "id": "mat", "name": "Finition mate", "detail": "Toucher velours · anti-traces", "price": 2, "texture": "materials/mat.jpg", "kind": "solid", "colors": ["#2A2A2C", "#222224"] },
+    { "id": "brillant", "name": "Finition brillante", "detail": "Laque · reflets profonds", "price": 3, "texture": "materials/brillant.jpg", "kind": "gloss", "colors": ["#F4F2EE", "#D9D6D0"] },
+    { "id": "premium", "name": "Matériaux haut de gamme", "detail": "Pierre, métal, cuir, laque", "price": 4, "texture": "materials/premium.jpg", "kind": "stone", "colors": ["#1C1C1E", "#3B3A38"] },
+    { "id": "combinaison", "name": "Combinaisons", "detail": "Noyer × noir mat × LED", "price": 3, "texture": "materials/combinaison.jpg", "kind": "combo", "colors": ["#5A3A22", "#151515"] }
+  ],
+
+  "deskStyles": [
+    { "name": "Minimaliste", "spec": { "length": 1.6, "shape": "straight", "legs": "metal", "finish": "blanc", "drawers": 0, "shelves": 0, "led": 0 } },
+    { "name": "Contemporain", "spec": { "length": 1.8, "shape": "straight", "legs": "panel", "finish": "anthracite", "drawers": 2, "shelves": 0, "led": 0 } },
+    { "name": "Noyer foncé", "spec": { "length": 1.9, "shape": "straight", "legs": "panel", "finish": "noyer", "drawers": 3, "shelves": 0, "led": 0 } },
+    { "name": "Rangements intégrés", "spec": { "length": 2.0, "shape": "straight", "legs": "panel", "finish": "chene", "drawers": 3, "drawersBoth": true, "shelves": 0, "led": 0 } },
+    { "name": "Éclairage LED", "spec": { "length": 2.0, "shape": "straight", "legs": "panel", "finish": "noir", "drawers": 2, "shelves": 2, "led": 1 } },
+    { "name": "Bureau mural", "spec": { "length": 1.8, "shape": "floating", "legs": "none", "finish": "chene", "drawers": 0, "shelves": 2, "led": 0 } },
+    { "name": "Bibliothèque intégrée", "spec": { "length": 2.2, "shape": "straight", "legs": "panel", "finish": "noyer", "drawers": 3, "shelves": 4, "led": 1 } },
+    { "name": "Bureau d'angle", "spec": { "length": 2.0, "shape": "L", "legs": "panel", "finish": "anthracite", "drawers": 3, "shelves": 0, "led": 0 } },
+    { "name": "Plateau suspendu", "spec": { "length": 1.8, "shape": "floating", "legs": "none", "finish": "noyer", "drawers": 0, "shelves": 0, "led": 1 } }
+  ]
+}
