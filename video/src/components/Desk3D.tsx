@@ -166,7 +166,7 @@ export const Desk: React.FC<{ spec: DeskSpec }> = ({ spec }) => {
             const k = Math.min(1, Math.max(0, grow * nShelves - i));
             const y = Ht + 0.42 + i * 0.36;
             return (
-              <group key={i} scale={[k, 1, 1]}>
+              <group key={i} scale={[Math.max(k, 0.001), 1, 1]} visible={k > 0.01}>
                 <Box size={[L, 0.025, 0.28]} pos={[0, y, zBack + 0.14]} mat={mat} />
                 <Box size={[L - 0.1, 0.008, 0.01]} pos={[0, y - 0.016, zBack + 0.26]} mat={ledMat} />
                 {/* livres */}
