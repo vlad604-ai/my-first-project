@@ -35,7 +35,7 @@ def css():
 .weights{{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px;background:var(--line-d)}}
 .weights .plate{{min-height:300px}}
 .plate.sym svg{{max-width:170px}}
-.wm-sample{{max-width:520px}}
+.wm-sample{{max-width:520px}}\n.socs{{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:24px}}\n.soc{{margin:0;display:grid;gap:10px;justify-items:center;text-align:center;font-size:14px;color:var(--muted-l)}}\n.soc svg{{width:100%;max-width:200px;height:auto}}\n@media (max-width:860px){{.socs{{grid-template-columns:repeat(2,minmax(0,1fr))}}}}
 """
     return c.replace("</style>", extra + "</style>")
 
@@ -210,6 +210,20 @@ def page(img):
     <div class="rule"><div class="box"><span class="x">Interdit</span>{hz.replace(B.BORDEAUX, "#1F4E8C").replace(B.CHAMPAGNE_FONCE, "#3BAF6B")}</div><p>Ne pas changer les couleurs ni ajouter d’ombre, de dégradé ou de contour.</p></div>
   </div>
 </div></section>""")
+    soc = ""
+    for n, cap in (("cercle-symbole-bordeaux", "Arche · bordeaux"), ("cercle-symbole-creme", "Arche · crème"),
+                   ("cercle-symbole-champagne", "Arche · champagne"), ("cercle-nom-bordeaux", "Arche et nom · bordeaux"),
+                   ("cercle-nom-creme", "Arche et nom · crème")):
+        svg = open(os.path.join(B.ROOT, "icons", "reseaux-sociaux", f"domova_{n}.svg")).read().strip()
+        svg = re.sub(r' width="[^"]+" height="[^"]+"', ' role="img"', svg, count=1)
+        soc += f'<figure class="soc">{svg}<figcaption>{cap}</figcaption></figure>'
+    P.append(f"""
+<section class="band light" aria-labelledby="t-soc"><div class="wrap">
+  <div class="head"><div class="eyebrow">Réseaux sociaux</div><h2 id="t-soc">Le logo dans un cercle</h2>
+  <p class="lede">Pour Instagram, TikTok, Facebook, LinkedIn et Google : une arche avec le D pour les petits avatars, l’arche avec le nom pour les grands formats (page Facebook, couverture, vitrine). Chaque version existe en rond détouré et en carré prêt à téléverser, que la plateforme recadre elle-même.</p></div>
+  <div class="socs">{soc}</div>
+  <p class="muted">Conseil : choisissez « Arche · bordeaux » comme photo de profil sur tous les réseaux, pour être reconnu d’un coup d’œil. Les versions avec le nom deviennent illisibles sous 110 px environ.</p>
+</div></section>""")
     m = [("domova_mockup_01_camionnette.png", "Véhicule", "Utilitaire bordeaux, logo horizontal crème et champagne, filet champagne en bas de caisse, arche sur la portière.", True),
          ("domova_mockup_02_textile-polo-sweat.png", "Textile", "Polo bordeaux brodé au cœur, sweat avec le logo principal au dos.", True),
          ("domova_mockup_03_cartes-de-visite.png", "Carte de visite", "85 × 55 mm. Recto bordeaux, arche en dorure à chaud ; verso crème.", False),
@@ -226,7 +240,8 @@ def page(img):
     files = [("logos/svg/", "Vectoriel", "35 fichiers SVG : 7 compositions × 5 versions couleur."),
              ("logos/pdf/", "PDF vectoriel", "Les mêmes 35 logos pour l’imprimeur, le brodeur et le marquage véhicule."),
              ("logos/png/", "PNG transparent", "3200 px de large (2048 px pour symboles et monogramme)."),
-             ("icons/", "Icônes", "Favicon et icône d’application de 16 à 1024 px, avatar réseaux sociaux 1080 × 1080."),
+             ("icons/", "Icônes", "Favicon et icône d’application de 16 à 1024 px."),
+             ("icons/reseaux-sociaux/", "Logos ronds", "5 versions en SVG, PDF, PNG rond détouré et PNG carré à téléverser (1080 px)."),
              ("mockups/", "Mises en situation", "6 scènes en SVG et PNG 2400 px."),
              ("guide/", "Cette fiche", "En page web et en PDF (DOMOVA_fiche-logo.pdf).")]
     fl = "".join(f'<div class="file"><code>{p}</code><h3>{t}</h3><p>{d}</p></div>' for p, t, d in files)

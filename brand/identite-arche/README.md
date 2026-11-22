@@ -7,7 +7,8 @@ Fiche logo : `guide/DOMOVA_fiche-logo.pdf` (et `guide/index.html`).
 | `logos/svg/` | 35 logos vectoriels (7 compositions × 5 versions), textes vectorisés |
 | `logos/pdf/` | les mêmes en PDF vectoriel |
 | `logos/png/` | PNG transparent, 3200 px (2048 px symboles / monogramme) |
-| `icons/` | favicon et icône d'app 16 → 1024 px, avatar réseaux 1080 px |
+| `icons/` | favicon et icône d’app 16 → 1024 px |
+| `icons/reseaux-sociaux/` | 5 logos ronds : SVG, PDF, PNG rond détouré (1080 / 400 px), PNG carré à téléverser |
 | `mockups/` | 6 mises en situation (SVG + PNG) |
 
 Compositions : `principal`, `horizontal`, `compact`, `symbole`, `symbole-renforce`, `monogramme`, `nom-signature`.

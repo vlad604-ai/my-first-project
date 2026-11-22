@@ -251,5 +251,62 @@ def build():
     print(f"{n} logos x 3 formats -> {ROOT}")
 
 
-if __name__ == "__main__":
+if __name__ == "__main__" and "--social" not in sys.argv:
     build()
+    build_social()
+
+
+# ---------------------------------------------------------------- réseaux sociaux : logos ronds
+SOCIAL = {
+    # name: (fond, symbole, accent, anneau, avec_nom)
+    "cercle-symbole-bordeaux": (BORDEAUX, CREME, CHAMPAGNE, CHAMPAGNE, False),
+    "cercle-symbole-creme": (CREME, BORDEAUX, CHAMPAGNE_FONCE, CHAMPAGNE_FONCE, False),
+    "cercle-symbole-champagne": (CHAMPAGNE, BORDEAUX, BORDEAUX_PROFOND, BORDEAUX, False),
+    "cercle-nom-bordeaux": (BORDEAUX, CREME, CHAMPAGNE, CHAMPAGNE, True),
+    "cercle-nom-creme": (CREME, BORDEAUX, CHAMPAGNE_FONCE, CHAMPAGNE_FONCE, True),
+}
+
+
+def social_body(name, R=500.0):
+    bg, col, acc, ring, with_name = SOCIAL[name]
+    c = R
+    body = f'<circle cx="{c}" cy="{c}" r="{R}" fill="{bg}"/>'
+    rr = R * 0.90
+    body += f'<circle cx="{c}" cy="{c}" r="{rr:.2f}" fill="none" stroke="{ring}" stroke-width="{R * 0.008:.2f}"/>'
+    if not with_name:
+        W, H = sym_box("renforce")
+        h = R * 0.84
+        w = W * h / H
+        body += g_icon(c - w / 2, c - h / 2 + R * 0.02, h, col, acc)
+    else:
+        cap = R * 0.13
+        d, ww = J4.text("DOMOVA", cap, TRACK)
+        h = R * 0.62
+        w = SYM_W * h / SYM_H
+        top = c - (h + R * 0.13 + cap) / 2 - R * 0.02
+        body += g_symbol(c - w / 2, top, h, col, acc, "fin")
+        yb = top + h + R * 0.13 + cap
+        body += f'<path fill="{col}" transform="translate({c - ww / 2:.3f} {yb:.3f})" d="{d}"/>'
+        body += f'<rect x="{c - R * 0.06:.2f}" y="{yb + R * 0.08:.2f}" width="{R * 0.12:.2f}" height="{R * 0.008:.2f}" fill="{acc}"/>'
+    return body, bg
+
+
+def build_social():
+    out = os.path.join(ROOT, "icons", "reseaux-sociaux")
+    os.makedirs(out, exist_ok=True)
+    for name in SOCIAL:
+        body, bg = social_body(name)
+        svg = make_svg(body, 1000, 1000, f"DOMOVA — logo rond réseaux sociaux ({name})")
+        base = os.path.join(out, f"domova_{name}")
+        open(base + ".svg", "w").write(svg)
+        cairosvg.svg2pdf(bytestring=svg.encode(), write_to=base + ".pdf")
+        cairosvg.svg2png(bytestring=svg.encode(), write_to=base + "_1080.png", output_width=1080)
+        cairosvg.svg2png(bytestring=svg.encode(), write_to=base + "_400.png", output_width=400)
+        sq = make_svg(f'<rect width="1000" height="1000" fill="{bg}"/>' + body, 1000, 1000,
+                      f"DOMOVA — photo de profil carrée à téléverser ({name})")
+        cairosvg.svg2png(bytestring=sq.encode(), write_to=base + "_carre-a-televerser_1080.png", output_width=1080)
+    print(len(SOCIAL), "logos ronds ->", out)
+
+
+if __name__ == "__main__" and "--social" in sys.argv:
+    build_social()
