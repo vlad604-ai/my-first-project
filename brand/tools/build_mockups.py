@@ -8,7 +8,16 @@ import sys
 import cairosvg
 
 sys.path.insert(0, os.path.dirname(__file__))
-from build_logos import (LOCKUPS, g_symbol, INK, ANTHRACITE, OFFWHITE, COPPER, SYM_W, SYM_H, ROOT)  # noqa: E402
+import importlib  # noqa: E402
+B = importlib.import_module(os.environ.get("DOMOVA_BRAND", "build_logos"))
+LOCKUPS, g_symbol, SYM_W, SYM_H, ROOT = B.LOCKUPS, B.g_symbol, B.SYM_W, B.SYM_H, B.ROOT
+INK, ANTHRACITE, OFFWHITE, COPPER = B.INK, B.ANTHRACITE, B.OFFWHITE, B.COPPER
+g_icon = getattr(B, "g_icon", g_symbol)
+VAN = getattr(B, "VAN_BODY", ["#2E2E2E", "#1A1A1A", "#121212", "#0C0C0C", "#151515"])
+FAB = getattr(B, "FABRIC", ["#0E0E0E", "#1D1D1D", "#222222", "#1A1A1A", "#0C0C0C"])
+TRIM = getattr(B, "FABRIC_TRIM", "#0b0b0b")
+PAPD = getattr(B, "PAPER_DARK", ["#1C1C1C", "#0E0E0E"])
+FOIL = getattr(B, "FOIL", ["#D79A6A", "#B87345", "#E2AE83", "#9A5C35"])
 from marks import Typesetter, FONT_DIR  # noqa: E402
 
 OUT = os.path.join(ROOT, "mockups")
@@ -55,7 +64,7 @@ def van():
     W, H = 1600, 1000
     defs = COMMON_DEFS + f"""
 <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D9D7D1"/><stop offset="0.72" stop-color="#C9C6BF"/><stop offset="0.72" stop-color="#A9A69F"/><stop offset="1" stop-color="#8E8B85"/></linearGradient>
-<linearGradient id="body" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2E2E2E"/><stop offset="0.18" stop-color="#1A1A1A"/><stop offset="0.55" stop-color="#121212"/><stop offset="0.8" stop-color="#0C0C0C"/><stop offset="1" stop-color="#151515"/></linearGradient>
+<linearGradient id="body" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{VAN[0]}"/><stop offset="0.18" stop-color="{VAN[1]}"/><stop offset="0.55" stop-color="{VAN[2]}"/><stop offset="0.8" stop-color="{VAN[3]}"/><stop offset="1" stop-color="{VAN[4]}"/></linearGradient>
 <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="0.45" stop-color="#fff" stop-opacity="0.07"/><stop offset="0.55" stop-color="#fff" stop-opacity="0.02"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
 <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3B4247"/><stop offset="0.5" stop-color="#1C2023"/><stop offset="1" stop-color="#0E1012"/></linearGradient>
 <radialGradient id="rim" cx="0.5" cy="0.45" r="0.6"><stop offset="0" stop-color="#7C7C7C"/><stop offset="0.6" stop-color="#3C3C3C"/><stop offset="1" stop-color="#1E1E1E"/></radialGradient>
@@ -117,9 +126,9 @@ def van():
 # =========================================================================
 def textile():
     W, H = 1600, 1000
-    defs = COMMON_DEFS + """
+    defs = COMMON_DEFS + f"""
 <linearGradient id="bgT" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E7E5DF"/><stop offset="1" stop-color="#D3D0C9"/></linearGradient>
-<linearGradient id="fab" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0E0E0E"/><stop offset="0.25" stop-color="#1D1D1D"/><stop offset="0.5" stop-color="#222"/><stop offset="0.75" stop-color="#1A1A1A"/><stop offset="1" stop-color="#0C0C0C"/></linearGradient>
+<linearGradient id="fab" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="{FAB[0]}"/><stop offset="0.25" stop-color="{FAB[1]}"/><stop offset="0.5" stop-color="{FAB[2]}"/><stop offset="0.75" stop-color="{FAB[3]}"/><stop offset="1" stop-color="{FAB[4]}"/></linearGradient>
 <linearGradient id="fold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.35"/></linearGradient>
 <filter id="knit"><feTurbulence type="fractalNoise" baseFrequency="1.6" numOctaves="1" seed="2"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="table" tableValues="0 0.10"/></feComponentTransfer><feComposite in2="SourceGraphic" operator="in"/></filter>
 """
@@ -133,8 +142,8 @@ def textile():
     b += f'<path d="{polo}" fill="url(#fab)"/><path d="{polo}" fill="#fff" filter="url(#knit)"/>'
     # collar
     b += (f'<path d="M{cx - 92} 190 L{cx - 70} 176 Q{cx} 196 {cx + 70} 176 L{cx + 92} 190 L{cx + 60} 262 '
-          f'L{cx} 226 L{cx - 60} 262 Z" fill="#161616" stroke="#000" stroke-width="2"/>')
-    b += f'<path d="M{cx - 14} 226 L{cx + 14} 226 L{cx + 14} 340 L{cx - 14} 340 Z" fill="#131313" stroke="#000" stroke-width="1.5"/>'
+          f'L{cx} 226 L{cx - 60} 262 Z" fill="{TRIM}" stroke="#000" stroke-width="2"/>')
+    b += f'<path d="M{cx - 14} 226 L{cx + 14} 226 L{cx + 14} 340 L{cx - 14} 340 Z" fill="{TRIM}" stroke="#000" stroke-width="1.5"/>'
     for yy in (262, 300):
         b += f'<circle cx="{cx}" cy="{yy}" r="5" fill="#2a2a2a"/>'
     # sleeve hems, folds
@@ -153,10 +162,10 @@ def textile():
           f"L{cx - 222} 420 L{cx - 268} 776 L{cx - 352} 760 L{cx - 300} 330 Q{cx - 280} 240 {cx - 220} 214 Z")
     b += f'<ellipse cx="{cx}" cy="884" rx="270" ry="18" fill="#000" opacity="0.25" filter="url(#soft)"/>'
     b += f'<path d="{sw}" fill="url(#fab)"/><path d="{sw}" fill="#fff" filter="url(#knit)"/>'
-    b += f'<path d="M{cx - 96} 170 Q{cx} 196 {cx + 96} 170 L{cx + 96} 182 Q{cx} 210 {cx - 96} 182 Z" fill="#0b0b0b"/>'
-    b += f'<path d="M{cx - 224} 830 Q{cx} 852 {cx + 224} 830 L{cx + 224} 860 Q{cx} 884 {cx - 224} 860 Z" fill="#0b0b0b"/>'
-    b += f'<path d="M{cx + 352} 760 L{cx + 268} 776 L{cx + 266} 750 L{cx + 348} 734 Z" fill="#0b0b0b"/>'
-    b += f'<path d="M{cx - 352} 760 L{cx - 268} 776 L{cx - 266} 750 L{cx - 348} 734 Z" fill="#0b0b0b"/>'
+    b += f'<path d="M{cx - 96} 170 Q{cx} 196 {cx + 96} 170 L{cx + 96} 182 Q{cx} 210 {cx - 96} 182 Z" fill="{TRIM}"/>'
+    b += f'<path d="M{cx - 224} 830 Q{cx} 852 {cx + 224} 830 L{cx + 224} 860 Q{cx} 884 {cx - 224} 860 Z" fill="{TRIM}"/>'
+    b += f'<path d="M{cx + 352} 760 L{cx + 268} 776 L{cx + 266} 750 L{cx + 348} 734 Z" fill="{TRIM}"/>'
+    b += f'<path d="M{cx - 352} 760 L{cx - 268} 776 L{cx - 266} 750 L{cx - 348} 734 Z" fill="{TRIM}"/>'
     g, w, h = logo("principal", "couleur-fond-sombre", 0, 0, width=300)
     b += f'<g transform="translate({cx - w / 2:.1f} 300)">{g}</g>'
     b += f'<rect x="{cx - 150}" y="{300 + h + 50:.1f}" width="300" height="1.5" fill="{COPPER}" opacity="0.8"/>'
@@ -170,11 +179,11 @@ def textile():
 # =========================================================================
 def cards():
     W, H = 1600, 1000
-    defs = COMMON_DEFS + """
+    defs = COMMON_DEFS + f"""
 <linearGradient id="desk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3A3936"/><stop offset="1" stop-color="#1E1D1B"/></linearGradient>
 <linearGradient id="paperL" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FAF9F6"/><stop offset="1" stop-color="#ECEAE4"/></linearGradient>
-<linearGradient id="paperD" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1C1C1C"/><stop offset="1" stop-color="#0E0E0E"/></linearGradient>
-<linearGradient id="foil" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#D79A6A"/><stop offset="0.45" stop-color="#B87345"/><stop offset="0.6" stop-color="#E2AE83"/><stop offset="1" stop-color="#9A5C35"/></linearGradient>
+<linearGradient id="paperD" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="{PAPD[0]}"/><stop offset="1" stop-color="{PAPD[1]}"/></linearGradient>
+<linearGradient id="foil" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="{FOIL[0]}"/><stop offset="0.45" stop-color="{FOIL[1]}"/><stop offset="0.6" stop-color="{FOIL[2]}"/><stop offset="1" stop-color="{FOIL[3]}"/></linearGradient>
 """
     b = '<rect width="1600" height="1000" fill="url(#desk)"/>'
     b += '<rect width="1600" height="1000" fill="#fff" filter="url(#grain)"/>'
@@ -186,11 +195,8 @@ def cards():
     b += f'<rect x="{x1}" y="{y1}" width="{cw}" height="{ch}" rx="4" fill="url(#paperD)"/>'
     sh = 120
     swd = SYM_W * sh / SYM_H
-    from build_logos import SYM_MARK, SYM_DIAG, SYM_REST
-    from geom import to_d
-    k = sh / SYM_H
     sx, sy = x1 + (cw - swd) / 2, y1 + (ch - sh) / 2 - 18
-    b += f'<path fill="{OFFWHITE}" d="{to_d(SYM_REST, k, sx, sy)}"/><path fill="url(#foil)" d="{to_d(SYM_DIAG, k, sx, sy)}"/>'
+    b += g_symbol(sx, sy, sh, "url(#foil)" if hasattr(B, "FOIL") else OFFWHITE, "url(#foil)")
     b += T("DOMOVA", x1 + cw / 2, y1 + ch - 64, 15, OFFWHITE, J6, 0.55, "middle")
     b += '</g>'
     # front card (light, contact side)
@@ -367,7 +373,7 @@ def social():
         s += f'<circle cx="{cx}" cy="{cy}" r="{r}" fill="{INK}"/>'
         h = r * 0.80
         w = SYM_W * h / SYM_H
-        s += g_symbol(cx - w / 2 + r * 0.015, cy - h / 2, h, OFFWHITE, COPPER)
+        s += g_icon(cx - w / 2 + r * 0.015, cy - h / 2, h, OFFWHITE, COPPER)
         return s
 
     def phone(x, y, dark):
@@ -405,7 +411,7 @@ def social():
             if i in (0, 4):
                 hh = cell * 0.36
                 ww = SYM_W * hh / SYM_H
-                s += g_symbol(cx_ + (cell - ww) / 2, cy_ + (cell - hh) / 2, hh, OFFWHITE, COPPER)
+                s += g_icon(cx_ + (cell - ww) / 2, cy_ + (cell - hh) / 2, hh, OFFWHITE, COPPER)
             elif i == 1:
                 s += T("AVANT", cx_ + 14, cy_ + 26, 9, INK, J6, 0.2)
                 s += f'<rect x="{cx_ + 14:.1f}" y="{cy_ + 36:.1f}" width="{cell - 28:.1f}" height="{cell - 52:.1f}" fill="#D2CFC8"/>'
