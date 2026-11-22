@@ -188,3 +188,61 @@ export const Plan2D: React.FC<{ p: number }> = ({ p }) => {
     </svg>
   );
 };
+
+/* ------------------------------------------------------------------ */
+/* Plan 2D d'un comptoir arrondi (vue de dessus), qui se dessine.      */
+/* ------------------------------------------------------------------ */
+export const PlanCurved: React.FC<{ p: number }> = ({ p }) => {
+  const draw = (start: number, end: number) => tw(p, [start, end], [0, 1]);
+  const dash = (len: number, k: number) => ({ strokeDasharray: len, strokeDashoffset: len * (1 - k) });
+  const room = { x: 170, y: 520, w: 740, h: 940 };
+  const blue = "#E8EEF4";
+  const cx = 540;
+  const cy = 700;
+  const ro = 400;
+  const ri = 270;
+  const pt = (r: number, deg: number) => [cx + r * Math.cos((deg * Math.PI) / 180), cy + r * Math.sin((deg * Math.PI) / 180)];
+  const [o1x, o1y] = pt(ro, 12);
+  const [o2x, o2y] = pt(ro, 168);
+  const [i1x, i1y] = pt(ri, 12);
+  const [i2x, i2y] = pt(ri, 168);
+  const [l1x, l1y] = pt(ro + 16, 14);
+  const [l2x, l2y] = pt(ro + 16, 166);
+  const counter = `M ${o1x} ${o1y} A ${ro} ${ro} 0 0 1 ${o2x} ${o2y} L ${i2x} ${i2y} A ${ri} ${ri} 0 0 0 ${i1x} ${i1y} Z`;
+  return (
+    <svg width={W} height={H} viewBox={`0 0 ${W} ${H}`} style={{ position: "absolute", inset: 0 }}>
+      <defs>
+        <pattern id="gridc" width="40" height="40" patternUnits="userSpaceOnUse">
+          <path d="M40 0 L0 0 0 40" fill="none" stroke="rgba(232,238,244,0.07)" strokeWidth="1" />
+        </pattern>
+      </defs>
+      <rect width={W} height={H} fill="#1b2027" />
+      <rect width={W} height={H} fill="url(#gridc)" />
+      <rect x={room.x} y={room.y} width={room.w} height={room.h} fill="none" stroke={blue} strokeWidth={14} style={dash(3400, draw(0, 0.3))} />
+      {/* verrière sur le mur du fond */}
+      <line x1={560} y1={room.y} x2={800} y2={room.y} stroke="#9fc3e6" strokeWidth={6} opacity={draw(0.25, 0.35)} />
+      {/* comptoir arrondi */}
+      <path d={counter} fill={C.noyer} fillOpacity={0.35 * draw(0.55, 0.7)} stroke={C.led} strokeWidth={5} style={dash(2600, draw(0.3, 0.6))} />
+      {/* ruban LED */}
+      <path d={`M ${l1x} ${l1y} A ${ro + 16} ${ro + 16} 0 0 1 ${l2x} ${l2y}`} fill="none" stroke={C.led} strokeWidth={3} strokeDasharray="10 8" opacity={draw(0.6, 0.7)} />
+      {/* fauteuils et passe-câbles */}
+      {[470, 610].map((x, i) => (
+        <circle key={x} cx={x} cy={830} r={46} fill="none" stroke={blue} strokeOpacity={0.6} strokeWidth={3} opacity={draw(0.65 + i * 0.03, 0.75 + i * 0.03)} />
+      ))}
+      {[[400, 980], [680, 980]].map(([x, y]) => (
+        <circle key={x} cx={x} cy={y} r={10} fill="none" stroke={C.led} strokeWidth={2} opacity={draw(0.7, 0.78)} />
+      ))}
+      <g opacity={draw(0.72, 0.88)} fontFamily={F.sans} fill={C.led} fontSize={28} fontWeight={600}>
+        <line x1={o2x} y1={o2y + 120} x2={o1x} y2={o1y + 120} stroke={C.led} strokeWidth={2} />
+        <line x1={o2x} y1={o2y + 105} x2={o2x} y2={o2y + 135} stroke={C.led} strokeWidth={2} />
+        <line x1={o1x} y1={o1y + 105} x2={o1x} y2={o1y + 135} stroke={C.led} strokeWidth={2} />
+        <text x={cx} y={o1y + 108} textAnchor="middle">Cotes relevées sur site</text>
+        <line x1={cx} y1={cy} x2={pt(ro, 60)[0]} y2={pt(ro, 60)[1]} stroke={C.led} strokeWidth={2} strokeDasharray="6 6" />
+        <text x={pt(ro * 0.55, 60)[0] + 18} y={pt(ro * 0.55, 60)[1]} fontSize={24}>R. sur mesure</text>
+      </g>
+      <g opacity={draw(0.8, 0.95)} fontFamily={F.sans} fill={blue} fontSize={20} letterSpacing={4}>
+        <text x={room.x} y={room.y + room.h + 70}>PLAN — COMPTOIR ARRONDI · ÉCH. 1:20</text>
+      </g>
+    </svg>
+  );
+};

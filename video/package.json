@@ -1,7 +1,7 @@
 {
   "name": "domova-pub-bureaux",
   "version": "1.0.0",
-  "description": "Publicit\u00e9 DOMOVA \u2013 bureaux sur mesure \u2013 format vertical 9:16",
+  "description": "Publicité DOMOVA – bureaux sur mesure – format vertical 9:16",
   "scripts": {
     "assets": "node scripts/scan-assets.mjs",
     "studio": "node scripts/scan-assets.mjs && remotion studio src/index.ts",
@@ -14,17 +14,13 @@
   "dependencies": {
     "@fontsource/cormorant-garamond": "5.1.0",
     "@fontsource/inter": "5.1.0",
-    "@react-three/fiber": "8.17.10",
     "@remotion/cli": "4.0.300",
-    "@remotion/three": "4.0.300",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "remotion": "4.0.300",
-    "three": "0.170.0"
+    "remotion": "4.0.300"
   },
   "devDependencies": {
     "@types/react": "18.3.12",
-    "@types/three": "0.170.0",
     "typescript": "5.6.3"
   },
   "private": true

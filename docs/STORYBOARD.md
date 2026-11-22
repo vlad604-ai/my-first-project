@@ -28,8 +28,8 @@
 | 1 | Paris → 14e | 0:00 | 8 s | 🎬 / banque d'images + 💻 carte animée |
 | 2 | La rencontre | 0:08 | 9 s | 🎬 ou 📱 |
 | 3 | L'étude de l'espace | 0:17 | 10 s | 🟧 vos images (vidéo AVANT, photo pièce vide, photo traçage au sol) + 💻 cotes |
-| 4 | La conception | 0:27 | 13 s | 🎬 (2,5 s) + 💻 plan 2D + 💻 configurateur 3D |
-| 5 | Les matériaux | 0:40 | 20 s | 💻 (ou vos photos de matériaux) |
+| 4 | La conception | 0:27 | 13 s | 🎬 (2,5 s) + 💻 plan du comptoir arrondi + 🟧 votre comptoir bordeaux détouré (tracé → réalité) |
+| 5 | Les matériaux | 0:40 | 20 s | 💻 matériaux + 🟧 vos 3 réalisations détourées |
 | 6 | Avant / Après | 1:00 | 11 s | 🟧 **vos deux vidéos** |
 | 7 | Le client découvre | 1:11 | 10 s | 🟧 vidéo APRÈS + vos photos de détails (plan client à tourner en option) |
 | 8 | Conclusion / CTA | 1:21 | 9 s | 💻 |
@@ -194,3 +194,22 @@ Si vos vidéos sont filmées sous des angles différents, la transition reste un
 
 ⚠️ Les valeurs des cotes (2,80 m, 1,20 m) sont indicatives : remplacez-les par vos vraies mesures dans `video/src/content/domova.json` (`scenes.s3.shots[].dimensions`).
 Le script `tools/prepare_media.py` refait tout le traitement à partir des originaux placés dans `sources/`.
+
+---
+
+## Vos réalisations à la place des bureaux 3D (version 3)
+
+Les bureaux 3D imaginés sont supprimés. Vos comptoirs sont **détourés** (fond retiré par IA, BiRefNet), nettoyés (bombe, chiffon, câble, balai retirés ; haut des poteaux en fondu) et posés sur un **fond studio** (spot chaud, sol, ombre de contact, reflet, halo LED au sol pour les modèles éclairés).
+
+**Scène 4 — Du plan à la réalisation (0:32.5 → 0:40)**
+Plan au sol d'un comptoir arrondi → le contour du **comptoir arrondi bordeaux** se dessine en traits dorés → la vraie photo détourée apparaît → 4 personnalisations pointées sur le meuble : *Forme : arrondie sur mesure · Façade : laque bordeaux & cannelures · Plateau : blanc brillant · Éclairage : LED intégrée*.
+
+**Scène 5B — Nos réalisations (0:48.7 → 0:56.7), 2,7 s chacune**
+| # | Réalisation | Annotations | Zoom signature |
+|---|---|---|---|
+| 01 | Comptoir tasseaux bois — *Accueil · LED intégrée* | Plateau blanc, angle arrondi · Double ruban LED | Tasseaux bois demi-ronds |
+| 02 | Comptoir en L terracotta — *Grand format · sur mesure* | Plateau découpé autour des poteaux · Retour en L | Façade moulurée terracotta |
+| 03 | Comptoir stuc & moulures — *Double hauteur · style classique* | Tablette basse d'accueil · Façade moulurée | Finition effet stuc |
+
+Noms, sous-titres, annotations et zooms se modifient dans `bureaux` de `video/src/content/domova.json`.
+Pour ajouter une réalisation : détourez la photo (voir `tools/prepare_media.py`), déposez le PNG dans `assets/images/bureaux/` et ajoutez une entrée à `realisations`.

@@ -152,7 +152,7 @@ def process_photo(src, dst, logo_box=None, max_side=2400):
     cv2.imwrite(str(dst), img, [cv2.IMWRITE_JPEG_QUALITY, 92])
 
 
-if __name__ == "__main__":
+if __name__ == "__main__" and "--bureaux" not in __import__("sys").argv:
     process_video(SRC / "avant_video-447.mov", A / "videos/avant/avant.mp4")
     process_video(
         SRC / "apres_video-610.mov",
@@ -166,3 +166,99 @@ if __name__ == "__main__":
     process_photo(SRC / "IMG_7770_vue_dessus.jpg", A / "images/photos/apres-vue-dessus.jpg")
     process_photo(SRC / "IMG_7771_interieur.jpg", A / "images/photos/apres-interieur.jpg", logo_box=(430, 185, 435, 400))
     print("médias prêts")
+
+
+# ---------------------------------------------------------------------------
+# Bureaux détourés (fond retiré avec rembg / BiRefNet, puis nettoyage manuel)
+# Détourage : python3 tools/prepare_media.py --bureaux   (après génération des PNG
+# bruts dans sources/_cut/ via rembg, voir README)
+# ---------------------------------------------------------------------------
+def clean_cutouts():
+    out = A / "images/bureaux"
+    out.mkdir(parents=True, exist_ok=True)
+
+    def load(n):
+        im = cv2.imread(str(SRC / "_cut" / f"{n}.png"), cv2.IMREAD_UNCHANGED)
+        return im
+
+    def keep_main(im, min_ratio=0.02):
+        a = (im[..., 3] > 128).astype(np.uint8)
+        n, lab, stats, _ = cv2.connectedComponentsWithStats(a, 8)
+        big = stats[1:, cv2.CC_STAT_AREA].max()
+        for i in range(1, n):
+            if stats[i, cv2.CC_STAT_AREA] < big * min_ratio:
+                im[..., 3][lab == i] = 0
+        return im
+
+    # 1. Comptoir crème : retirer bombe, outils, chiffon et câble
+    im = load("bureau_creme_moulures")
+    im[540:604, 80:300, 3] = 0  # objets posés sur la tablette (devant le mur → transparent)
+    bgr = np.ascontiguousarray(im[..., :3])
+    m = np.zeros(bgr.shape[:2], np.uint8)
+    # chiffon : pixels verts/bleus (le stuc est beige, R > G > B)
+    zone = bgr[560:650, 215:315].astype(np.int16)
+    rag = ((zone[..., 1] >= zone[..., 2] - 5) | (zone[..., 0] >= zone[..., 2] - 5)).astype(np.uint8) * 255
+    m[560:650, 215:315] = cv2.dilate(rag, np.ones((9, 9), np.uint8))
+    reg = bgr[730:845, 245:310]
+    lum = reg.mean(-1)
+    cable = (lum < 110).astype(np.uint8) * 255
+    m[730:845, 245:310] = cv2.dilate(cable, np.ones((5, 5), np.uint8))
+    bgr = cv2.inpaint(bgr, m, 9, cv2.INPAINT_TELEA)
+    # le chant de la tablette et la plinthe sont réguliers à l'horizontale : on y clone la texture voisine
+    bgr[598:645, 222:306] = bgr[598:645, 132:216]
+    bgr[812:850, 236:290] = bgr[812:850, 176:230]
+    im[..., :3] = bgr
+    im[833:850, 240:275, 3] = np.where(im[833:850, 240:275, 3] > 0, im[833:850, 240:275, 3], 0)
+    im = keep_main(im)
+    cv2.imwrite(str(out / "creme-moulures.png"), im)
+
+    # 2. Tasseaux bois : propre
+    cv2.imwrite(str(out / "tasseaux-bois.png"), keep_main(load("bureau_tasseaux_bois")))
+
+    # 3. Comptoir en L terracotta : fondu des poteaux au-dessus du plateau
+    im = load("bureau_L_terracotta")
+    h = im.shape[0]
+    yy = np.arange(h)[:, None].astype(np.float32)
+    fade = np.clip((yy - 540) / 150, 0, 1)
+    for x0, x1 in [(265, 330), (655, 725)]:
+        a = im[:, x0:x1, 3].astype(np.float32)
+        im[:, x0:x1, 3] = (a * fade).astype(np.uint8)
+    cv2.imwrite(str(out / "L-terracotta.png"), keep_main(im))
+
+    # 4. Arrondi bordeaux : retirer le manche de balai
+    cv2.imwrite(str(out / "arrondi-bordeaux.png"), keep_main(load("bureau_arrondi_bordeaux"), 0.05))
+
+    # photos d'origine pour les gros plans
+    for src, dst in [
+        ("bureau_creme_moulures.jpg", "photo-creme-moulures.jpg"),
+        ("bureau_tasseaux_bois.jpg", "photo-tasseaux-bois.jpg"),
+        ("bureau_L_terracotta.jpg", "photo-L-terracotta.jpg"),
+        ("bureau_arrondi_bordeaux.jpg", "photo-arrondi-bordeaux.jpg"),
+    ]:
+        process_photo(SRC / src, out / dst)
+
+
+if __name__ == "__main__" and "--bureaux" in __import__("sys").argv:
+    clean_cutouts()
+
+
+def line_drawings():
+    """Tracé « plan d'architecte » (traits dorés) extrait du contour de chaque bureau détouré."""
+    d = A / "images/bureaux"
+    for n in ["arrondi-bordeaux", "tasseaux-bois", "L-terracotta", "creme-moulures"]:
+        im = cv2.imread(str(d / f"{n}.png"), cv2.IMREAD_UNCHANGED)
+        a = im[..., 3]
+        g = cv2.cvtColor(im[..., :3], cv2.COLOR_BGR2GRAY)
+        g = cv2.GaussianBlur(g, (5, 5), 0)
+        e = cv2.Canny(g, 30, 90)
+        e[a < 200] = 0
+        outline = cv2.morphologyEx((a > 128).astype(np.uint8) * 255, cv2.MORPH_GRADIENT, np.ones((3, 3), np.uint8))
+        e = cv2.dilate(np.maximum(e, outline), np.ones((2, 2), np.uint8))
+        out = np.zeros((*e.shape, 4), np.uint8)
+        out[..., 0], out[..., 1], out[..., 2] = 160, 217, 255  # BGR de #FFD9A0
+        out[..., 3] = e
+        cv2.imwrite(str(d / f"{n}-lignes.png"), out)
+
+
+if __name__ == "__main__" and "--bureaux" in __import__("sys").argv:
+    line_drawings()

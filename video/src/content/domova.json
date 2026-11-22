@@ -213,34 +213,28 @@
       ],
       "options": [
         {
-          "key": "LONGUEUR",
-          "from": "160 cm",
-          "to": "240 cm"
-        },
-        {
           "key": "FORME",
-          "from": "Droit",
-          "to": "En L"
+          "value": "Arrondie sur mesure",
+          "x": 0.86,
+          "y": 0.86
         },
         {
-          "key": "RANGEMENTS",
-          "from": "—",
-          "to": "3 tiroirs"
+          "key": "FAÇADE",
+          "value": "Laque bordeaux & cannelures",
+          "x": 0.09,
+          "y": 0.62
         },
         {
-          "key": "ÉTAGÈRES",
-          "from": "—",
-          "to": "Bibliothèque"
+          "key": "PLATEAU",
+          "value": "Blanc brillant",
+          "x": 0.5,
+          "y": 0.36
         },
         {
           "key": "ÉCLAIRAGE",
-          "from": "—",
-          "to": "LED 3000 K"
-        },
-        {
-          "key": "FINITION",
-          "from": "Chêne",
-          "to": "Noyer"
+          "value": "LED intégrée",
+          "x": 0.55,
+          "y": 0.97
         }
       ]
     },
@@ -553,115 +547,136 @@
       ]
     }
   ],
-  "deskStyles": [
-    {
-      "name": "Minimaliste",
-      "spec": {
-        "length": 1.6,
-        "shape": "straight",
-        "legs": "metal",
-        "finish": "blanc",
-        "drawers": 0,
-        "shelves": 0,
-        "led": 0
-      }
+  "bureaux": {
+    "_lisezmoi": "Vos réalisations détourées (assets/images/bureaux). bbox = cadre utile du détourage en pixels [x0,y0,x1,y1] ; les points (x,y) des annotations sont exprimés de 0 à 1 dans ce cadre.",
+    "arrondi": {
+      "name": "Comptoir arrondi bordeaux",
+      "cutout": "images/bureaux/arrondi-bordeaux.png",
+      "lines": "images/bureaux/arrondi-bordeaux-lignes.png",
+      "size": [
+        900,
+        1200
+      ],
+      "bbox": [
+        18,
+        336,
+        822,
+        754
+      ],
+      "led": true
     },
-    {
-      "name": "Contemporain",
-      "spec": {
-        "length": 1.8,
-        "shape": "straight",
-        "legs": "panel",
-        "finish": "anthracite",
-        "drawers": 2,
-        "shelves": 0,
-        "led": 0
+    "realisations": [
+      {
+        "id": "tasseaux",
+        "name": "Comptoir tasseaux bois",
+        "subtitle": "Accueil · LED intégrée",
+        "cutout": "images/bureaux/tasseaux-bois.png",
+        "size": [
+          1200,
+          900
+        ],
+        "bbox": [
+          145,
+          491,
+          890,
+          752
+        ],
+        "led": true,
+        "callouts": [
+          {
+            "x": 0.3,
+            "y": 0.1,
+            "label": "Plateau blanc, angle arrondi",
+            "side": "top"
+          },
+          {
+            "x": 0.55,
+            "y": 0.95,
+            "label": "Double ruban LED",
+            "side": "bottom"
+          }
+        ],
+        "detail": {
+          "x": 0.42,
+          "y": 0.55,
+          "zoom": 2.0,
+          "label": "Tasseaux bois demi-ronds"
+        }
+      },
+      {
+        "id": "terracotta",
+        "name": "Comptoir en L terracotta",
+        "subtitle": "Grand format · sur mesure",
+        "cutout": "images/bureaux/L-terracotta.png",
+        "size": [
+          1050,
+          1400
+        ],
+        "bbox": [
+          91,
+          565,
+          872,
+          958
+        ],
+        "led": false,
+        "callouts": [
+          {
+            "x": 0.75,
+            "y": 0.47,
+            "label": "Plateau découpé autour des poteaux",
+            "side": "top"
+          },
+          {
+            "x": 0.93,
+            "y": 0.65,
+            "label": "Retour en L",
+            "side": "bottom"
+          }
+        ],
+        "detail": {
+          "x": 0.22,
+          "y": 0.62,
+          "zoom": 1.9,
+          "label": "Façade moulurée terracotta"
+        }
+      },
+      {
+        "id": "creme",
+        "name": "Comptoir stuc & moulures",
+        "subtitle": "Double hauteur · style classique",
+        "cutout": "images/bureaux/creme-moulures.png",
+        "size": [
+          551,
+          1200
+        ],
+        "bbox": [
+          80,
+          513,
+          525,
+          844
+        ],
+        "led": false,
+        "callouts": [
+          {
+            "x": 0.2,
+            "y": 0.3,
+            "label": "Tablette basse d'accueil",
+            "side": "top"
+          },
+          {
+            "x": 0.5,
+            "y": 0.72,
+            "label": "Façade moulurée",
+            "side": "bottom"
+          }
+        ],
+        "detail": {
+          "x": 0.72,
+          "y": 0.2,
+          "zoom": 1.55,
+          "label": "Finition effet stuc"
+        }
       }
-    },
-    {
-      "name": "Noyer foncé",
-      "spec": {
-        "length": 1.9,
-        "shape": "straight",
-        "legs": "panel",
-        "finish": "noyer",
-        "drawers": 3,
-        "shelves": 0,
-        "led": 0
-      }
-    },
-    {
-      "name": "Rangements intégrés",
-      "spec": {
-        "length": 2.0,
-        "shape": "straight",
-        "legs": "panel",
-        "finish": "chene",
-        "drawers": 3,
-        "drawersBoth": true,
-        "shelves": 0,
-        "led": 0
-      }
-    },
-    {
-      "name": "Éclairage LED",
-      "spec": {
-        "length": 2.0,
-        "shape": "straight",
-        "legs": "panel",
-        "finish": "noir",
-        "drawers": 2,
-        "shelves": 2,
-        "led": 1
-      }
-    },
-    {
-      "name": "Bureau mural",
-      "spec": {
-        "length": 1.8,
-        "shape": "floating",
-        "legs": "none",
-        "finish": "chene",
-        "drawers": 0,
-        "shelves": 2,
-        "led": 0
-      }
-    },
-    {
-      "name": "Bibliothèque intégrée",
-      "spec": {
-        "length": 2.2,
-        "shape": "straight",
-        "legs": "panel",
-        "finish": "noyer",
-        "drawers": 3,
-        "shelves": 4,
-        "led": 1
-      }
-    },
-    {
-      "name": "Bureau d'angle",
-      "spec": {
-        "length": 2.0,
-        "shape": "L",
-        "legs": "panel",
-        "finish": "anthracite",
-        "drawers": 3,
-        "shelves": 0,
-        "led": 0
-      }
-    },
-    {
-      "name": "Plateau suspendu",
-      "spec": {
-        "length": 1.8,
-        "shape": "floating",
-        "legs": "none",
-        "finish": "noyer",
-        "drawers": 0,
-        "shelves": 0,
-        "led": 1
-      }
-    }
-  ]
+    ]
+  }
 }

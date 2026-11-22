@@ -14,7 +14,7 @@ assets/                   Vos médias (chaque dossier contient un LISEZMOI)
 video/                    Projet de montage (Remotion / React), rendu en MP4 H.264
   src/content/domova.json   ← TOUS les textes, durées, coordonnées, matériaux, réglages avant/après
   src/scenes/               Une scène par fichier (S1Paris … S8Conclusion)
-  src/components/           Sous-titres, logo, cotes, carte, plan 2D, bureau 3D, matériaux
+  src/components/           Sous-titres, logo, cotes, carte, plans 2D, présentation des bureaux détourés, matériaux
 ```
 
 ## Ce que le projet produit déjà
@@ -24,8 +24,8 @@ video/                    Projet de montage (Remotion / React), rendu en MP4 H.2
 - Carte animée de Paris avec repère 14e.
 - Cotes architecturales animées.
 - Transition pièce → plan 2D.
-- **Configurateur 3D paramétrique** : longueur, forme, tiroirs, étagères, LED, finitions.
-- Présentation des 10 matériaux avec indicateur de gamme €→€€€€ et des 9 styles de bureaux en 3D.
+- **Vos réalisations détourées** sur fond studio : passage du plan au comptoir réel avec ses personnalisations, puis vos 3 autres comptoirs présentés un par un, avec annotations et zooms.
+- Présentation des 10 matériaux avec indicateur de gamme de € à €€€€.
 - Carte « le prix varie selon… ».
 - Avant/après avec transition architecturale et rapprochements.
 - Gros plans de détails.
@@ -55,6 +55,5 @@ npm run studio            # aperçu interactif dans le navigateur (chaque scène
 npm run render            # → out/domova_9x16_1080x1920.mp4 (H.264, yuv420p, AAC)
 npm run render:safezones  # même vidéo avec les zones de sécurité TikTok/Reels en surimpression
 ```
-Sur une machine sans GPU, ajoutez `REMOTION_GL=swangle` devant la commande (rendu 3D logiciel, plus lent).
 
 Licence : Remotion est gratuit pour les particuliers et les entreprises de 3 salariés au plus. Au-delà, une licence entreprise est nécessaire (remotion.pro).

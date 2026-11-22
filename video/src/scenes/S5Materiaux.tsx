@@ -1,15 +1,15 @@
 import React from "react";
 import { AbsoluteFill, Sequence, useCurrentFrame } from "remotion";
 import { BrandBug } from "../components/Brand";
-import { DeskScene, DeskSpec } from "../components/Desk3D";
+import { Callout, CutoutDesk, CutoutOnStage, layout, STAGE, StudioBackdrop } from "../components/Showcase";
 import { Subtitles } from "../components/Subtitles";
 import { Swatch } from "../components/Swatch";
 import { content, easeInOut, sec, tw } from "../lib";
 import { C, F, SAFE, SAFE_W } from "../theme";
 
 const S = content.scenes.s5;
-const MAT_F = 31; // ≈ 1 s par matériau
-const STYLE_F = 21; // ≈ 0,7 s par style de bureau
+const MAT_F = 26; // ≈ 0,9 s par matériau
+const REAL_F = 80; // ≈ 2,7 s par réalisation
 
 const Price: React.FC<{ level: number }> = ({ level }) => (
   <span style={{ letterSpacing: 6 }}>
@@ -50,32 +50,60 @@ const MaterialCard: React.FC<{ i: number }> = ({ i }) => {
   );
 };
 
-const StylesShowcase: React.FC = () => {
-  const frame = useCurrentFrame();
-  const n = content.deskStyles.length;
-  const i = Math.min(n - 1, Math.floor(frame / STYLE_F));
-  const style = content.deskStyles[i];
-  const local = frame - i * STYLE_F;
-  const angle = 0.75 + Math.sin(frame / 40) * 0.12 + (i % 2 ? -1.5 : 0); // alterne gauche/droite pour dynamiser
-  const spec = { ...style.spec, drawerOpen: 0, shelfGrow: 1, lAmount: 1 } as DeskSpec;
-  const L = spec.shape === "L" ? 2.6 : spec.length;
-  const dist = 3.6 + L * 1.1;
-  const flash = tw(local, [0, 4], [0.5, 0]);
+type Realisation = (typeof content.bureaux.realisations)[number];
+
+/** Une réalisation : détourée sur fond studio, annotations, puis zoom sur son détail signature. */
+const RealisationCard: React.FC<{ r: Realisation; i: number; n: number }> = ({ r, i, n }) => {
+  const f = useCurrentFrame();
+  const desk = r as unknown as CutoutDesk;
+  const L = layout(desk);
+  const enter = tw(f, [0, 12], [0, 1]);
+  const zt = tw(f, [42, 62], [0, 1], easeInOut);
+  const P = L.pt(r.detail.x, r.detail.y);
+  const z = 1 + (r.detail.zoom - 1) * zt;
+  const dx = (STAGE.cx - P.x) * zt;
+  const dy = (STAGE.cy - P.y) * zt;
+  const calloutsO = tw(f, [36, 44], [1, 0]);
   return (
     <AbsoluteFill>
-      <DeskScene
-        spec={spec}
-        mood={spec.led > 0.5 ? "evening" : "day"}
-        cam={{ pos: [Math.sin(angle) * dist, 1.6, Math.cos(angle) * dist + 0.3], target: [spec.shape === "L" ? 0.4 : 0, 0.62, 0.3], fov: 44 }}
-      />
-      <AbsoluteFill style={{ background: "#fff", opacity: flash }} />
-      <div style={{ position: "absolute", left: SAFE.left, width: SAFE_W, top: 390, textAlign: "center" }}>
-        <div style={{ fontFamily: F.sans, fontSize: 22, letterSpacing: 6, color: C.beige, textShadow: "0 1px 6px rgba(0,0,0,0.9)" }}>
-          STYLE {String(i + 1).padStart(2, "0")} / {String(n).padStart(2, "0")}
+      <StudioBackdrop horizon={L.box.y + L.box.h - 10} />
+      <AbsoluteFill style={{ transformOrigin: `${P.x}px ${P.y}px`, transform: `translate(${dx}px, ${dy + (1 - enter) * 40}px) scale(${z})`, opacity: enter }}>
+        <CutoutOnStage desk={desk} />
+      </AbsoluteFill>
+      <AbsoluteFill style={{ opacity: calloutsO }}>
+        {r.callouts.map((c, k) => {
+          const pt = L.pt(c.x, c.y);
+          const labelY = c.side === "top" ? L.box.y - 50 : L.box.y + L.box.h + 55;
+          return <Callout key={k} x={pt.x} y={pt.y} labelY={labelY} label={c.label} p={tw(f, [8 + k * 12, 24 + k * 12], [0, 1])} />;
+        })}
+      </AbsoluteFill>
+      <div style={{ position: "absolute", left: SAFE.left, width: SAFE_W, top: 370, textAlign: "center", opacity: enter }}>
+        <div style={{ fontFamily: F.sans, fontSize: 22, letterSpacing: 6, color: C.beige }}>
+          NOS RÉALISATIONS · {String(i + 1).padStart(2, "0")} / {String(n).padStart(2, "0")}
         </div>
-        <div style={{ display: "inline-block", fontFamily: F.serif, fontSize: 74, color: C.blanc, marginTop: 10, padding: "6px 30px 12px", borderRadius: 14, background: "rgba(13,13,14,0.72)" }}>{style.name}</div>
+        <div style={{ fontFamily: F.serif, fontSize: 66, color: C.blanc, marginTop: 4, lineHeight: 1.05 }}>{r.name}</div>
+        <div style={{ fontFamily: F.sans, fontSize: 26, color: "#cfc8bd", marginTop: 8 }}>{r.subtitle}</div>
       </div>
+      {zt > 0 ? (
+        <div style={{ position: "absolute", left: SAFE.left, top: 1120, opacity: tw(f, [52, 62], [0, 1]), display: "flex", alignItems: "center", gap: 18 }}>
+          <div style={{ width: tw(f, [52, 66], [0, 70]), height: 2, background: C.led }} />
+          <div style={{ fontFamily: F.serif, fontSize: 58, color: C.blanc, padding: "2px 20px 8px", borderRadius: 12, background: "rgba(13,13,14,0.7)" }}>{r.detail.label}</div>
+        </div>
+      ) : null}
     </AbsoluteFill>
+  );
+};
+
+const Realisations: React.FC = () => {
+  const list = content.bureaux.realisations;
+  return (
+    <>
+      {list.map((r, i) => (
+        <Sequence key={r.id} from={i * REAL_F} durationInFrames={REAL_F}>
+          <RealisationCard r={r} i={i} n={list.length} />
+        </Sequence>
+      ))}
+    </>
   );
 };
 
@@ -121,11 +149,11 @@ const PriceCard: React.FC = () => {
   );
 };
 
-/** SCÈNE 5 — Matériaux (macros verticales) → 9 styles de bureaux → le prix dépend du projet. */
+/** SCÈNE 5 — Matériaux (macros verticales) → vos réalisations, une par une → le prix dépend du projet. */
 export const S5Materiaux: React.FC = () => {
   const nM = content.materials.length;
   const aF = nM * MAT_F;
-  const bF = content.deskStyles.length * STYLE_F;
+  const bF = content.bureaux.realisations.length * REAL_F;
   return (
     <AbsoluteFill style={{ backgroundColor: C.noir }}>
       {content.materials.map((_, i) => (
@@ -134,7 +162,7 @@ export const S5Materiaux: React.FC = () => {
         </Sequence>
       ))}
       <Sequence from={aF} durationInFrames={bF}>
-        <StylesShowcase />
+        <Realisations />
       </Sequence>
       <Sequence from={aF + bF}>
         <PriceCard />
@@ -145,4 +173,4 @@ export const S5Materiaux: React.FC = () => {
   );
 };
 
-export const S5_MIN_FRAMES = content.materials.length * MAT_F + content.deskStyles.length * STYLE_F + sec(2.5);
+export const S5_MIN_FRAMES = content.materials.length * MAT_F + content.bureaux.realisations.length * REAL_F + sec(2.5);

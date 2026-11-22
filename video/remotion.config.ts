@@ -8,8 +8,8 @@ Config.setCodec("h264");
 Config.setPixelFormat("yuv420p");
 Config.setCrf(18);
 Config.setOverwriteOutput(true);
-// Le bureau 3D utilise WebGL : "angle" sur une machine avec GPU, "swangle" (logiciel) sinon.
-Config.setChromiumOpenGlRenderer((process.env.REMOTION_GL as "angle" | "swangle") ?? "angle");
+
+
 if (process.env.REMOTION_BROWSER) {
   Config.setBrowserExecutable(process.env.REMOTION_BROWSER);
 }
