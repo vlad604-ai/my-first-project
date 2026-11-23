@@ -22,6 +22,8 @@ A = ROOT / "assets"
 TMP.mkdir(parents=True, exist_ok=True)
 
 SDR = "fps=30,eq=saturation=1.08:contrast=1.03,format=yuv420p"
+# finition : débruitage (vidéo iPhone en intérieur), netteté douce, contraste léger
+FINISH = "hqdn3d=4:3:8:6,unsharp=5:5:0.7:5:5:0.0,eq=contrast=1.04:saturation=1.06:brightness=0.01"
 TAGS = ["-color_primaries", "bt709", "-color_trc", "bt709", "-colorspace", "bt709"]
 
 
@@ -116,7 +118,7 @@ def process_video(src, dst, logo=None):
     sdr = TMP / (src.stem + "_sdr.mp4")
     ffmpeg("-i", str(src), "-vf", SDR, *TAGS, "-c:v", "libx264", "-crf", "12", "-preset", "medium", "-an", str(sdr))
     if not logo:
-        ffmpeg("-i", str(sdr), "-c:v", "libx264", "-crf", "17", "-preset", "slow", *TAGS, "-movflags", "+faststart", str(dst))
+        ffmpeg("-i", str(sdr), "-vf", FINISH, "-c:v", "libx264", "-crf", "16", "-preset", "slow", *TAGS, "-movflags", "+faststart", str(dst))
         return
     boxes = track_logo(sdr, **logo)
     json.dump(boxes.tolist(), open(TMP / (src.stem + "_logo_boxes.json"), "w"))
@@ -124,7 +126,7 @@ def process_video(src, dst, logo=None):
     w, h = int(cap.get(3)), int(cap.get(4))
     enc = subprocess.Popen(
         ["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "bgr24", "-s", f"{w}x{h}", "-r", "30", "-i", "-",
-         "-c:v", "libx264", "-crf", "17", "-preset", "slow", "-pix_fmt", "yuv420p", *TAGS, "-movflags", "+faststart", str(dst)],
+         "-vf", FINISH, "-c:v", "libx264", "-crf", "16", "-preset", "slow", "-pix_fmt", "yuv420p", *TAGS, "-movflags", "+faststart", str(dst)],
         stdin=subprocess.PIPE,
     )
     i = 0

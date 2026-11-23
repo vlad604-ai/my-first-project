@@ -1,6 +1,6 @@
 import React from "react";
 import { AbsoluteFill, Audio, Composition, interpolate, Sequence, useVideoConfig } from "remotion";
-import { Grain, Shell } from "./components/Shell";
+import { Shell } from "./components/Shell";
 import { SafeZones } from "./components/SafeZones";
 import { content, file, has, sceneFrames, SceneId, totalFrames } from "./lib";
 import { S1Paris } from "./scenes/S1Paris";
@@ -72,7 +72,6 @@ export const Main: React.FC<{ showSafeZones?: boolean }> = ({ showSafeZones }) =
         return el;
       })}
       <Music />
-      <Grain />
       {showSafeZones ? <SafeZones /> : null}
     </AbsoluteFill>
   );
@@ -86,7 +85,6 @@ const Single: React.FC<{ id: SceneId; showSafeZones?: boolean }> = ({ id, showSa
         <s.C />
       </Shell>
       <Voice id={id} />
-      <Grain />
       {showSafeZones ? <SafeZones /> : null}
     </AbsoluteFill>
   );

@@ -32,7 +32,7 @@ const BigLabel: React.FC<{ text: string; o: number }> = ({ text, o }) => (
 );
 
 type Detail = { atSec: number; x: number; y: number; zoom: number; label: string };
-type Clip = { startSec: number; durationSec: number; push?: number[]; details?: Detail[] };
+type Clip = { startSec: number; durationSec: number; push?: number[]; details?: Detail[]; focusX?: number; focusXTo?: number };
 
 /** Rapprochements successifs sur un plan APRÈS (simple recadrage, aucune retouche de l'image). */
 const detailZoom = (f: number, details: Detail[]) => {
@@ -77,7 +77,8 @@ const ApresClip: React.FC<{ clip: Clip }> = ({ clip }) => {
           src={BA.apres.src}
           startSec={clip.startSec}
           fit={BA.apres.fit as Fit}
-          focusX={BA.apres.focusX}
+          focusX={clip.focusX ?? BA.apres.focusX}
+          focusXTo={clip.focusXTo}
           focusY={BA.apres.focusY}
           push={(clip.push as [number, number]) ?? [1, 1]}
           placeholder={{ id: "APRÈS", title: "Déposez la vidéo APRÈS (bureau réalisé)", source: "Vidéo réelle — elle ne sera ni remplacée ni retouchée.", tone: "alert" }}

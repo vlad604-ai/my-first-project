@@ -262,3 +262,12 @@ Les écrans « PLAN À INSÉRER » sont remplacés par des illustrations animée
 | S4-A Concepteur | « BUREAU D'ÉTUDES DOMOVA » : écran au trait, le comptoir arrondi se dessine dans le logiciel, **zoom dans l'écran** qui enchaîne sur le plan |
 
 Textes modifiables dans `domova.json` : `scenes.s2.visitKicker`, `visitTitle`, `promises`, `scenes.s4.studioLabel`.
+
+---
+
+## Image de l'APRÈS (version 11)
+
+- **Grain filmique supprimé** sur toute la vidéo (rendu plus net et épuré).
+- **Vidéos réelles débruitées** (filtre hqdn3d), netteté douce et léger contraste (`FINISH` dans `tools/prepare_media.py`).
+- **Recadrage qui suit le comptoir** pendant la révélation APRÈS (`focusX` 0,18 → `focusXTo` 0,68) : le meuble reste entier dans le cadre vertical.
+- **Zooms modérés** (×1,35 à ×1,5 au lieu de ×1,7 à ×2) : les détails restent nets — plateau, façade cannelée, LED du pied.

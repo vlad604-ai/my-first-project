@@ -20,6 +20,8 @@ type Props = {
   style?: React.CSSProperties;
   volume?: number;
   playbackRate?: number;
+  /** recadrage qui suit le sujet : focusX animé de focusX vers focusXTo sur la durée du plan */
+  focusXTo?: number;
 };
 
 const Raw: React.FC<{ src: string; startSec: number; style: React.CSSProperties; volume: number; playbackRate?: number }> = ({
@@ -49,11 +51,13 @@ export const Media: React.FC<Props> = ({
   style,
   volume = 0,
   playbackRate = 1,
+  focusXTo,
 }) => {
   const frame = useCurrentFrame();
   const { durationInFrames } = useVideoConfig();
   const s = tw(frame, [0, durationInFrames], push, (t) => t);
   const dy = tw(frame, [0, durationInFrames], drift, (t) => t);
+  if (focusXTo !== undefined) focusX = tw(frame, [0, durationInFrames], [focusX, focusXTo]);
   const motion: React.CSSProperties = { transform: `translateY(${dy}px) scale(${s})`, transformOrigin: `${focusX * 100}% ${focusY * 100}%` };
 
   if (!has(src)) {
