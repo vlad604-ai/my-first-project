@@ -79,15 +79,26 @@ Suivez l’avancement jour après jour dans nos stories « Chantiers ».
 Votre immeuble ou votre maison a besoin d’un ravalement ? Devis gratuit, lien en bio 📩
 
 #domova #ravalementdefacade #facade #pierredetaille #chantier #batiment #renovation #enduitchaux #patrimoine #copropriete""",
-    "04_conseil": """3 erreurs à éviter avant de rénover 👉 Glissez
+    "04_conseil": """3 erreurs que nous voyons sur presque tous les projets de rénovation 👉 Glissez
 
-1. Choisir les finitions avant d’avoir validé l’électricité
-2. Oublier la ventilation de la salle de bains
-3. Multiplier les artisans sans coordinateur
+Une rénovation réussie se joue souvent avant même le début des travaux. Voici les trois pièges les plus fréquents, et comment les éviter :
 
-Enregistrez ce post pour votre futur projet.
+1️⃣ Choisir les finitions avant d’avoir validé l’électricité
+Carrelage, cuisine, luminaires : tout dépend de l’emplacement des prises et des points lumineux. Plan électrique d’abord, finitions ensuite.
 
-#conseilrenovation #travauxmaison #renovation #amenagementinterieur #domova""",
+2️⃣ Oublier la ventilation de la salle de bains
+Sans extraction efficace, l’humidité s’installe en quelques mois. On prévoit la VMC dès la conception.
+
+3️⃣ Multiplier les artisans sans coordinateur
+Chacun attend l’autre, les retards s’additionnent, et personne n’est responsable de l’ensemble. Un seul interlocuteur, un seul planning.
+
+C’est exactement pour ça que nous travaillons en entreprise générale : tous les corps d’état, coordonnés par une seule équipe.
+
+📌 Enregistrez ce post pour votre futur projet, et partagez-le à quelqu’un qui prépare des travaux.
+
+Une question sur votre rénovation ? Posez-la en commentaire, on y répond 👇
+
+#domova #conseilrenovation #renovation #travaux #renovationappartement #travauxmaison #amenagementinterieur #electricite #salledebain #entreprisegenerale""",
     "05_realisation": """Appartement haussmannien, Paris 16e.
 
 Rénovation complète en 14 semaines : dépose, électricité, plomberie, parquet en chêne, moulures restaurées.
