@@ -8,7 +8,7 @@ import { content, easeInOut, sec, tw } from "../lib";
 import { C, F, SAFE, SAFE_W } from "../theme";
 
 const S = content.scenes.s5;
-const MAT_F = 26; // ≈ 0,9 s par matériau
+const MAT_F = 22; // ≈ 0,75 s par matériau
 const REAL_F = 80; // ≈ 2,7 s par réalisation
 
 const Price: React.FC<{ level: number }> = ({ level }) => (

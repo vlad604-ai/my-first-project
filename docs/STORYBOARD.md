@@ -228,3 +228,21 @@ Pour ajouter une réalisation : détourez la photo (voir `tools/prepare_media.py
 Coordonnées reprises de vos maquettes : **domova.fr** et **@domova.btp** (à confirmer), TikTok et téléphone à compléter dans `contacts`.
 
 **Devise** : « L'art de rénover » apparaît sous l'arche à l'ouverture et sous le logo DOMOVA sur l'affiche finale (`brand.devise` dans `domova.json`).
+
+---
+
+## Nouvelle scène 5b — Vos inspirations (après « Nos réalisations », 7,5 s)
+
+**Message :** pas besoin d'arriver avec un projet précis.
+
+| Temps | Contenu |
+|---|---|
+| 0 → 1,7 s | Fond bordeaux, arche fine qui se dessine, question centrée : **« Pas encore d'idée précise ? »** |
+| 1,7 → 3,7 s | La question remonte. Deux possibilités apparaissent : **01 · Nous imaginons votre projet** (conception complète, de A à Z) · **02 · Vous nous envoyez vos inspirations** (Pinterest · Instagram · photos). |
+| 3,5 → 5,7 s | Un tableau façon Pinterest se forme : 4 cartes « inspiration » arrondies, légèrement inclinées. |
+| 5,7 → 7,5 s | Les cartes se rassemblent puis laissent place au plan du comptoir tracé en or : **« Nous en faisons — Votre plan sur mesure »**. |
+
+**Voix off :** « Pas encore d'idée précise ? Nous imaginons votre projet pour vous, ou vous nous envoyez vos inspirations, et nous les transformons en plan sur mesure. »
+
+Pour rester à 90 s, les autres scènes sont légèrement resserrées : S1 7,5 s · S2 8 s · S3 8,5 s · S4 13 s · S5 18,4 s · **S5b 7,5 s** · S6 10 s · S7 9,1 s · S8 8 s. Les chapitres suivants sont renumérotés (06 Réalisation, 07 Livraison).
+Les images du tableau d'inspirations et les textes se modifient dans `scenes.s5b` de `domova.json`.

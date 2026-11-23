@@ -46,7 +46,7 @@
   },
   "scenes": {
     "s1": {
-      "durationSec": 8,
+      "durationSec": 7.5,
       "chapter": "PARIS",
       "voice": "audio/vo/s1.mp3",
       "vo": "À Paris, chaque espace possède un potentiel. Chez DOMOVA, nous transformons vos idées en réalisations uniques, entièrement pensées pour vous.",
@@ -66,7 +66,7 @@
         {
           "id": "S1-B",
           "src": "videos/sequences/S1-B.mp4",
-          "durationSec": 3.4,
+          "durationSec": 2.9,
           "title": "Rue haussmannienne du 14e, niveau trottoir",
           "source": "IA ou tournage — voir prompts/S1.md"
         }
@@ -75,7 +75,7 @@
       "coordinates": "48.8331° N · 2.3264° E"
     },
     "s2": {
-      "durationSec": 9,
+      "durationSec": 8,
       "chapter": "01 — LA RENCONTRE",
       "voice": "audio/vo/s2.mp3",
       "vo": "Tout commence par une rencontre. Vous avez un projet, une envie, un espace à aménager ? Nous venons à votre rencontre pour comprendre vos besoins.",
@@ -89,21 +89,21 @@
         {
           "id": "S2-A",
           "src": "videos/sequences/S2-A.mp4",
-          "durationSec": 4.4,
+          "durationSec": 4.0,
           "title": "Le dirigeant DOMOVA marche dans une rue du 14e",
           "source": "IA (personnage de référence) — voir prompts/S2.md"
         },
         {
           "id": "S2-B",
           "src": "videos/sequences/S2-B.mp4",
-          "durationSec": 4.6,
+          "durationSec": 4.0,
           "title": "Poignée de main avec le client devant l'immeuble",
           "source": "IA ou tournage réel — voir prompts/S2.md"
         }
       ]
     },
     "s3": {
-      "durationSec": 10,
+      "durationSec": 8.5,
       "chapter": "02 — L'ÉTUDE DE L'ESPACE",
       "voice": "audio/vo/s3.mp3",
       "vo": "Nous étudions votre espace, prenons les mesures et imaginons avec vous un aménagement qui correspond parfaitement à vos attentes.",
@@ -118,7 +118,7 @@
           "id": "S3-A",
           "src": "videos/avant/avant.mp4",
           "startSec": 3.4,
-          "durationSec": 3.0,
+          "durationSec": 2.6,
           "push": [
             1.0,
             1.06
@@ -131,7 +131,7 @@
         {
           "id": "S3-B",
           "src": "images/photos/avant-piece-vide.jpg",
-          "durationSec": 3.6,
+          "durationSec": 3.0,
           "push": [
             1.0,
             1.04
@@ -171,7 +171,7 @@
         {
           "id": "S3-C",
           "src": "images/photos/pendant-tracage-au-sol.jpg",
-          "durationSec": 3.4,
+          "durationSec": 2.9,
           "push": [
             1.0,
             1.04
@@ -243,7 +243,7 @@
       ]
     },
     "s5": {
-      "durationSec": 20,
+      "durationSec": 18.4,
       "chapter": "04 — LES MATÉRIAUX",
       "voice": "audio/vo/s5.mp3",
       "vo": "Du mélaminé de qualité aux finitions bois naturel, en passant par les décors noyer, le stratifié et les matériaux haut de gamme, nous vous proposons de nombreuses possibilités. Chaque matériau possède ses caractéristiques et son prix. Nous adaptons votre projet à vos envies et à votre budget, sans négliger la qualité.",
@@ -264,9 +264,41 @@
       ],
       "priceNote": "Le prix varie selon votre projet"
     },
+    "s5b": {
+      "durationSec": 7.5,
+      "chapter": "05 — VOS INSPIRATIONS",
+      "voice": "audio/vo/s5b.mp3",
+      "vo": "Pas encore d'idée précise ? Nous imaginons votre projet pour vous, ou vous nous envoyez vos inspirations, et nous les transformons en plan sur mesure.",
+      "subtitles": [
+        "Pas encore d'idée précise ?",
+        "Nous imaginons votre projet pour vous,",
+        "ou vous nous envoyez vos inspirations,",
+        "et nous les transformons en plan sur mesure."
+      ],
+      "question": "Pas encore d'idée précise ?",
+      "options": [
+        {
+          "n": "01",
+          "title": "Nous imaginons votre projet",
+          "detail": "Conception complète, de A à Z"
+        },
+        {
+          "n": "02",
+          "title": "Vous nous envoyez vos inspirations",
+          "detail": "Pinterest · Instagram · photos"
+        }
+      ],
+      "inspirations": [
+        "images/bureaux/photo-tasseaux-bois.jpg",
+        "images/photos/apres-vue-dessus.jpg",
+        "images/bureaux/photo-L-terracotta.jpg",
+        "images/photos/apres-interieur.jpg"
+      ],
+      "result": "Votre plan sur mesure"
+    },
     "s6": {
-      "durationSec": 11,
-      "chapter": "05 — LA RÉALISATION",
+      "durationSec": 10,
+      "chapter": "06 — LA RÉALISATION",
       "voice": "audio/vo/s6.mp3",
       "vo": "Voici ce que nous pouvons réaliser. D'un espace inutilisé à un véritable bureau sur mesure, chaque centimètre est optimisé pour créer un aménagement unique.",
       "subtitles": [
@@ -279,8 +311,8 @@
       "realLabel": "Réalisation DOMOVA — images réelles"
     },
     "s7": {
-      "durationSec": 10,
-      "chapter": "06 — LA LIVRAISON",
+      "durationSec": 9.1,
+      "chapter": "07 — LA LIVRAISON",
       "voice": "audio/vo/s7.mp3",
       "vo": "Notre objectif est simple : transformer votre espace en un lieu qui vous ressemble, avec des matériaux de qualité et une réalisation soignée jusque dans les moindres détails.",
       "subtitles": [
@@ -362,7 +394,7 @@
       ]
     },
     "s8": {
-      "durationSec": 9,
+      "durationSec": 8,
       "chapter": "",
       "voice": "audio/vo/s8.mp3",
       "vo": "Vous avez un projet ? Contactez-nous et imaginons ensemble votre futur bureau.",

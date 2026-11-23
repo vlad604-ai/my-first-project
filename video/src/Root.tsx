@@ -8,6 +8,7 @@ import { S2Rencontre } from "./scenes/S2Rencontre";
 import { S3Decouverte } from "./scenes/S3Decouverte";
 import { S4Conception } from "./scenes/S4Conception";
 import { S5Materiaux } from "./scenes/S5Materiaux";
+import { S5bInspirations } from "./scenes/S5bInspirations";
 import { S6AvantApres } from "./scenes/S6AvantApres";
 import { S7Decouverte } from "./scenes/S7Decouverte";
 import { S8Conclusion } from "./scenes/S8Conclusion";
@@ -19,6 +20,7 @@ const SCENES: { id: SceneId; name: string; C: React.FC; fadeIn?: number; fadeOut
   { id: "s3", name: "S3-Decouverte", C: S3Decouverte },
   { id: "s4", name: "S4-Conception", C: S4Conception },
   { id: "s5", name: "S5-Materiaux", C: S5Materiaux },
+  { id: "s5b", name: "S5b-Inspirations", C: S5bInspirations },
   { id: "s6", name: "S6-AvantApres", C: S6AvantApres },
   { id: "s7", name: "S7-LeClientDecouvre", C: S7Decouverte },
   { id: "s8", name: "S8-Conclusion", C: S8Conclusion, fadeOut: 0 },
