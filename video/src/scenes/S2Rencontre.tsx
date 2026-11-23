@@ -1,6 +1,7 @@
 import React from "react";
 import { AbsoluteFill, Series } from "remotion";
 import { BrandBug } from "../components/Brand";
+import { DoorScene, VisitScene } from "../components/Illustrations";
 import { Media } from "../components/Media";
 import { Subtitles } from "../components/Subtitles";
 import { content, sec } from "../lib";
@@ -14,10 +15,10 @@ export const S2Rencontre: React.FC = () => {
     <AbsoluteFill>
       <Series>
         <Series.Sequence durationInFrames={sec(a.durationSec)}>
-          <Media src={a.src} push={[1.0, 1.08]} placeholder={{ id: a.id, title: a.title, source: a.source, tone: "warm" }} />
+          <Media src={a.src} push={[1.0, 1.08]} placeholder={{ id: a.id, title: a.title, source: a.source, tone: "warm" }} fallback={<DoorScene />} />
         </Series.Sequence>
         <Series.Sequence durationInFrames={sec(b.durationSec)}>
-          <Media src={b.src} push={[1.08, 1.0]} placeholder={{ id: b.id, title: b.title, source: b.source, tone: "warm" }} />
+          <Media src={b.src} push={[1.08, 1.0]} placeholder={{ id: b.id, title: b.title, source: b.source, tone: "warm" }} fallback={<VisitScene />} />
         </Series.Sequence>
       </Series>
       <BrandBug chapter={S.chapter} />

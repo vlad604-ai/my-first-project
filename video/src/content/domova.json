@@ -68,7 +68,7 @@
           "src": "videos/sequences/S1-B.mp4",
           "durationSec": 2.9,
           "title": "Rue haussmannienne du 14e, niveau trottoir",
-          "source": "IA ou tournage — voir prompts/S1.md"
+          "source": "IA ou tournage — voir prompts/S1.md — en attendant : animation au trait"
         }
       ],
       "place": "PARIS 14ᵉ",
@@ -91,15 +91,22 @@
           "src": "videos/sequences/S2-A.mp4",
           "durationSec": 4.0,
           "title": "Le dirigeant DOMOVA marche dans une rue du 14e",
-          "source": "IA (personnage de référence) — voir prompts/S2.md"
+          "source": "IA (personnage de référence) — voir prompts/S2.md — en attendant : animation au trait"
         },
         {
           "id": "S2-B",
           "src": "videos/sequences/S2-B.mp4",
           "durationSec": 4.0,
           "title": "Poignée de main avec le client devant l'immeuble",
-          "source": "IA ou tournage réel — voir prompts/S2.md"
+          "source": "IA ou tournage réel — voir prompts/S2.md — en attendant : animation au trait"
         }
+      ],
+      "visitKicker": "RENDEZ-VOUS SUR PLACE",
+      "visitTitle": "Nous venons chez vous",
+      "promises": [
+        "Visite de votre espace",
+        "Écoute de vos besoins",
+        "Premiers conseils"
       ]
     },
     "s3": {
@@ -212,7 +219,7 @@
           "src": "videos/sequences/S4-A.mp4",
           "durationSec": 2.5,
           "title": "Concepteur sur ordinateur, écran avec plan 3D",
-          "source": "IA ou tournage — voir prompts/S4.md"
+          "source": "IA ou tournage — voir prompts/S4.md — en attendant : animation au trait"
         }
       ],
       "options": [
@@ -240,7 +247,8 @@
           "x": 0.55,
           "y": 0.97
         }
-      ]
+      ],
+      "studioLabel": "BUREAU D'ÉTUDES DOMOVA"
     },
     "s5": {
       "durationSec": 18.4,

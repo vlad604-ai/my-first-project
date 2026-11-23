@@ -246,3 +246,19 @@ Coordonnées reprises de vos maquettes : **domova.fr** et **@domova.btp** (à co
 
 Pour rester à 90 s, les autres scènes sont légèrement resserrées : S1 7,5 s · S2 8 s · S3 8,5 s · S4 13 s · S5 18,4 s · **S5b 7,5 s** · S6 10 s · S7 9,1 s · S8 8 s. Les chapitres suivants sont renumérotés (06 Réalisation, 07 Livraison).
 Les images du tableau d'inspirations et les textes se modifient dans `scenes.s5b` de `domova.json`.
+
+---
+
+## Plans à insérer → animations au trait DOMOVA (version 9)
+
+Les écrans « PLAN À INSÉRER » sont remplacés par des illustrations animées (traits crème et or sur bordeaux, motif de l'arche). Une vraie vidéo déposée au même emplacement (`assets/videos/sequences/…`) remplace automatiquement l'animation.
+
+| Plan | Animation |
+|---|---|
+| S1-A Vue aérienne | Carte stylisée de Paris, plongée vers le 14e (inchangé) |
+| S1-B Rue du 14e | Façade haussmannienne dessinée au trait (toit en zinc, lucarnes, balcons filants en or), descente de la caméra jusqu'à la **porte cochère en arche** |
+| S2-A Rencontre 1 | La **porte en arche s'ouvre** sur une lumière chaude : « Un projet. Une envie. Un espace à aménager ? » |
+| S2-B Rencontre 2 | Épingle de lieu, « RENDEZ-VOUS SUR PLACE — Nous venons chez vous », 01 Visite de votre espace · 02 Écoute de vos besoins · 03 Premiers conseils |
+| S4-A Concepteur | « BUREAU D'ÉTUDES DOMOVA » : écran au trait, le comptoir arrondi se dessine dans le logiciel, **zoom dans l'écran** qui enchaîne sur le plan |
+
+Textes modifiables dans `domova.json` : `scenes.s2.visitKicker`, `visitTitle`, `promises`, `scenes.s4.studioLabel`.

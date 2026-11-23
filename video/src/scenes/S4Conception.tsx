@@ -1,7 +1,8 @@
 import React from "react";
 import { AbsoluteFill, Img, Sequence, useCurrentFrame } from "remotion";
 import { BrandBug } from "../components/Brand";
-import { EmptyRoom, PlanCurved } from "../components/Drawings";
+import { PlanCurved } from "../components/Drawings";
+import { StudioScreenScene } from "../components/Illustrations";
 import { Media } from "../components/Media";
 import { Callout, CutoutDesk, CutoutOnStage, layout, StudioBackdrop } from "../components/Showcase";
 import { Subtitles } from "../components/Subtitles";
@@ -30,7 +31,6 @@ export const S4Conception: React.FC = () => {
   const d3 = aF + planF;
   const f3 = frame - d3;
   const pf = frame - aF;
-  const scan = tw(pf, [0, 22], [0, 1920], easeInOut);
 
   // du tracé doré à la photo
   const draw = tw(f3, [0, 60], [0, 1], (t) => t);
@@ -48,16 +48,14 @@ export const S4Conception: React.FC = () => {
   return (
     <AbsoluteFill style={{ backgroundColor: C.noir }}>
       <Sequence durationInFrames={aF}>
-        <Media src={shot.src} push={[1.05, 1.15]} placeholder={{ id: shot.id, title: shot.title, source: shot.source }} />
+        <Media src={shot.src} push={[1.05, 1.15]} placeholder={{ id: shot.id, title: shot.title, source: shot.source }} fallback={<StudioScreenScene />} />
       </Sequence>
 
       <Sequence from={aF} durationInFrames={planF + 12}>
         <AbsoluteFill>
-          <PlanCurved p={tw(pf, [6, planF], [0, 1], (t) => t)} />
-          <AbsoluteFill style={{ clipPath: `inset(${scan}px 0 0 0)` }}>
-            <EmptyRoom />
+          <AbsoluteFill style={{ transform: `scale(${tw(pf, [0, 24], [1.25, 1], easeInOut)})`, opacity: tw(pf, [0, 8], [0, 1]) }}>
+            <PlanCurved p={tw(pf, [2, planF], [0, 1], (t) => t)} />
           </AbsoluteFill>
-          <div style={{ position: "absolute", left: 0, right: 0, top: scan - 2, height: 4, background: C.led, boxShadow: `0 0 30px ${C.led}`, opacity: scan < 1910 ? 1 : 0 }} />
         </AbsoluteFill>
       </Sequence>
 

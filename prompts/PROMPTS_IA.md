@@ -1,5 +1,7 @@
 # Prompts IA — plans à générer (format vertical 9:16)
 
+> **Optionnel depuis la version 9 :** chaque plan ci-dessous est déjà couvert par une animation au trait aux couleurs DOMOVA. Générer ou tourner ces plans n'est utile que pour remplacer l'animation par de vraies images.
+
 Ce fichier contient **uniquement** les plans que le code ne peut pas fabriquer : prises de vue réalistes de Paris et de personnages.
 Le reste (carte, cotes, plan 2D, configurateur 3D, matériaux, avant/après, logo, CTA) est déjà animé dans le projet.
 

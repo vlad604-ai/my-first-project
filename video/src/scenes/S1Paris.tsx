@@ -2,6 +2,7 @@ import React from "react";
 import { AbsoluteFill, Sequence, useCurrentFrame } from "remotion";
 import { Media } from "../components/Media";
 import { ParisMap } from "../components/Drawings";
+import { FacadeScene } from "../components/Illustrations";
 import { Subtitles } from "../components/Subtitles";
 import { content, easeInOut, has, sec, tw } from "../lib";
 import { ArchIcon, archClip } from "../components/Brand";
@@ -42,7 +43,7 @@ export const S1Paris: React.FC = () => {
       </Sequence>
       <Sequence from={aF} durationInFrames={sec(b.durationSec)}>
         <AbsoluteFill style={{ opacity: tw(frame - aF, [0, 10], [0, 1]) }}>
-          <Media src={b.src} push={[1.12, 1.0]} drift={[40, 0]} placeholder={{ id: b.id, title: b.title, source: b.source, tone: "warm" }} />
+          <Media src={b.src} push={[1.12, 1.0]} drift={[40, 0]} placeholder={{ id: b.id, title: b.title, source: b.source, tone: "warm" }} fallback={<FacadeScene />} />
         </AbsoluteFill>
       </Sequence>
 
