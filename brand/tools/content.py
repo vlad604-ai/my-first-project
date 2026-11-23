@@ -19,15 +19,31 @@ INSTAGRAM_BIOS = [
 
 # ------------------------------------------------------------------ Instagram — légendes, ordre de publication
 INSTAGRAM_CAPTIONS = {
-    "01_bienvenue": """Bienvenue chez DOMOVA.
+    "01_bienvenue": """Bienvenue chez DOMOVA 🏛
+Construire, rénover, aménager. Avec soin, du premier plan à la remise des clés.
 
-Nous construisons, rénovons et aménageons des lieux faits pour durer : appartements, maisons, façades et bureaux sur mesure.
+DOMOVA est une entreprise générale du bâtiment. Nous prenons en charge vos projets de A à Z, avec une seule équipe et un seul interlocuteur :
 
-Ici, on vous montrera nos réalisations, nos chantiers semaine après semaine, et nos conseils pour réussir vos travaux.
+▫️ Construction et gros œuvre
+▫️ Rénovation intérieure et extérieure
+▫️ Électricité et plomberie
+▫️ Menuiserie et bureaux sur mesure
+▫️ Aménagement intérieur
+▫️ Rénovation de façades
 
-Abonnez-vous pour suivre l’aventure.
+Notre conviction : une belle rénovation, c’est celle qu’on ne remarque pas. Tout semble avoir toujours été là. Pour y arriver, nous soignons ce qui ne se voit pas autant que ce qui se voit : les réseaux, les finitions, les délais, la propreté du chantier.
 
-#domova #entreprisegenerale #renovation #construction #amenagementinterieur""",
+Sur ce compte, vous trouverez :
+📐 nos réalisations, avant et après
+🏗️ nos chantiers, semaine après semaine
+💡 nos conseils pour réussir vos travaux
+
+Vous avez un projet d’appartement, de maison, de façade ou de bureaux ? Parlons-en. Le devis est gratuit et détaillé.
+📩 Lien en bio ou message privé.
+
+Abonnez-vous pour suivre nos prochains chantiers.
+
+#domova #entreprisegenerale #batiment #renovation #construction #renovationappartement #amenagementinterieur #architectureinterieure #toutcorpsdetat #artisan""",
     "02_matiere": """La matière avant tout.
 
 Marbre, chêne, laiton, velours, terre cuite : chaque projet commence par une planche de matériaux, choisie avec vous.
