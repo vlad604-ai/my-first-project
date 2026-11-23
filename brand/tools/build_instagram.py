@@ -414,6 +414,11 @@ def highlight_svg(paths):
 
 # ------------------------------------------------------------------ page
 def page():
+    from content import INSTAGRAM_BIOS
+    bio = INSTAGRAM_BIOS[0]["texte"].replace("\n", "<br>")
+    bios = "".join(
+        f'<div class="cap" style="color:var(--ink)"><span class="tag">{b["nom"]}</span>{b["texte"]}'
+        f'<span class="note">{len(b["texte"])} / 150 caractères</span></div>' for b in INSTAGRAM_BIOS)
     avatar = open(os.path.join(B.ROOT, "icons", "reseaux-sociaux", "domova_cercle-symbole-bordeaux.svg")).read()
     avatar = re.sub(r' width="[^"]+" height="[^"]+"', ' role="img"', avatar, count=1)
     hl = "".join(f'<li><span class="hl">{highlight_svg(p)}</span><span>{n}</span></li>' for n, p in HIGHLIGHTS)
@@ -473,6 +478,8 @@ p{{margin:0;max-width:62ch}}
 .cap{{background:#fff;padding:22px;display:grid;gap:10px;align-content:start;border:1px solid var(--line);font-size:15px;white-space:pre-line}}
 .cap .tag{{font-family:var(--m);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--chf)}}
 .cap .ht{{color:#2b4a7a}}
+.bios4{{grid-template-columns:repeat(4,minmax(0,1fr))}} .bios4 .cap{{font-size:16px}}
+@media (max-width:1000px){{.bios4{{grid-template-columns:repeat(2,minmax(0,1fr))}}}}
 .week{{width:100%;border-collapse:collapse;font-size:15px;min-width:640px}}
 .week th,.week td{{text-align:left;padding:14px 12px;border-bottom:1px solid var(--line);vertical-align:top}}
 .week th{{font-family:var(--m);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--chf);font-weight:400}}
@@ -487,7 +494,7 @@ p{{margin:0;max-width:62ch}}
    <div class="bar">domova.btp <small>•••</small></div>
    <div class="top">{avatar}<div class="stats"><div><b>12</b><span>publications</span></div><div><b>0</b><span>abonnés</span></div><div><b>48</b><span>suivi(e)s</span></div></div></div>
    <div class="bio"><b>DOMOVA</b><span class="cat">Entreprise générale du bâtiment</span>
-    <span>Construction · Rénovation · Aménagement</span><span>Tous corps d’état, bureaux sur mesure</span><span>📍 Paris &amp; Île-de-France · Devis gratuit ↓</span><a>domova.fr</a></div>
+    <span>{bio}</span><a>domova.fr</a></div>
    <div class="btns"><span>Suivre</span><span>Message</span><span>Devis</span></div>
    <ul class="hls">{hl}</ul>
    <div class="tabs"><span>PUBLICATIONS</span><span>REELS</span><span>IDENTIFIÉ</span></div>
@@ -510,7 +517,7 @@ p{{margin:0;max-width:62ch}}
 
 <section class="band dark"><div class="wrap">
  <div><span class="eyebrow">Les 12 premières publications</span><h2>Des modèles réutilisables, du premier post au plus récent</h2></div>
- <p class="lede">Format portrait 1080 × 1350 px (4:5). Tous les textes restent dans la zone centrale, pour survivre au recadrage 3:4 de la grille du profil.</p>
+ <p class="lede">Format portrait 1080 × 1350 px (4:5). Chaque visuel et sa légende sont prêts dans le dossier « a-publier ». Tous les textes restent dans la zone centrale, pour survivre au recadrage 3:4 de la grille du profil.</p>
  <div class="tmpl">{tmpl}</div>
 </div></section>
 
@@ -533,6 +540,12 @@ p{{margin:0;max-width:62ch}}
   <div class="rule"><h3>Texte sur visuel</h3><ul><li>Jost uniquement : surtitre en capitales espacées, titre en Regular</li><li>Un titre de 6 mots maximum</li><li>Bordeaux sur crème, crème sur bordeaux, champagne pour les surtitres</li><li>Le logo arche en petit, toujours en bas à droite</li></ul></div>
   <div class="rule"><h3>Rythme de la grille</h3><ul><li>Jamais deux visuels bordeaux côte à côte</li><li>Une photo sur deux environ</li><li>Épinglez trois posts : Nos métiers, Nos engagements, un Avant/Après fort</li><li>Reels : visites de chantier verticales, 15 à 30 s</li></ul></div>
  </div>
+</div></section>
+
+<section class="band"><div class="wrap">
+ <div><span class="eyebrow">Bio Instagram</span><h2>Quatre bios au choix (150 caractères maximum)</h2></div>
+ <p class="lede">La première est celle affichée dans le profil ci-dessus. Le nom « DOMOVA » et la catégorie « Entreprise générale du bâtiment » se règlent à part, dans « Modifier le profil ».</p>
+ <div class="caps bios4">{bios}</div>
 </div></section>
 
 <section class="band dark"><div class="wrap">
