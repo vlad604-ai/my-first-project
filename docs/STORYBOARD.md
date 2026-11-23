@@ -192,7 +192,7 @@ Si vos vidéos sont filmées sous des angles différents, la transition reste un
 | IMG_7770 (vue de dessus) | — | Gros plans **Assemblages du plateau** et **Plateau & finitions** (S7) |
 | IMG_7771 (intérieur) | **Logo Fresh Ride supprimé** | Gros plans **Rangements** et **Niches intégrées** (S7) |
 
-⚠️ Hauteur sous plafond : ≈ 3,15 m (indiquée par vous). La verrière (1,20 m) reste indicative : remplacez-les par vos vraies mesures dans `video/src/content/domova.json` (`scenes.s3.shots[].dimensions`).
+⚠️ Hauteur sous plafond : 2,80 m (confirmée). La verrière (1,20 m) reste indicative : remplacez-les par vos vraies mesures dans `video/src/content/domova.json` (`scenes.s3.shots[].dimensions`).
 Le script `tools/prepare_media.py` refait tout le traitement à partir des originaux placés dans `sources/`.
 
 ---
