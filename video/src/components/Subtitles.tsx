@@ -57,13 +57,14 @@ export const Subtitles: React.FC<{ lines: string[]; times?: number[]; lead?: num
           maxWidth: SUB.maxWidth,
           textAlign: "center",
           fontFamily: F.sans,
-          fontWeight: 600,
-          fontSize: 47,
+          fontWeight: 500,
+          fontSize: 46,
+          letterSpacing: "0.01em",
           lineHeight: 1.22,
           color: C.blanc,
           padding: "14px 26px 16px",
           borderRadius: 14,
-          background: "rgba(10,10,11,0.62)",
+          background: "rgba(43,12,19,0.74)",
           textShadow: "0 2px 10px rgba(0,0,0,0.5)",
         }}
       >

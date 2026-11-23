@@ -6,32 +6,35 @@
     "signature": "Votre espace. Vos idées. Notre savoir-faire.",
     "promise": "Vous imaginez votre bureau. Nous le concevons et nous le réalisons.",
     "cta": "Vous avez un projet ? Contactez-nous et imaginons ensemble votre futur bureau.",
-    "logo": "logo/logo.png",
+    "logo": "logo/logo.svg",
     "logoAlternatives": [
       "logo/logo.svg",
       "logo/logo-blanc.png"
-    ]
+    ],
+    "metier": "CONSTRUCTION · RÉNOVATION · AMÉNAGEMENT",
+    "button": "Demander un devis",
+    "welcome": "Bienvenue chez DOMOVA."
   },
   "contacts": [
     {
+      "type": "web",
+      "label": "Site internet",
+      "value": "domova.fr"
+    },
+    {
       "type": "instagram",
       "label": "Instagram",
-      "value": "@domova — à compléter"
+      "value": "@domova.btp"
     },
     {
       "type": "tiktok",
       "label": "TikTok",
-      "value": "@domova — à compléter"
+      "value": "@domova.btp — à confirmer"
     },
     {
       "type": "phone",
       "label": "Téléphone",
       "value": "06 00 00 00 00 — à compléter"
-    },
-    {
-      "type": "web",
-      "label": "Site internet",
-      "value": "domova.fr — à compléter"
     }
   ],
   "audio": {

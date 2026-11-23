@@ -22,7 +22,7 @@ const DetailLabel: React.FC<{ label: string }> = ({ label }) => {
   return (
     <div style={{ position: "absolute", left: SAFE.left, top: 1040, opacity: o, display: "flex", alignItems: "center", gap: 18 }}>
       <div style={{ width: tw(f, [0, 14], [0, 70]), height: 2, background: C.led }} />
-      <div style={{ fontFamily: F.serif, fontSize: 60, color: C.blanc, padding: "4px 24px 10px", borderRadius: 12, background: "rgba(13,13,14,0.62)" }}>{label}</div>
+      <div style={{ fontFamily: F.serif, fontWeight: 300, fontSize: 48, color: C.blanc, padding: "4px 24px 10px", borderRadius: 12, background: "rgba(43,12,19,0.62)" }}>{label}</div>
     </div>
   );
 };

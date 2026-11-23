@@ -15,9 +15,9 @@
 |---|---|
 | **Zone sûre** | x 80 → 910 px, y 230 → 1460 px. Rien d'important en dehors (onglets en haut, légende et barre en bas, boutons à droite). |
 | **Sous-titres** | Bande centrale basse, de y 1230 à 1430 px. Inter SemiBold 47 px, blanc sur cartouche noir à 62 %. |
-| **Logo** | Petite signature « DOMOVA » en haut à gauche de la zone sûre (34 px, opacité 82 %), titre de chapitre en dessous. Le grand logo n'apparaît qu'à la fin. |
-| **Typographies** | Titres : Cormorant Garamond (serif, élégante). Textes et sous-titres : Inter. |
-| **Palette** | Noir `#0D0D0E` · Anthracite `#26272A` · Blanc cassé `#F5F3EF` · Beige `#D8C9B1` · Bois `#C49A6C` · Noyer `#5A3A22` · Accent LED `#FFD9A0` |
+| **Logo** | Icône arche + logotype DOMOVA (redessinés en vectoriel) en haut à gauche de la zone sûre, titre de chapitre en or dessous. Ouverture : l'arche se dessine puis s'ouvre comme une porte sur Paris. Fin : affiche DOMOVA complète. |
+| **Typographies** | Jost (géométrique, comme la charte DOMOVA) : titres en Light, capitales très espacées pour le logotype et les étiquettes. |
+| **Palette (charte DOMOVA)** | Bordeaux `#4A1420` · Bordeaux profond `#2B0C13` · Crème `#F3E9DC` · Or `#C9A46A` · Trait d'arche `#5E2A30` |
 | **Étalonnage** | Contraste doux, noirs denses mais pas bouchés, tons chauds sur le bois, léger grain filmique sur tout le film pour unifier IA, 3D et images réelles. |
 | **Sources** | 🎬 IA (prompt fourni) · 📱 Tournage réel · 💻 Animation générée par le projet (déjà faite) · 🟧 **Vos vidéos** |
 
@@ -213,3 +213,16 @@ Plan au sol d'un comptoir arrondi → le contour du **comptoir arrondi bordeaux*
 
 Noms, sous-titres, annotations et zooms se modifient dans `bureaux` de `video/src/content/domova.json`.
 Pour ajouter une réalisation : détourez la photo (voir `tools/prepare_media.py`), déposez le PNG dans `assets/images/bureaux/` et ajoutez une entrée à `realisations`.
+
+---
+
+## Charte DOMOVA appliquée (version 4)
+
+- **Ouverture (0:00–0:01,7)** : fond bordeaux, l'icône arche se dessine (arche crème, arche intérieure or, ligne de sol), puis l'arche s'agrandit comme une porte qui s'ouvre sur Paris.
+- **Motif d'arche fine** derrière chaque comptoir détouré (fond studio bordeaux), sur la carte « le prix varie » et sur l'affiche finale.
+- **Avant → Après** : l'APRÈS apparaît dans une arche qui s'ouvre au centre, avec un contour or.
+- **Plans d'architecte** : fond bordeaux profond, traits crème, comptoir et cotes en or.
+- **Conclusion** : promesse sur votre réalisation, puis affiche reprenant votre visuel : arche fine, icône, DOMOVA, CONSTRUCTION · RÉNOVATION · AMÉNAGEMENT, BUREAUX SUR MESURE, signature, appel à l'action, bouton or « Demander un devis », coordonnées.
+- Sous-titres et étiquettes : cartouches bordeaux translucides, texte crème, filets or.
+
+Coordonnées reprises de vos maquettes : **domova.fr** et **@domova.btp** (à confirmer), TikTok et téléphone à compléter dans `contacts`.

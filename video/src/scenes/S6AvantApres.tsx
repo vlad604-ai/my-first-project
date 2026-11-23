@@ -1,6 +1,6 @@
 import React from "react";
 import { AbsoluteFill, interpolate, Sequence, Series, useCurrentFrame } from "remotion";
-import { BrandBug } from "../components/Brand";
+import { ArchFrame, archClip, BrandBug } from "../components/Brand";
 import { Fit, Media } from "../components/Media";
 import { Subtitles } from "../components/Subtitles";
 import { content, easeInOut, sec, tw } from "../lib";
@@ -15,10 +15,10 @@ const BigLabel: React.FC<{ text: string; o: number }> = ({ text, o }) => (
       style={{
         display: "inline-block",
         fontFamily: F.serif,
-        fontSize: 120,
-        fontWeight: 500,
-        letterSpacing: "0.22em",
-        marginRight: "-0.22em",
+        fontSize: 104,
+        fontWeight: 400,
+        letterSpacing: "0.32em",
+        marginRight: "-0.32em",
         color: C.blanc,
         textShadow: "0 4px 30px rgba(0,0,0,0.9), 0 0 60px rgba(0,0,0,0.5)",
       }}
@@ -85,7 +85,7 @@ const ApresClip: React.FC<{ clip: Clip }> = ({ clip }) => {
       </AbsoluteFill>
       {zoom.active ? (
         <div style={{ position: "absolute", left: SAFE.left, width: SAFE_W, top: 1060, display: "flex", justifyContent: "center", opacity: tw(zoom.since, [0, 8], [0, 1]) }}>
-          <div style={{ fontFamily: F.sans, fontSize: 30, fontWeight: 500, letterSpacing: 4, color: C.blanc, padding: "12px 26px", borderLeft: `4px solid ${C.led}`, background: "rgba(13,13,14,0.6)" }}>
+          <div style={{ fontFamily: F.sans, fontSize: 30, fontWeight: 500, letterSpacing: 4, color: C.blanc, padding: "12px 26px", borderLeft: `4px solid ${C.led}`, background: "rgba(43,12,19,0.6)" }}>
             {zoom.active.label.toUpperCase()}
           </div>
         </div>
@@ -99,30 +99,18 @@ export const S6AvantApres: React.FC = () => {
   const frame = useCurrentFrame();
   const avantF = sec(4.0);
   const transF = sec(1.2);
-  const apresFrom = avantF + transF - 10;
+  const apresFrom = avantF - 4;
   const fa = frame - apresFrom;
-  const wipe = tw(frame, [avantF - 4, avantF + transF], [0, H + 40], easeInOut);
+  const archT = tw(frame, [apresFrom, avantF + transF + 4], [0, 1], easeInOut);
+  const archW = 10 + archT * 2800;
+  const archBottom = 1240 + archT * 1400;
   const inTrans = frame >= avantF - 4 && frame <= avantF + transF + 6;
 
   return (
     <AbsoluteFill style={{ backgroundColor: C.noir }}>
-      {/* APRÈS (dessous) : plans successifs de votre vidéo */}
-      <Sequence from={apresFrom}>
-        <Series>
-          {(BA.apresClips as Clip[]).map((clip, i, all) => (
-            <Series.Sequence
-              key={i}
-              durationInFrames={i === all.length - 1 ? Math.max(1, sec(S.durationSec) - apresFrom - all.slice(0, -1).reduce((t, c) => t + sec(c.durationSec), 0)) : sec(clip.durationSec)}
-            >
-              <ApresClip clip={clip} />
-            </Series.Sequence>
-          ))}
-        </Series>
-      </Sequence>
-
       {/* AVANT (dessus), effacé par un balayage architectural */}
       <Sequence durationInFrames={avantF + transF + 4}>
-        <AbsoluteFill style={{ clipPath: `inset(${wipe}px 0 0 0)` }}>
+        <AbsoluteFill>
           <Media
             src={BA.avant.src}
             startSec={BA.avant.startSec}
@@ -136,18 +124,24 @@ export const S6AvantApres: React.FC = () => {
         </AbsoluteFill>
       </Sequence>
 
-      {/* trame d'architecte pendant la transition */}
-      {inTrans ? (
-        <svg width={W} height={H} style={{ position: "absolute", inset: 0 }}>
-          {Array.from({ length: 13 }, (_, i) => (
-            <line key={`v${i}`} x1={i * 90} y1={0} x2={i * 90} y2={wipe} stroke={C.led} strokeOpacity={0.22} strokeWidth={1.5} />
+      {/* APRÈS (dessous) : plans successifs de votre vidéo */}
+      <Sequence from={apresFrom}>
+        <AbsoluteFill style={{ clipPath: archW < 2700 ? archClip(540, archBottom, archW, archW * 1.3) : undefined }}>
+        <Series>
+          {(BA.apresClips as Clip[]).map((clip, i, all) => (
+            <Series.Sequence
+              key={i}
+              durationInFrames={i === all.length - 1 ? Math.max(1, sec(S.durationSec) - apresFrom - all.slice(0, -1).reduce((t, c) => t + sec(c.durationSec), 0)) : sec(clip.durationSec)}
+            >
+              <ApresClip clip={clip} />
+            </Series.Sequence>
           ))}
-          {Array.from({ length: 22 }, (_, i) =>
-            i * 90 < wipe ? <line key={`h${i}`} x1={0} y1={i * 90} x2={W} y2={i * 90} stroke={C.led} strokeOpacity={0.12} strokeWidth={1} /> : null,
-          )}
-          <rect x={0} y={wipe - 3} width={W} height={6} fill={C.led} style={{ filter: `drop-shadow(0 0 18px ${C.led})` }} />
-        </svg>
-      ) : null}
+        </Series>
+        </AbsoluteFill>
+      </Sequence>
+
+      {/* révélation en arche : contour or qui suit l'ouverture */}
+      {inTrans && archW < 2700 ? <ArchFrame x={540 - archW / 2} y={archBottom - archW * 1.3} w={archW} h={archW * 1.3} color={C.or} width={5} /> : null}
 
       <BigLabel text="AVANT" o={tw(frame, [6, 18], [0, 1]) * tw(frame, [avantF - 10, avantF], [1, 0])} />
       <BigLabel text="APRÈS" o={tw(frame, [avantF + transF - 4, avantF + transF + 10], [0, 1]) * tw(fa, [sec(2.0), sec(2.4)], [1, 0])} />

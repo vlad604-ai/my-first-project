@@ -2,6 +2,7 @@ import React from "react";
 import { AbsoluteFill, Img } from "remotion";
 import { file, has } from "../lib";
 import { C, F, SAFE, SAFE_W, W } from "../theme";
+import { ArchFrame } from "./Brand";
 
 /** Bureau détouré : fichier, taille d'origine et cadre utile (bbox) du détourage. */
 export type CutoutDesk = { cutout: string; lines?: string; size: number[]; bbox: number[]; led?: boolean };
@@ -29,10 +30,11 @@ export const layout = (d: CutoutDesk, stage = STAGE) => {
   };
 };
 
-/** Fond studio : spot chaud en haut, sol qui s'éclaircit, horizon sous le bureau. */
+/** Fond studio aux couleurs DOMOVA : bordeaux profond, arche fine en fond, sol qui s'assombrit. */
 export const StudioBackdrop: React.FC<{ horizon: number; warm?: number }> = ({ horizon, warm = 1 }) => (
   <AbsoluteFill>
-    <AbsoluteFill style={{ background: `radial-gradient(ellipse 80% 55% at 50% 38%, rgba(70,62,54,${0.95 * warm}) 0%, #1a1918 55%, #0d0d0e 100%)` }} />
+    <AbsoluteFill style={{ background: `radial-gradient(ellipse 85% 55% at 50% 40%, rgba(110,38,52,${0.9 * warm}) 0%, ${C.bordeaux} 45%, ${C.bordeauxNuit} 100%)` }} />
+    <ArchFrame x={200} y={330} w={680} h={horizon - 330} color="rgba(201,164,106,0.28)" width={2} />
     <div
       style={{
         position: "absolute",
@@ -40,10 +42,10 @@ export const StudioBackdrop: React.FC<{ horizon: number; warm?: number }> = ({ h
         right: 0,
         top: horizon,
         bottom: 0,
-        background: "linear-gradient(180deg, #2a2724 0%, #171615 45%, #0d0d0e 100%)",
+        background: `linear-gradient(180deg, #3A101A 0%, ${C.bordeauxFonce} 45%, ${C.bordeauxNuit} 100%)`,
       }}
     />
-    <div style={{ position: "absolute", left: 0, right: 0, top: horizon - 1, height: 2, background: "rgba(255,255,255,0.05)" }} />
+    <div style={{ position: "absolute", left: 0, right: 0, top: horizon - 1, height: 2, background: "rgba(201,164,106,0.25)" }} />
   </AbsoluteFill>
 );
 
@@ -128,7 +130,7 @@ export const Callout: React.FC<{ x: number; y: number; labelY: number; label: st
             color: C.blanc,
             whiteSpace: "nowrap",
             padding: "8px 20px",
-            background: "rgba(13,13,14,0.85)",
+            background: "rgba(43,12,19,0.9)",
             border: `1px solid rgba(255,217,160,0.5)`,
             borderRadius: 10,
           }}

@@ -1,6 +1,6 @@
 import React from "react";
 import { AbsoluteFill, Sequence, useCurrentFrame } from "remotion";
-import { BrandBug } from "../components/Brand";
+import { ArchFrame, BrandBug } from "../components/Brand";
 import { Callout, CutoutDesk, CutoutOnStage, layout, STAGE, StudioBackdrop } from "../components/Showcase";
 import { Subtitles } from "../components/Subtitles";
 import { Swatch } from "../components/Swatch";
@@ -38,7 +38,7 @@ const MaterialCard: React.FC<{ i: number }> = ({ i }) => {
         <div style={{ fontFamily: F.sans, fontSize: 24, letterSpacing: 6, color: C.beige }}>
           {String(i + 1).padStart(2, "0")} / {String(content.materials.length).padStart(2, "0")}
         </div>
-        <div style={{ fontFamily: F.serif, fontSize: 84, lineHeight: 1.02, marginTop: 10, fontWeight: 500 }}>{m.name}</div>
+        <div style={{ fontFamily: F.serif, fontWeight: 300, fontSize: 67, lineHeight: 1.02, marginTop: 10 }}>{m.name}</div>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 16, fontFamily: F.sans, fontSize: 30 }}>
           <span style={{ color: "#e6e1d8" }}>{m.detail}</span>
           <span style={{ fontSize: 34, fontWeight: 600 }}>
@@ -81,13 +81,13 @@ const RealisationCard: React.FC<{ r: Realisation; i: number; n: number }> = ({ r
         <div style={{ fontFamily: F.sans, fontSize: 22, letterSpacing: 6, color: C.beige }}>
           NOS RÉALISATIONS · {String(i + 1).padStart(2, "0")} / {String(n).padStart(2, "0")}
         </div>
-        <div style={{ fontFamily: F.serif, fontSize: 66, color: C.blanc, marginTop: 4, lineHeight: 1.05 }}>{r.name}</div>
+        <div style={{ fontFamily: F.serif, fontWeight: 300, fontSize: 53, color: C.blanc, marginTop: 4, lineHeight: 1.05 }}>{r.name}</div>
         <div style={{ fontFamily: F.sans, fontSize: 26, color: "#cfc8bd", marginTop: 8 }}>{r.subtitle}</div>
       </div>
       {zt > 0 ? (
         <div style={{ position: "absolute", left: SAFE.left, top: 1120, opacity: tw(f, [52, 62], [0, 1]), display: "flex", alignItems: "center", gap: 18 }}>
           <div style={{ width: tw(f, [52, 66], [0, 70]), height: 2, background: C.led }} />
-          <div style={{ fontFamily: F.serif, fontSize: 58, color: C.blanc, padding: "2px 20px 8px", borderRadius: 12, background: "rgba(13,13,14,0.7)" }}>{r.detail.label}</div>
+          <div style={{ fontFamily: F.serif, fontWeight: 300, fontSize: 46, color: C.blanc, padding: "2px 20px 8px", borderRadius: 12, background: "rgba(43,12,19,0.7)" }}>{r.detail.label}</div>
         </div>
       ) : null}
     </AbsoluteFill>
@@ -110,16 +110,12 @@ const Realisations: React.FC = () => {
 const PriceCard: React.FC = () => {
   const frame = useCurrentFrame();
   return (
-    <AbsoluteFill>
-      <AbsoluteFill style={{ filter: "blur(6px) brightness(0.45)", transform: "scale(1.1)" }}>
-        <Swatch id="noyer-bg" kind="wood" colors={["#6B4529", "#3A2414"]} pan={-frame} />
-      </AbsoluteFill>
-      <div style={{ position: "absolute", left: SAFE.left, width: SAFE_W, top: 560, textAlign: "center", color: C.blanc }}>
-        <div style={{ fontFamily: F.sans, fontSize: 24, letterSpacing: 7, color: C.beige, opacity: tw(frame, [0, 10], [0, 1]) }}>
-          UN BUREAU · UN BUDGET
-        </div>
-        <div style={{ fontFamily: F.serif, fontSize: 78, lineHeight: 1.05, marginTop: 18, opacity: tw(frame, [4, 16], [0, 1]) }}>{S.priceNote}</div>
-        <div style={{ marginTop: 44, display: "flex", flexDirection: "column", gap: 18, alignItems: "center" }}>
+    <AbsoluteFill style={{ background: `radial-gradient(ellipse 80% 60% at 50% 45%, #5C1B29 0%, ${C.bordeaux} 50%, ${C.bordeauxNuit} 100%)` }}>
+      <ArchFrame x={175} y={380} w={730} h={1060} color={C.arche} width={2.5} draw={tw(frame, [0, 30], [0, 1])} />
+      <div style={{ position: "absolute", left: SAFE.left, width: SAFE_W, top: 600, textAlign: "center", color: C.blanc }}>
+        <div style={{ fontFamily: F.sans, fontSize: 22, letterSpacing: 7, color: C.or, opacity: tw(frame, [0, 10], [0, 1]) }}>UN BUREAU · UN BUDGET</div>
+        <div style={{ fontFamily: F.sans, fontWeight: 300, fontSize: 66, lineHeight: 1.12, marginTop: 20, opacity: tw(frame, [4, 16], [0, 1]) }}>{S.priceNote}</div>
+        <div style={{ marginTop: 50, display: "flex", flexDirection: "column", gap: 10, alignItems: "center" }}>
           {S.priceFactors.map((f, i) => {
             const o = tw(frame, [12 + i * 7, 22 + i * 7], [0, 1]);
             return (
@@ -129,17 +125,16 @@ const PriceCard: React.FC = () => {
                   opacity: o,
                   transform: `translateY(${(1 - o) * 16}px)`,
                   fontFamily: F.sans,
-                  fontSize: 40,
-                  fontWeight: 500,
+                  fontSize: 30,
+                  fontWeight: 400,
+                  letterSpacing: "0.22em",
                   width: 520,
-                  padding: "14px 0",
-                  borderBottom: "1px solid rgba(255,217,160,0.35)",
-                  display: "flex",
-                  justifyContent: "space-between",
+                  padding: "16px 0",
+                  borderBottom: "1px solid rgba(201,164,106,0.4)",
+                  textTransform: "uppercase",
                 }}
               >
-                <span>{f}</span>
-                <span style={{ color: C.led }}>+</span>
+                {f}
               </div>
             );
           })}

@@ -25,7 +25,7 @@ export const Shell: React.FC<{ children: React.ReactNode; fadeIn?: number; fadeO
             style={{
               pointerEvents: "none",
               background:
-                "linear-gradient(180deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0) 22%, rgba(0,0,0,0) 58%, rgba(0,0,0,0.55) 100%)",
+                "linear-gradient(180deg, rgba(28,7,12,0.5) 0%, rgba(28,7,12,0) 22%, rgba(28,7,12,0) 58%, rgba(28,7,12,0.6) 100%)",
             }}
           />
         ) : null}

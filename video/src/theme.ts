@@ -1,32 +1,36 @@
-import "@fontsource/cormorant-garamond/400.css";
-import "@fontsource/cormorant-garamond/500.css";
-import "@fontsource/cormorant-garamond/600.css";
-import "@fontsource/cormorant-garamond/400-italic.css";
-import "@fontsource/inter/300.css";
-import "@fontsource/inter/400.css";
-import "@fontsource/inter/500.css";
-import "@fontsource/inter/600.css";
+import "@fontsource/jost/300.css";
+import "@fontsource/jost/400.css";
+import "@fontsource/jost/500.css";
+import "@fontsource/jost/600.css";
 
 export const W = 1080;
 export const H = 1920;
 export const FPS = 30;
 
-/** Palette DOMOVA : noir, blanc, anthracite, bois naturel, noyer, beige. */
+/** Charte DOMOVA : bordeaux, crème, or (relevés sur les visuels de la marque). */
 export const C = {
-  noir: "#0D0D0E",
-  anthracite: "#26272A",
-  anthraciteClair: "#3A3B3F",
-  gris: "#8C8A86",
-  blanc: "#F5F3EF",
-  beige: "#D8C9B1",
+  bordeaux: "#4A1420",
+  bordeauxFonce: "#2B0C13",
+  bordeauxNuit: "#1C070C",
+  arche: "#5E2A30", // trait fin des arches décoratives
+  creme: "#F3E9DC",
+  or: "#C9A46A",
+  // alias utilisés dans les scènes
+  noir: "#1C070C",
+  anthracite: "#2B0C13",
+  anthraciteClair: "#4A1420",
+  gris: "#8C7F78",
+  blanc: "#F3E9DC",
+  beige: "#C9A46A",
   bois: "#C49A6C",
   noyer: "#5A3A22",
-  led: "#FFD9A0",
+  led: "#C9A46A",
 };
 
+/** Typographie de la marque : géométrique (Jost), capitales très espacées. */
 export const F = {
-  serif: "'Cormorant Garamond', 'Times New Roman', serif",
-  sans: "Inter, 'Helvetica Neue', Arial, sans-serif",
+  serif: "Jost, 'Futura', 'Century Gothic', sans-serif",
+  sans: "Jost, 'Futura', 'Century Gothic', sans-serif",
 };
 
 /**

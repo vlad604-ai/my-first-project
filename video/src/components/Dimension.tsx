@@ -56,7 +56,7 @@ export const Dimension: React.FC<{
         </>
       )}
       <g opacity={textO} transform={vertical ? `rotate(-90 ${tx} ${ty})` : undefined}>
-        <rect x={tx - bw / 2} y={ty - 40} width={bw} height={50} rx={8} fill="rgba(13,13,14,0.75)" />
+        <rect x={tx - bw / 2} y={ty - 40} width={bw} height={50} rx={8} fill="rgba(43,12,19,0.75)" />
         <text x={tx} y={ty - 4} fill={C.led} fontFamily={F.sans} fontSize={34} fontWeight={600} textAnchor="middle">
           {value}
         </text>

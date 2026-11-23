@@ -41,7 +41,7 @@ export const ParisMap: React.FC<{ progress: number; transparent?: boolean }> = (
           inset: 0,
           transformOrigin: `${PARIS_TARGET.x}px ${PARIS_TARGET.y}px`,
           transform: `rotateX(${tilt}deg) scale(${zoom})`,
-          background: transparent ? "transparent" : `radial-gradient(circle at 50% 50%, #2d2e31 0%, ${C.noir} 75%)`,
+          background: transparent ? "transparent" : `radial-gradient(circle at 50% 50%, #4A1420 0%, ${C.noir} 75%)`,
         }}
       >
         <svg width={W} height={H} viewBox={`0 0 ${W} ${H}`}>
@@ -60,16 +60,16 @@ export const ParisMap: React.FC<{ progress: number; transparent?: boolean }> = (
           {/* la Seine */}
           <path
             d="M20 820 C 200 760, 330 880, 470 860 S 700 760, 820 860 S 1000 1010, 1070 1060"
-            stroke="#7f8fa0"
-            strokeOpacity={0.75}
-            strokeWidth={16}
+            stroke={C.or}
+            strokeOpacity={0.55}
+            strokeWidth={14}
             fill="none"
             strokeLinecap="round"
           />
           {/* 14e arrondissement */}
           <path
             d="M420 1060 L560 1050 L610 1150 L580 1300 L430 1320 L390 1200 Z"
-            fill={C.bois}
+            fill={C.or}
             fillOpacity={0.12 + pin * 0.25}
             stroke={C.led}
             strokeOpacity={0.4 + pin * 0.6}
@@ -141,28 +141,28 @@ export const Plan2D: React.FC<{ p: number }> = ({ p }) => {
   const draw = (start: number, end: number) => tw(p, [start, end], [0, 1]);
   const dash = (len: number, k: number) => ({ strokeDasharray: len, strokeDashoffset: len * (1 - k) });
   const room = { x: 170, y: 520, w: 740, h: 940 };
-  const blue = "#E8EEF4";
+  const blue = C.creme;
   return (
     <svg width={W} height={H} viewBox={`0 0 ${W} ${H}`} style={{ position: "absolute", inset: 0 }}>
       <defs>
         <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-          <path d="M40 0 L0 0 0 40" fill="none" stroke="rgba(232,238,244,0.07)" strokeWidth="1" />
+          <path d="M40 0 L0 0 0 40" fill="none" stroke="rgba(243,233,220,0.06)" strokeWidth="1" />
         </pattern>
       </defs>
-      <rect width={W} height={H} fill="#1b2027" />
+      <rect width={W} height={H} fill={C.bordeauxNuit} />
       <rect width={W} height={H} fill="url(#grid)" />
       {/* murs */}
       <rect x={room.x} y={room.y} width={room.w} height={room.h} fill="none" stroke={blue} strokeWidth={14} style={dash(3400, draw(0, 0.35))} />
       {/* fenêtre */}
-      <line x1={room.x} y1={700} x2={room.x} y2={940} stroke="#1b2027" strokeWidth={16} opacity={draw(0.3, 0.35)} />
-      <line x1={room.x - 8} y1={700} x2={room.x - 8} y2={940} stroke="#9fc3e6" strokeWidth={3} opacity={draw(0.3, 0.4)} />
-      <line x1={room.x + 8} y1={700} x2={room.x + 8} y2={940} stroke="#9fc3e6" strokeWidth={3} opacity={draw(0.3, 0.4)} />
+      <line x1={room.x} y1={700} x2={room.x} y2={940} stroke={C.bordeauxNuit} strokeWidth={16} opacity={draw(0.3, 0.35)} />
+      <line x1={room.x - 8} y1={700} x2={room.x - 8} y2={940} stroke={C.creme} strokeWidth={3} opacity={draw(0.3, 0.4)} />
+      <line x1={room.x + 8} y1={700} x2={room.x + 8} y2={940} stroke={C.creme} strokeWidth={3} opacity={draw(0.3, 0.4)} />
       {/* porte */}
       <path d={`M ${room.x + room.w - 220} ${room.y + room.h} A 180 180 0 0 1 ${room.x + room.w - 40} ${room.y + room.h - 180}`} stroke={blue} strokeOpacity={0.6} strokeWidth={3} fill="none" style={dash(300, draw(0.35, 0.45))} />
       {/* bureau en L */}
       <path
         d={`M ${room.x + 20} ${room.y + 20} H ${room.x + room.w - 20} V ${room.y + 620} H ${room.x + room.w - 200} V ${room.y + 200} H ${room.x + 20} Z`}
-        fill={C.bois}
+        fill={C.or}
         fillOpacity={0.18 * draw(0.55, 0.7)}
         stroke={C.led}
         strokeWidth={5}
@@ -196,7 +196,7 @@ export const PlanCurved: React.FC<{ p: number }> = ({ p }) => {
   const draw = (start: number, end: number) => tw(p, [start, end], [0, 1]);
   const dash = (len: number, k: number) => ({ strokeDasharray: len, strokeDashoffset: len * (1 - k) });
   const room = { x: 170, y: 520, w: 740, h: 940 };
-  const blue = "#E8EEF4";
+  const blue = C.creme;
   const cx = 540;
   const cy = 700;
   const ro = 400;
@@ -213,14 +213,14 @@ export const PlanCurved: React.FC<{ p: number }> = ({ p }) => {
     <svg width={W} height={H} viewBox={`0 0 ${W} ${H}`} style={{ position: "absolute", inset: 0 }}>
       <defs>
         <pattern id="gridc" width="40" height="40" patternUnits="userSpaceOnUse">
-          <path d="M40 0 L0 0 0 40" fill="none" stroke="rgba(232,238,244,0.07)" strokeWidth="1" />
+          <path d="M40 0 L0 0 0 40" fill="none" stroke="rgba(243,233,220,0.06)" strokeWidth="1" />
         </pattern>
       </defs>
-      <rect width={W} height={H} fill="#1b2027" />
+      <rect width={W} height={H} fill={C.bordeauxNuit} />
       <rect width={W} height={H} fill="url(#gridc)" />
       <rect x={room.x} y={room.y} width={room.w} height={room.h} fill="none" stroke={blue} strokeWidth={14} style={dash(3400, draw(0, 0.3))} />
       {/* verrière sur le mur du fond */}
-      <line x1={560} y1={room.y} x2={800} y2={room.y} stroke="#9fc3e6" strokeWidth={6} opacity={draw(0.25, 0.35)} />
+      <line x1={560} y1={room.y} x2={800} y2={room.y} stroke={C.creme} strokeWidth={6} opacity={draw(0.25, 0.35)} />
       {/* comptoir arrondi */}
       <path d={counter} fill={C.noyer} fillOpacity={0.35 * draw(0.55, 0.7)} stroke={C.led} strokeWidth={5} style={dash(2600, draw(0.3, 0.6))} />
       {/* ruban LED */}

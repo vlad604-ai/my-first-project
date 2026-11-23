@@ -44,7 +44,7 @@ export const Placeholder: React.FC<{
           top: 560,
           border: `1px solid rgba(216,201,177,0.45)`,
           padding: "34px 38px",
-          background: "rgba(13,13,14,0.55)",
+          background: "rgba(43,12,19,0.55)",
           color: C.blanc,
           fontFamily: F.sans,
         }}
@@ -52,7 +52,7 @@ export const Placeholder: React.FC<{
         <div style={{ fontSize: 24, letterSpacing: 6, color: C.beige, fontWeight: 500 }}>
           {tone === "alert" ? "VOTRE VIDÉO" : "PLAN À INSÉRER"} · {id}
         </div>
-        <div style={{ fontFamily: F.serif, fontSize: 52, lineHeight: 1.1, marginTop: 18 }}>{title}</div>
+        <div style={{ fontFamily: F.serif, fontWeight: 300, fontSize: 42, lineHeight: 1.1, marginTop: 18 }}>{title}</div>
         {source ? <div style={{ fontSize: 24, marginTop: 20, color: "#bdb8b0" }}>{source}</div> : null}
         {path ? (
           <div style={{ fontSize: 22, marginTop: 14, color: C.beige, fontFamily: "'JetBrains Mono', monospace" }}>

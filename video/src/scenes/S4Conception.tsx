@@ -17,7 +17,7 @@ const OptionTitle: React.FC<{ index: number; total: number; k: string; appear: n
     <div style={{ fontFamily: F.sans, fontSize: 22, letterSpacing: 6, color: C.beige }}>
       PERSONNALISATION · {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
     </div>
-    <div style={{ fontFamily: F.serif, fontSize: 76, color: C.blanc, marginTop: 4 }}>{k.charAt(0) + k.slice(1).toLowerCase()}</div>
+    <div style={{ fontFamily: F.serif, fontWeight: 300, fontSize: 61, color: C.blanc, marginTop: 4 }}>{k.charAt(0) + k.slice(1).toLowerCase()}</div>
   </div>
 );
 
@@ -80,7 +80,7 @@ export const S4Conception: React.FC = () => {
           {f3 < o0 ? (
             <div style={{ position: "absolute", left: SAFE.left, width: SAFE_W, top: 390, textAlign: "center", opacity: tw(f3, [8, 20], [0, 1]) * tw(f3, [o0 - 10, o0], [1, 0]) }}>
               <div style={{ fontFamily: F.sans, fontSize: 22, letterSpacing: 6, color: C.beige }}>DU PLAN À LA RÉALISATION</div>
-              <div style={{ fontFamily: F.serif, fontSize: 72, color: C.blanc, marginTop: 4 }}>{content.bureaux.arrondi.name}</div>
+              <div style={{ fontFamily: F.serif, fontWeight: 300, fontSize: 58, color: C.blanc, marginTop: 4 }}>{content.bureaux.arrondi.name}</div>
             </div>
           ) : (
             <OptionTitle index={optIndex} total={S.options.length} k={opt.key} appear={tw(local, [0, 8], [0, 1])} />
