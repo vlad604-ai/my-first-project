@@ -70,7 +70,7 @@ export const S8Conclusion: React.FC = () => {
       {/* 2. affiche DOMOVA */}
       <AbsoluteFill style={{ opacity: poster }}>
         <ArchFrame x={175} y={300} w={730} h={1180} color={C.arche} width={2.5} draw={ap(0, 40)} />
-        <div style={{ position: "absolute", left: SAFE.left, width: SAFE_W, top: 470, display: "flex", flexDirection: "column", alignItems: "center", color: C.creme }}>
+        <div style={{ position: "absolute", left: SAFE.left, width: SAFE_W, top: 420, display: "flex", flexDirection: "column", alignItems: "center", color: C.creme }}>
           <ArchIcon size={150} draw={ap(4, 34)} />
           <div style={{ marginTop: 44, opacity: ap(20, 36), transform: `translateY(${(1 - ap(20, 36)) * 14}px)` }}>
             <Logo height={84} />
@@ -78,10 +78,15 @@ export const S8Conclusion: React.FC = () => {
           <div style={{ marginTop: 24, fontFamily: F.sans, fontWeight: 500, fontSize: 19, letterSpacing: "0.26em", marginRight: "-0.26em", opacity: ap(28, 42), whiteSpace: "nowrap" }}>
             {B.metier}
           </div>
-          <div style={{ width: ap(34, 52) * 90, height: 2, background: C.or, margin: "42px 0 34px" }} />
-          <div style={{ fontFamily: F.sans, fontWeight: 400, fontSize: 40, letterSpacing: "0.3em", marginRight: "-0.3em", color: C.or, opacity: ap(38, 52) }}>{B.tagline}</div>
-          <div style={{ fontFamily: F.sans, fontWeight: 300, fontSize: 36, marginTop: 26, opacity: ap(44, 58) }}>{B.signature}</div>
-          <div style={{ fontFamily: F.sans, fontWeight: 300, fontSize: 30, lineHeight: 1.35, textAlign: "center", maxWidth: 680, marginTop: 44, color: "#E3D5C3", opacity: ap(52, 66) }}>{B.cta}</div>
+          <div style={{ width: ap(34, 52) * 90, height: 2, background: C.or, margin: "34px 0 26px" }} />
+          {/* devise de la marque */}
+          <div style={{ fontFamily: F.sans, fontWeight: 300, fontSize: 50, letterSpacing: "0.06em", color: C.creme, opacity: ap(36, 50), transform: `translateY(${(1 - ap(36, 50)) * 10}px)` }}>
+            {B.devise}
+          </div>
+          <div style={{ height: 30 }} />
+          <div style={{ fontFamily: F.sans, fontWeight: 400, fontSize: 32, letterSpacing: "0.3em", marginRight: "-0.3em", color: C.or, opacity: ap(42, 56) }}>{B.tagline}</div>
+          <div style={{ fontFamily: F.sans, fontWeight: 300, fontSize: 32, marginTop: 18, opacity: ap(46, 60) }}>{B.signature}</div>
+          <div style={{ fontFamily: F.sans, fontWeight: 300, fontSize: 30, lineHeight: 1.35, textAlign: "center", maxWidth: 680, marginTop: 34, color: "#E3D5C3", opacity: ap(52, 66) }}>{B.cta}</div>
           <div
             style={{
               marginTop: 32,

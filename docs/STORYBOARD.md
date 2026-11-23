@@ -192,7 +192,7 @@ Si vos vidéos sont filmées sous des angles différents, la transition reste un
 | IMG_7770 (vue de dessus) | — | Gros plans **Assemblages du plateau** et **Plateau & finitions** (S7) |
 | IMG_7771 (intérieur) | **Logo Fresh Ride supprimé** | Gros plans **Rangements** et **Niches intégrées** (S7) |
 
-⚠️ Les valeurs des cotes (2,80 m, 1,20 m) sont indicatives : remplacez-les par vos vraies mesures dans `video/src/content/domova.json` (`scenes.s3.shots[].dimensions`).
+⚠️ Hauteur sous plafond : ≈ 3,15 m (indiquée par vous). La verrière (1,20 m) reste indicative : remplacez-les par vos vraies mesures dans `video/src/content/domova.json` (`scenes.s3.shots[].dimensions`).
 Le script `tools/prepare_media.py` refait tout le traitement à partir des originaux placés dans `sources/`.
 
 ---
@@ -226,3 +226,5 @@ Pour ajouter une réalisation : détourez la photo (voir `tools/prepare_media.py
 - Sous-titres et étiquettes : cartouches bordeaux translucides, texte crème, filets or.
 
 Coordonnées reprises de vos maquettes : **domova.fr** et **@domova.btp** (à confirmer), TikTok et téléphone à compléter dans `contacts`.
+
+**Devise** : « L'art de rénover » apparaît sous l'arche à l'ouverture et sous le logo DOMOVA sur l'affiche finale (`brand.devise` dans `domova.json`).

@@ -78,6 +78,26 @@ export const S1Paris: React.FC = () => {
           <ArchIcon size={230} draw={iconDraw} />
         </div>
       ) : null}
+      {open < 1 ? (
+        <div
+          style={{
+            position: "absolute",
+            left: 0,
+            right: 0,
+            top: 1010,
+            textAlign: "center",
+            fontFamily: F.sans,
+            fontWeight: 400,
+            fontSize: 26,
+            letterSpacing: "0.42em",
+            marginRight: "-0.42em",
+            color: C.or,
+            opacity: tw(frame, [16, 28], [0, 1]) * (1 - open * 2),
+          }}
+        >
+          {content.brand.devise.toUpperCase()}
+        </div>
+      ) : null}
     </AbsoluteFill>
   );
 };
