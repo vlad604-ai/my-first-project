@@ -22,6 +22,11 @@ const Icon: React.FC<{ type: string }> = ({ type }) => {
         </>
       ) : type === "tiktok" ? (
         <path d="M22 7 v18 a6 6 0 1 1 -6 -6 M22 7 c1 4 4 7 8 7" {...s} strokeLinecap="round" />
+      ) : type === "whatsapp" ? (
+        <>
+          <path d="M20 6 a14 14 0 1 1 -11.5 22 L6 34 l6.2 -2.3 A14 14 0 0 1 20 6 z" {...s} strokeLinejoin="round" />
+          <path d="M15 14 c0 6 5 11 11 11 l1.5 -2.5 -3.5 -1.8 -1.6 1.6 c-2 -0.8 -3.6 -2.4 -4.4 -4.4 l1.6 -1.6 -1.8 -3.5 z" fill={C.or} />
+        </>
       ) : type === "phone" ? (
         <path d="M12 7 l5 0 l2 7 l-3 2 a14 14 0 0 0 8 8 l2 -3 l7 2 l0 5 a3 3 0 0 1 -3 3 A23 23 0 0 1 9 10 a3 3 0 0 1 3 -3 z" {...s} strokeLinejoin="round" />
       ) : (
@@ -100,7 +105,7 @@ export const S8Conclusion: React.FC = () => {
                 <Icon type={c.type} />
                 <div style={{ fontFamily: F.sans }}>
                   <div style={{ fontSize: 15, letterSpacing: 3, color: C.or }}>{c.label.toUpperCase()}</div>
-                  <div style={{ fontSize: 23, color: C.creme }}>{c.value}</div>
+                  <div style={{ fontSize: 26, color: C.creme }}>{c.value}</div>
                 </div>
               </div>
             ))}

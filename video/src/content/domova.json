@@ -17,24 +17,24 @@
   },
   "contacts": [
     {
-      "type": "web",
-      "label": "Site internet",
-      "value": "domova.fr"
+      "type": "phone",
+      "label": "Téléphone",
+      "value": "07 66 74 80 45"
+    },
+    {
+      "type": "whatsapp",
+      "label": "WhatsApp",
+      "value": "@domovabtp"
     },
     {
       "type": "instagram",
       "label": "Instagram",
-      "value": "@domova.btp"
+      "value": "@domovabtp"
     },
     {
       "type": "tiktok",
       "label": "TikTok",
-      "value": "@domova.btp — à confirmer"
-    },
-    {
-      "type": "phone",
-      "label": "Téléphone",
-      "value": "06 00 00 00 00 — à compléter"
+      "value": "@domovabtp"
     }
   ],
   "audio": {
