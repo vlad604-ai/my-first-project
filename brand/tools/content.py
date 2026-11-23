@@ -60,13 +60,25 @@ On touche, on compare, on regarde à la lumière du jour. Puis on choisit ensemb
 Et vous, quelle matière vous attire le plus ? Dites-le-nous en commentaire 👇
 
 #domova #materiaux #architectureinterieure #decorationinterieure #renovation #amenagementinterieur #marbre #chene #laiton #interiordesign""",
-    "03_chantier": """Sur le chantier : ravalement de façade, semaine 3 sur 8.
+    "03_chantier": """Sur le chantier 🏗️ Ravalement de façade, semaine 3 sur 8.
 
-L’échafaudage est posé, le piquetage des anciens enduits a commencé. Prochaine étape : reprise des pierres abîmées et enduits à la chaux.
+Cette semaine, l’échafaudage est en place et le piquetage a commencé : on retire les anciens enduits abîmés pour retrouver la pierre saine.
 
-Suivez l’avancement dans nos stories « Chantiers ».
+C’est l’étape la moins spectaculaire, mais la plus importante. Une façade bien préparée, c’est une façade qui tient des décennies.
 
-#ravalementdefacade #pierredetaille #chantier #batiment #domova""",
+Les prochaines étapes :
+▫️ reprise des pierres endommagées
+▫️ enduits à la chaux, qui laissent respirer le mur
+▫️ nettoyage et protection des menuiseries
+▫️ démontage de l’échafaudage et révélation finale 🤍
+
+Pendant tout le chantier, nous tenons les riverains et la copropriété informés, et nous laissons les abords propres chaque soir.
+
+Suivez l’avancement jour après jour dans nos stories « Chantiers ».
+
+Votre immeuble ou votre maison a besoin d’un ravalement ? Devis gratuit, lien en bio 📩
+
+#domova #ravalementdefacade #facade #pierredetaille #chantier #batiment #renovation #enduitchaux #patrimoine #copropriete""",
     "04_conseil": """3 erreurs à éviter avant de rénover 👉 Glissez
 
 1. Choisir les finitions avant d’avoir validé l’électricité
