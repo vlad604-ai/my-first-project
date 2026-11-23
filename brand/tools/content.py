@@ -44,13 +44,22 @@ Vous avez un projet d’appartement, de maison, de façade ou de bureaux ? Parlo
 Abonnez-vous pour suivre nos prochains chantiers.
 
 #domova #entreprisegenerale #batiment #renovation #construction #renovationappartement #amenagementinterieur #architectureinterieure #toutcorpsdetat #artisan""",
-    "02_matiere": """La matière avant tout.
+    "02_matiere": """Tout commence par la matière ✨
 
-Marbre, chêne, laiton, velours, terre cuite : chaque projet commence par une planche de matériaux, choisie avec vous.
+Avant le premier coup de pioche, il y a une table, des échantillons et une question : quelle ambiance voulez-vous vivre chaque jour ?
 
-Quelle matière vous attire le plus ? Dites-le en commentaire 👇
+Pour chaque projet, nous composons avec vous une planche de matériaux :
+▫️ le marbre, pour la lumière et l’élégance
+▫️ le chêne, pour la chaleur et la durée
+▫️ le laiton, pour la touche précieuse
+▫️ le velours, pour la douceur
+▫️ la terre cuite, pour l’authenticité
 
-#materiaux #architectureinterieure #decoration #renovation #domova""",
+On touche, on compare, on regarde à la lumière du jour. Puis on choisit ensemble ce qui tiendra dans le temps, et pas seulement ce qui plaît sur une photo.
+
+Et vous, quelle matière vous attire le plus ? Dites-le-nous en commentaire 👇
+
+#domova #materiaux #architectureinterieure #decorationinterieure #renovation #amenagementinterieur #marbre #chene #laiton #interiordesign""",
     "03_chantier": """Sur le chantier : ravalement de façade, semaine 3 sur 8.
 
 L’échafaudage est posé, le piquetage des anciens enduits a commencé. Prochaine étape : reprise des pierres abîmées et enduits à la chaux.
