@@ -30,6 +30,22 @@ C'est ce bloc qui garantit la cohérence. **Copiez-le tel quel dans chaque promp
 DOMOVA brand ambassador: a tall slender Caucasian man in his early thirties, fair natural skin with subtle realistic texture and light freckles on the nose, oval face with a defined jawline, straight nose, light-grey-blue eyes, clean-shaven with a faint natural stubble shadow, medium-length honey-blond hair styled in a modern textured side-part swept back, short tapered sides, neat and elegant; thin rectangular eyeglasses with a matte black metal frame and slightly rounded corners; wearing an all-black outfit: slim-fit black wool blazer with notch lapels, black fine-knit merino turtleneck, tailored slim black trousers, polished black leather Chelsea boots; no logos, no colour, no accessories except a minimal black steel watch on the left wrist
 ```
 
+### Version v2 : d'après les photos du fondateur (à utiliser en priorité)
+
+Traits relevés sur les photos : environ 24 ans, grand et mince, cheveux mi-longs ondulés à bouclés, châtain clair avec des reflets blond doré, coiffés en arrière avec du volume ; visage ovale allongé ; nez droit et marqué ; lèvres pleines ; mâchoire et menton bien dessinés ; sourcils épais et droits, châtain foncé ; yeux marron, paupières légèrement tombantes ; peau claire ; rasé de près.
+
+Lunettes : monture ronde « pantos » fine en métal noir, plus proche de son style que la monture rectangulaire.
+
+**Prompt court pour le générateur gratuit** (les prompts longs y sont mal suivis), graine `505` :
+```
+handsome young man, 24 years old, curly golden-blond hair with light brown roots swept back, fair skin, strong straight nose, full lips, brown eyes, thin black round eyeglasses, all-black outfit, black blazer over black turtleneck, no tie
+```
+
+**Prompt complet pour un outil pro** (avec la photo du fondateur en image de référence) :
+```
+tall slim young man, about 24, medium-length wavy light-brown hair with golden-blond highlights swept back with volume, curls over the ears, long oval face, strong straight nose, full lips, defined jaw and chin, thick straight dark-brown eyebrows, brown eyes with slightly heavy eyelids, fair skin, clean-shaven, thin black metal round panto eyeglasses, slim black wool blazer, black fine-knit turtleneck, slim black trousers, black leather shoes, minimal black watch on left wrist
+```
+
 ### Bloc rendu (EN)
 
 ```
