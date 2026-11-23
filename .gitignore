@@ -1,0 +1,6 @@
+node_modules/
+out/
+video/src/generated/
+*.log
+.DS_Store
+sources/

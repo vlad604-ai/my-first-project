@@ -1,0 +1,726 @@
+{
+  "_lisezmoi": "Fichier central de la publicité. Modifiez ici les textes, durées, coordonnées, matériaux et chemins des médias. Tous les chemins sont relatifs au dossier /assets. Un fichier absent est remplacé par un écran de repère (placeholder) jusqu'à ce que vous l'ajoutiez.",
+  "brand": {
+    "name": "DOMOVA",
+    "tagline": "BUREAUX SUR MESURE",
+    "signature": "Votre espace. Vos idées. Notre savoir-faire.",
+    "promise": "Vous imaginez votre bureau. Nous le concevons et nous le réalisons.",
+    "cta": "Vous avez un projet ? Contactez-nous et imaginons ensemble votre futur bureau.",
+    "logo": "logo/logo.svg",
+    "logoAlternatives": [
+      "logo/logo.svg",
+      "logo/logo-blanc.png"
+    ],
+    "metier": "CONSTRUCTION · RÉNOVATION · AMÉNAGEMENT",
+    "button": "Demander un devis",
+    "welcome": "Bienvenue chez DOMOVA.",
+    "devise": "L'art de rénover"
+  },
+  "contacts": [
+    {
+      "type": "phone",
+      "label": "Téléphone",
+      "value": "07 66 74 80 45"
+    },
+    {
+      "type": "whatsapp",
+      "label": "WhatsApp",
+      "value": "@domovabtp"
+    },
+    {
+      "type": "instagram",
+      "label": "Instagram",
+      "value": "@domovabtp"
+    },
+    {
+      "type": "tiktok",
+      "label": "TikTok",
+      "value": "@domovabtp"
+    }
+  ],
+  "audio": {
+    "music": "audio/music/musique.mp3",
+    "musicVolume": 0.55,
+    "musicVolumeUnderVoice": 0.22,
+    "voiceVolume": 1.0
+  },
+  "scenes": {
+    "s1": {
+      "durationSec": 7.5,
+      "chapter": "PARIS",
+      "voice": "audio/vo/s1.mp3",
+      "vo": "À Paris, chaque espace possède un potentiel. Chez DOMOVA, nous transformons vos idées en réalisations uniques, entièrement pensées pour vous.",
+      "subtitles": [
+        "À Paris, chaque espace possède un potentiel.",
+        "Chez DOMOVA, nous transformons vos idées",
+        "en réalisations uniques, entièrement pensées pour vous."
+      ],
+      "shots": [
+        {
+          "id": "S1-A",
+          "src": "videos/sequences/S1-A.mp4",
+          "durationSec": 4.6,
+          "title": "Vue aérienne de Paris → descente vers le 14e",
+          "source": "IA ou banque d'images — voir prompts/S1.md"
+        },
+        {
+          "id": "S1-B",
+          "src": "videos/sequences/S1-B.mp4",
+          "durationSec": 2.9,
+          "title": "Rue haussmannienne du 14e, niveau trottoir",
+          "source": "IA ou tournage — voir prompts/S1.md — en attendant : animation au trait"
+        }
+      ],
+      "place": "PARIS 14ᵉ",
+      "coordinates": "48.8331° N · 2.3264° E"
+    },
+    "s2": {
+      "durationSec": 8,
+      "chapter": "01 — LA RENCONTRE",
+      "voice": "audio/vo/s2.mp3",
+      "vo": "Tout commence par une rencontre. Vous avez un projet, une envie, un espace à aménager ? Nous venons à votre rencontre pour comprendre vos besoins.",
+      "subtitles": [
+        "Tout commence par une rencontre.",
+        "Vous avez un projet, une envie,",
+        "un espace à aménager ?",
+        "Nous venons à votre rencontre pour comprendre vos besoins."
+      ],
+      "shots": [
+        {
+          "id": "S2-A",
+          "src": "videos/sequences/S2-A.mp4",
+          "durationSec": 4.0,
+          "title": "Le dirigeant DOMOVA marche dans une rue du 14e",
+          "source": "IA (personnage de référence) — voir prompts/S2.md — en attendant : animation au trait"
+        },
+        {
+          "id": "S2-B",
+          "src": "videos/sequences/S2-B.mp4",
+          "durationSec": 4.0,
+          "title": "Poignée de main avec le client devant l'immeuble",
+          "source": "IA ou tournage réel — voir prompts/S2.md — en attendant : animation au trait"
+        }
+      ],
+      "visitKicker": "RENDEZ-VOUS SUR PLACE",
+      "visitTitle": "Nous venons chez vous",
+      "promises": [
+        "Visite de votre espace",
+        "Écoute de vos besoins",
+        "Premiers conseils"
+      ]
+    },
+    "s3": {
+      "durationSec": 8.5,
+      "chapter": "02 — L'ÉTUDE DE L'ESPACE",
+      "voice": "audio/vo/s3.mp3",
+      "vo": "Nous étudions votre espace, prenons les mesures et imaginons avec vous un aménagement qui correspond parfaitement à vos attentes.",
+      "subtitles": [
+        "Nous étudions votre espace,",
+        "prenons les mesures",
+        "et imaginons avec vous un aménagement",
+        "qui correspond parfaitement à vos attentes."
+      ],
+      "shots": [
+        {
+          "id": "S3-A",
+          "src": "videos/avant/avant.mp4",
+          "startSec": 3.4,
+          "durationSec": 2.6,
+          "push": [
+            1.0,
+            1.06
+          ],
+          "title": "Présentation de l'espace (vidéo réelle)",
+          "source": "Votre vidéo AVANT",
+          "caption": "Visite de l'espace",
+          "dimensions": []
+        },
+        {
+          "id": "S3-B",
+          "src": "images/photos/avant-piece-vide.jpg",
+          "durationSec": 3.0,
+          "push": [
+            1.0,
+            1.04
+          ],
+          "title": "Pièce vide",
+          "source": "Votre photo",
+          "dimensions": [
+            {
+              "label": "Hauteur sous plafond",
+              "value": "2,80 m",
+              "x1": 630,
+              "y1": 385,
+              "x2": 630,
+              "y2": 1030,
+              "atSec": 0.2
+            },
+            {
+              "label": "Verrière",
+              "value": "1,20 m",
+              "x1": 672,
+              "y1": 500,
+              "x2": 900,
+              "y2": 500,
+              "atSec": 0.9
+            },
+            {
+              "label": "Angle",
+              "value": "90°",
+              "x1": 670,
+              "y1": 1032,
+              "x2": 670,
+              "y2": 1032,
+              "atSec": 1.6
+            }
+          ]
+        },
+        {
+          "id": "S3-C",
+          "src": "images/photos/pendant-tracage-au-sol.jpg",
+          "durationSec": 2.9,
+          "push": [
+            1.0,
+            1.04
+          ],
+          "title": "Traçage au sol de l'emprise du bureau",
+          "source": "Votre photo",
+          "caption": "Traçage à l'échelle 1:1",
+          "dimensions": [
+            {
+              "label": "Emprise du comptoir",
+              "value": "Tracé 1:1",
+              "x1": 185,
+              "y1": 990,
+              "x2": 905,
+              "y2": 990,
+              "atSec": 0.4
+            }
+          ]
+        }
+      ],
+      "_lisezmoi": "Plans réels de l'étude. Chaque plan peut porter ses propres cotes (coordonnées en px dans l'image 1080×1920, atSec relatif au début du plan). ⚠️ Remplacez les valeurs par vos vraies mesures."
+    },
+    "s4": {
+      "durationSec": 13,
+      "chapter": "03 — LA CONCEPTION",
+      "voice": "audio/vo/s4.mp3",
+      "vo": "Nous concevons votre bureau selon vos dimensions, vos envies et votre utilisation. Chaque détail est étudié pour créer un espace fonctionnel, esthétique et parfaitement adapté à votre intérieur.",
+      "subtitles": [
+        "Nous concevons votre bureau selon vos dimensions,",
+        "vos envies et votre utilisation.",
+        "Chaque détail est étudié pour créer un espace",
+        "fonctionnel, esthétique",
+        "et parfaitement adapté à votre intérieur."
+      ],
+      "shots": [
+        {
+          "id": "S4-A",
+          "src": "videos/sequences/S4-A.mp4",
+          "durationSec": 2.5,
+          "title": "Concepteur sur ordinateur, écran avec plan 3D",
+          "source": "IA ou tournage — voir prompts/S4.md — en attendant : animation au trait"
+        }
+      ],
+      "options": [
+        {
+          "key": "FORME",
+          "value": "Arrondie sur mesure",
+          "x": 0.86,
+          "y": 0.86
+        },
+        {
+          "key": "FAÇADE",
+          "value": "Laque bordeaux & cannelures",
+          "x": 0.09,
+          "y": 0.62
+        },
+        {
+          "key": "PLATEAU",
+          "value": "Blanc brillant",
+          "x": 0.5,
+          "y": 0.36
+        },
+        {
+          "key": "ÉCLAIRAGE",
+          "value": "LED intégrée",
+          "x": 0.55,
+          "y": 0.97
+        }
+      ],
+      "studioLabel": "BUREAU D'ÉTUDES DOMOVA"
+    },
+    "s5": {
+      "durationSec": 18.4,
+      "chapter": "04 — LES MATÉRIAUX",
+      "voice": "audio/vo/s5.mp3",
+      "vo": "Du mélaminé de qualité aux finitions bois naturel, en passant par les décors noyer, le stratifié et les matériaux haut de gamme, nous vous proposons de nombreuses possibilités. Chaque matériau possède ses caractéristiques et son prix. Nous adaptons votre projet à vos envies et à votre budget, sans négliger la qualité.",
+      "subtitles": [
+        "Du mélaminé de qualité aux finitions bois naturel,",
+        "en passant par les décors noyer, le stratifié",
+        "et les matériaux haut de gamme,",
+        "nous vous proposons de nombreuses possibilités.",
+        "Chaque matériau possède ses caractéristiques et son prix.",
+        "Nous adaptons votre projet à vos envies et à votre budget,",
+        "sans négliger la qualité."
+      ],
+      "priceFactors": [
+        "Matériaux",
+        "Dimensions",
+        "Complexité",
+        "Finitions"
+      ],
+      "priceNote": "Le prix varie selon votre projet"
+    },
+    "s5b": {
+      "durationSec": 7.5,
+      "chapter": "05 — VOS INSPIRATIONS",
+      "voice": "audio/vo/s5b.mp3",
+      "vo": "Pas encore d'idée précise ? Nous imaginons votre projet pour vous, ou vous nous envoyez vos inspirations, et nous les transformons en plan sur mesure.",
+      "subtitles": [
+        "Pas encore d'idée précise ?",
+        "Nous imaginons votre projet pour vous,",
+        "ou vous nous envoyez vos inspirations,",
+        "et nous les transformons en plan sur mesure."
+      ],
+      "question": "Pas encore d'idée précise ?",
+      "options": [
+        {
+          "n": "01",
+          "title": "Nous imaginons votre projet",
+          "detail": "Conception complète, de A à Z"
+        },
+        {
+          "n": "02",
+          "title": "Vous nous envoyez vos inspirations",
+          "detail": "Pinterest · Instagram · photos"
+        }
+      ],
+      "inspirations": [
+        "images/bureaux/photo-tasseaux-bois.jpg",
+        "images/photos/apres-vue-dessus.jpg",
+        "images/bureaux/photo-L-terracotta.jpg",
+        "images/photos/apres-interieur.jpg"
+      ],
+      "result": "Votre plan sur mesure"
+    },
+    "s6": {
+      "durationSec": 10,
+      "chapter": "06 — LA RÉALISATION",
+      "voice": "audio/vo/s6.mp3",
+      "vo": "Voici ce que nous pouvons réaliser. D'un espace inutilisé à un véritable bureau sur mesure, chaque centimètre est optimisé pour créer un aménagement unique.",
+      "subtitles": [
+        "Voici ce que nous pouvons réaliser.",
+        "D'un espace inutilisé",
+        "à un véritable bureau sur mesure,",
+        "chaque centimètre est optimisé",
+        "pour créer un aménagement unique."
+      ],
+      "realLabel": "Réalisation DOMOVA — images réelles"
+    },
+    "s7": {
+      "durationSec": 9.1,
+      "chapter": "07 — LA LIVRAISON",
+      "voice": "audio/vo/s7.mp3",
+      "vo": "Notre objectif est simple : transformer votre espace en un lieu qui vous ressemble, avec des matériaux de qualité et une réalisation soignée jusque dans les moindres détails.",
+      "subtitles": [
+        "Notre objectif est simple :",
+        "transformer votre espace en un lieu qui vous ressemble,",
+        "avec des matériaux de qualité",
+        "et une réalisation soignée jusque dans les moindres détails."
+      ],
+      "shots": [
+        {
+          "id": "S7-A",
+          "src": "videos/apres/apres.mp4",
+          "startSec": 7.9,
+          "durationSec": 2.6,
+          "push": [
+            1.0,
+            1.12
+          ],
+          "title": "Vue d'ensemble du bureau réalisé",
+          "source": "Votre vidéo APRÈS — remplaçable par un plan du client qui découvre son bureau"
+        }
+      ],
+      "details": [
+        {
+          "id": "D1",
+          "src": "images/photos/apres-vue-dessus.jpg",
+          "label": "Assemblages du plateau",
+          "focusX": 0.5,
+          "focusY": 0.5,
+          "push": [
+            1.04,
+            1.18
+          ]
+        },
+        {
+          "id": "D2",
+          "src": "images/photos/apres-interieur.jpg",
+          "label": "Rangements",
+          "focusX": 0.0,
+          "focusY": 0.6,
+          "push": [
+            1.05,
+            1.2
+          ]
+        },
+        {
+          "id": "D3",
+          "src": "images/photos/apres-interieur.jpg",
+          "label": "Niches intégrées",
+          "focusX": 1.0,
+          "focusY": 0.6,
+          "push": [
+            1.08,
+            1.22
+          ]
+        },
+        {
+          "id": "D4",
+          "src": "images/bureau-final.jpg",
+          "label": "Éclairage LED",
+          "focusX": 0.5,
+          "focusY": 0.62,
+          "push": [
+            1.2,
+            1.45
+          ]
+        },
+        {
+          "id": "D5",
+          "src": "images/photos/apres-vue-dessus.jpg",
+          "label": "Plateau & finitions",
+          "focusX": 0.68,
+          "focusY": 0.5,
+          "push": [
+            1.1,
+            1.3
+          ]
+        }
+      ]
+    },
+    "s8": {
+      "durationSec": 8,
+      "chapter": "",
+      "voice": "audio/vo/s8.mp3",
+      "vo": "Vous avez un projet ? Contactez-nous et imaginons ensemble votre futur bureau.",
+      "subtitles": [],
+      "background": "images/bureau-final.jpg"
+    }
+  },
+  "beforeAfter": {
+    "_lisezmoi": "Vos vidéos réelles (logo de l'enseigne cliente retiré, couleurs HDR converties). avant : durée lue = startSec → startSec + (4 + 1,2 s) × playbackRate. apresClips : plans successifs de la vidéo APRÈS ; 'details' = rapprochements (atSec relatif au plan, x/y centre 0–1, zoom).",
+    "avant": {
+      "src": "videos/avant/avant.mp4",
+      "startSec": 0,
+      "playbackRate": 0.62,
+      "fit": "cover",
+      "focusX": 0.5,
+      "focusY": 0.5
+    },
+    "apres": {
+      "src": "videos/apres/apres.mp4",
+      "startSec": 0,
+      "fit": "cover",
+      "focusX": 0.5,
+      "focusY": 0.5
+    },
+    "apresClips": [
+      {
+        "startSec": 0.15,
+        "durationSec": 3.0,
+        "push": [
+          1.0,
+          1.08
+        ]
+      },
+      {
+        "startSec": 4.7,
+        "durationSec": 3.15,
+        "push": [
+          1.0,
+          1.0
+        ],
+        "details": [
+          {
+            "atSec": 0.35,
+            "x": 0.5,
+            "y": 0.55,
+            "zoom": 1.7,
+            "label": "Plateau blanc brillant"
+          },
+          {
+            "atSec": 1.3,
+            "x": 0.15,
+            "y": 0.66,
+            "zoom": 2.0,
+            "label": "Façade cannelée"
+          },
+          {
+            "atSec": 2.2,
+            "x": 0.6,
+            "y": 0.76,
+            "zoom": 1.9,
+            "label": "Éclairage LED intégré"
+          }
+        ]
+      }
+    ]
+  },
+  "materials": [
+    {
+      "id": "melamine",
+      "name": "Mélaminé haute qualité",
+      "detail": "Résistant · large choix de décors",
+      "price": 1,
+      "texture": "materials/melamine.jpg",
+      "kind": "solid",
+      "colors": [
+        "#ECEAE5",
+        "#DCD8D0"
+      ]
+    },
+    {
+      "id": "stratifie",
+      "name": "Stratifié",
+      "detail": "Surface technique · très durable",
+      "price": 2,
+      "texture": "materials/stratifie.jpg",
+      "kind": "fine",
+      "colors": [
+        "#3A3B3E",
+        "#2C2D30"
+      ]
+    },
+    {
+      "id": "bois-naturel",
+      "name": "Bois naturel massif",
+      "detail": "Matière vivante · veinage unique",
+      "price": 4,
+      "texture": "materials/bois-naturel.jpg",
+      "kind": "wood",
+      "colors": [
+        "#C99D6B",
+        "#A87A4A"
+      ]
+    },
+    {
+      "id": "placage",
+      "name": "Placage bois",
+      "detail": "Vrai bois · rendu noble",
+      "price": 3,
+      "texture": "materials/placage.jpg",
+      "kind": "veneer",
+      "colors": [
+        "#B98C5E",
+        "#946A41"
+      ]
+    },
+    {
+      "id": "noyer",
+      "name": "Décor noyer",
+      "detail": "Teinte profonde · chaleureuse",
+      "price": 2,
+      "texture": "materials/noyer.jpg",
+      "kind": "wood",
+      "colors": [
+        "#6B4529",
+        "#4A2E1A"
+      ]
+    },
+    {
+      "id": "chene",
+      "name": "Chêne",
+      "detail": "Lumineux · intemporel",
+      "price": 3,
+      "texture": "materials/chene.jpg",
+      "kind": "wood",
+      "colors": [
+        "#D2AE80",
+        "#B48D5E"
+      ]
+    },
+    {
+      "id": "mat",
+      "name": "Finition mate",
+      "detail": "Toucher velours · anti-traces",
+      "price": 2,
+      "texture": "materials/mat.jpg",
+      "kind": "solid",
+      "colors": [
+        "#2A2A2C",
+        "#222224"
+      ]
+    },
+    {
+      "id": "brillant",
+      "name": "Finition brillante",
+      "detail": "Laque · reflets profonds",
+      "price": 3,
+      "texture": "materials/brillant.jpg",
+      "kind": "gloss",
+      "colors": [
+        "#F4F2EE",
+        "#D9D6D0"
+      ]
+    },
+    {
+      "id": "premium",
+      "name": "Matériaux haut de gamme",
+      "detail": "Pierre, métal, cuir, laque",
+      "price": 4,
+      "texture": "materials/premium.jpg",
+      "kind": "stone",
+      "colors": [
+        "#1C1C1E",
+        "#3B3A38"
+      ]
+    },
+    {
+      "id": "combinaison",
+      "name": "Combinaisons",
+      "detail": "Noyer × noir mat × LED",
+      "price": 3,
+      "texture": "materials/combinaison.jpg",
+      "kind": "combo",
+      "colors": [
+        "#5A3A22",
+        "#151515"
+      ]
+    }
+  ],
+  "bureaux": {
+    "_lisezmoi": "Vos réalisations détourées (assets/images/bureaux). bbox = cadre utile du détourage en pixels [x0,y0,x1,y1] ; les points (x,y) des annotations sont exprimés de 0 à 1 dans ce cadre.",
+    "arrondi": {
+      "name": "Comptoir arrondi bordeaux",
+      "cutout": "images/bureaux/arrondi-bordeaux.png",
+      "lines": "images/bureaux/arrondi-bordeaux-lignes.png",
+      "size": [
+        1757,
+        811
+      ],
+      "bbox": [
+        40,
+        40,
+        1717,
+        771
+      ],
+      "led": true
+    },
+    "realisations": [
+      {
+        "id": "tasseaux",
+        "name": "Comptoir tasseaux bois",
+        "subtitle": "Accueil · LED intégrée",
+        "cutout": "images/bureaux/tasseaux-bois.png",
+        "size": [
+          1200,
+          900
+        ],
+        "bbox": [
+          145,
+          491,
+          890,
+          752
+        ],
+        "led": true,
+        "callouts": [
+          {
+            "x": 0.3,
+            "y": 0.1,
+            "label": "Plateau blanc, angle arrondi",
+            "side": "top"
+          },
+          {
+            "x": 0.55,
+            "y": 0.95,
+            "label": "Double ruban LED",
+            "side": "bottom"
+          }
+        ],
+        "detail": {
+          "x": 0.42,
+          "y": 0.55,
+          "zoom": 2.0,
+          "label": "Tasseaux bois demi-ronds"
+        }
+      },
+      {
+        "id": "terracotta",
+        "name": "Comptoir en L terracotta",
+        "subtitle": "Grand format · sur mesure",
+        "cutout": "images/bureaux/L-terracotta.png",
+        "size": [
+          1050,
+          1400
+        ],
+        "bbox": [
+          91,
+          565,
+          872,
+          958
+        ],
+        "led": false,
+        "callouts": [
+          {
+            "x": 0.75,
+            "y": 0.47,
+            "label": "Plateau découpé autour des poteaux",
+            "side": "top"
+          },
+          {
+            "x": 0.93,
+            "y": 0.65,
+            "label": "Retour en L",
+            "side": "bottom"
+          }
+        ],
+        "detail": {
+          "x": 0.22,
+          "y": 0.62,
+          "zoom": 1.9,
+          "label": "Façade moulurée terracotta"
+        }
+      },
+      {
+        "id": "creme",
+        "name": "Comptoir stuc & moulures",
+        "subtitle": "Double hauteur · style classique",
+        "cutout": "images/bureaux/creme-moulures.png",
+        "size": [
+          551,
+          1200
+        ],
+        "bbox": [
+          80,
+          513,
+          525,
+          844
+        ],
+        "led": false,
+        "callouts": [
+          {
+            "x": 0.2,
+            "y": 0.3,
+            "label": "Tablette basse d'accueil",
+            "side": "top"
+          },
+          {
+            "x": 0.5,
+            "y": 0.72,
+            "label": "Façade moulurée",
+            "side": "bottom"
+          }
+        ],
+        "detail": {
+          "x": 0.72,
+          "y": 0.2,
+          "zoom": 1.55,
+          "label": "Finition effet stuc"
+        }
+      }
+    ]
+  }
+}
