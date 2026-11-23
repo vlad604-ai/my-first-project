@@ -33,6 +33,11 @@ def build():
         base = f"Post-{n}_{NAMES[slug]}"
         jpg(os.path.join(posts, slug + ".png"), os.path.join(ig, base + ".jpg"))
         open(os.path.join(ig, base + "_legende.txt"), "w").write(cap + "\n")
+    # carousel: cover + 4 inner pages, numbered for upload order
+    base = f"Post-04_{NAMES['04_conseil']}"
+    os.replace(os.path.join(ig, base + ".jpg"), os.path.join(ig, base + "_page-1.jpg"))
+    for k in range(2, 6):
+        jpg(os.path.join(posts, f"04_conseil_page-{k}.png"), os.path.join(ig, f"{base}_page-{k}.jpg"))
     for i, (slug, note) in enumerate(INSTAGRAM_STORIES.items()):
         base = f"Story-{'AB'[i]}_{slug.split('_')[1].capitalize()}"
         jpg(os.path.join(posts, slug + ".png"), os.path.join(ig, base + ".jpg"))
@@ -54,7 +59,7 @@ def build():
 INSTAGRAM (dossier instagram/)
 - Publiez dans l’ordre : Post-01 en premier, Post-12 en dernier. Le profil affichera alors la grille prévue.
 - Chaque image (1080 x 1350, format portrait 4:5) a sa légende dans le fichier _legende.txt du même numéro : copiez-collez.
-- Post-04 (Conseil) est la couverture d’un carrousel : ajoutez-y les pages intérieures.
+- Post-04 (Conseil) est un carrousel : sélectionnez les 5 images page-1 à page-5 dans l’ordre, en une seule publication.
 - Les stories (1080 x 1920) se publient quand vous voulez, avec les stickers indiqués.
 - La bio : choisissez une des propositions de 00_BIO-instagram.txt.
 

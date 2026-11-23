@@ -305,8 +305,8 @@ def post_conseil():
     s += f'<rect x="90" y="1130" width="60" height="3" fill="{CHF}"/>'
     s += T(J5, "GLISSEZ", 18, 90, 1200, BX, 0.3)
     s += f'<path d="M248 1192 H310 M296 1180 L310 1192 L296 1204" stroke="{BX}" stroke-width="3" fill="none"/>'
-    for i in range(4):
-        s += f'<circle cx="{W - 200 + i * 30}" cy="1192" r="7" fill="{BX if i == 0 else CHF}" opacity="{1 if i == 0 else .45}"/>'
+    for i in range(5):
+        s += f'<circle cx="{W - 230 + i * 30}" cy="1192" r="7" fill="{BX if i == 0 else CHF}" opacity="{1 if i == 0 else .45}"/>'
     s += f'<path d="{arch_path(700, 260, 300, 700)}" fill="none" stroke="{BX}" stroke-width="5"/>'
     s += f'<path d="{arch_path(742, 176, 342, 690)}" fill="none" stroke="{CHF}" stroke-width="2.5"/>'
     s += f'<rect x="630" y="697" width="400" height="6" fill="{BX}"/>'
@@ -415,6 +415,7 @@ def highlight_svg(paths):
 # ------------------------------------------------------------------ page
 def page():
     from content import INSTAGRAM_BIOS
+    carou = "".join(f'<img src="posts/{n}.jpg" alt="Carrousel, page {k}" loading="lazy">' for k, n in enumerate(["04_conseil"] + [c[0] for c in CAROUSEL], 1))
     bio = INSTAGRAM_BIOS[0]["texte"].replace("\n", "<br>")
     bios = "".join(
         f'<div class="cap" style="color:var(--ink)"><span class="tag">{b["nom"]}</span>{b["texte"]}'
@@ -478,6 +479,8 @@ p{{margin:0;max-width:62ch}}
 .cap{{background:#fff;padding:22px;display:grid;gap:10px;align-content:start;border:1px solid var(--line);font-size:15px;white-space:pre-line}}
 .cap .tag{{font-family:var(--m);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--chf)}}
 .cap .ht{{color:#2b4a7a}}
+.carou{{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}} .carou img{{width:100%;display:block;box-shadow:0 10px 30px rgba(0,0,0,.3)}}
+@media (max-width:900px){{.carou{{grid-template-columns:repeat(2,minmax(0,1fr))}}}}
 .bios4{{grid-template-columns:repeat(4,minmax(0,1fr))}} .bios4 .cap{{font-size:16px}}
 @media (max-width:1000px){{.bios4{{grid-template-columns:repeat(2,minmax(0,1fr))}}}}
 .week{{width:100%;border-collapse:collapse;font-size:15px;min-width:640px}}
@@ -519,6 +522,12 @@ p{{margin:0;max-width:62ch}}
  <div><span class="eyebrow">Les 12 premières publications</span><h2>Des modèles réutilisables, du premier post au plus récent</h2></div>
  <p class="lede">Format portrait 1080 × 1350 px (4:5). Chaque visuel et sa légende sont prêts dans le dossier « a-publier ». Tous les textes restent dans la zone centrale, pour survivre au recadrage 3:4 de la grille du profil.</p>
  <div class="tmpl">{tmpl}</div>
+</div></section>
+
+<section class="band dark" style="padding-top:0"><div class="wrap">
+ <div><span class="eyebrow">Carrousel</span><h2>« 3 erreurs à éviter » en cinq pages</h2></div>
+ <p class="lede">Couverture, une page par erreur avec la bonne pratique dans un encadré bordeaux, puis une page de résumé avec l’appel au devis. Les points en bas indiquent la progression.</p>
+ <div class="carou">{carou}</div>
 </div></section>
 
 <section class="band"><div class="wrap">
@@ -591,12 +600,75 @@ Enregistrez ce post pour votre futur projet.
 """
 
 
+# ------------------------------------------------------------------ carrousel « 3 erreurs » : pages intérieures
+ERREURS = [
+    ("01", ["Choisir les finitions", "avant l’électricité"],
+     ["Carrelage, cuisine, luminaires : tout", "dépend de l’emplacement des prises,", "des circuits et des points lumineux.",
+      "Décidés après coup, ils obligent", "à casser ce qui est neuf."],
+     ["Validez d’abord le plan électrique,", "pièce par pièce. Les finitions ensuite."]),
+    ("02", ["Oublier la ventilation", "de la salle de bains"],
+     ["Sans extraction efficace, l’humidité", "s’installe : moisissures, peinture qui", "cloque, joints noircis en quelques mois."],
+     ["Prévoyez la VMC dès la conception,", "et une peinture pour pièces humides."]),
+    ("03", ["Multiplier les artisans", "sans coordinateur"],
+     ["Le plombier attend l’électricien, qui", "attend le plaquiste… Les retards", "s’additionnent et personne n’est", "responsable de l’ensemble."],
+     ["Un seul interlocuteur tous corps", "d’état : un planning, un responsable."]),
+]
+
+
+def dots(active, total=5, y=1250, dark=False):
+    s = ""
+    x0 = W / 2 - (total - 1) * 15
+    for i in range(total):
+        on = i == active
+        col = (CR if dark else BX) if on else (CH if dark else CHF)
+        s += f'<circle cx="{x0 + i * 30:.1f}" cy="{y}" r="7" fill="{col}" opacity="{1 if on else .45}"/>'
+    return s
+
+
+def carousel_page(i):
+    num, title, body, sol = ERREURS[i]
+    s = f'<rect width="{W}" height="{H}" fill="{CR}"/>'
+    s += T(J5, f"ERREUR {num} / 03", 18, 90, 170, CHF, 0.32)
+    s += T(J3, num, 230, W - 90, 330, CH, 0.0, "end")
+    s += lines(J3, title, 54, 90, 470, 76, BX)
+    s += f'<rect x="90" y="580" width="60" height="3" fill="{CHF}"/>'
+    s += lines(J3, body, 32, 90, 680, 50, "#5A3A3A")
+    top = 680 + len(body) * 50 + 40
+    s += f'<rect x="90" y="{top}" width="{W - 180}" height="{110 + len(sol) * 46}" fill="{BX}"/>'
+    s += T(J5, "LA BONNE PRATIQUE", 17, 130, top + 56, CH, 0.3)
+    s += lines(J3, sol, 30, 130, top + 112, 46, CR)
+    s += dots(i + 1)
+    s += mini_logo(W - 90 - 50, 1215, 60, BX, CHF)
+    return s
+
+
+def carousel_fin():
+    s = f'<rect width="{W}" height="{H}" fill="{BX}"/>'
+    s += f'<path d="{arch_path(340, 400, 170, 640)}" fill="none" stroke="{CH}" stroke-width="5"/>'
+    s += f'<path d="{arch_path(400, 280, 230, 636)}" fill="none" stroke="{CH}" stroke-opacity=".5" stroke-width="2.5"/>'
+    s += f'<rect x="230" y="637" width="620" height="6" fill="{CH}"/>'
+    s += T(J5, "EN RÉSUMÉ", 18, W / 2, 760, CH, 0.32, "middle")
+    s += lines(J3, ["Électricité d’abord,", "ventilation prévue,", "un seul coordinateur."], 50, W / 2, 850, 72, CR, 0.0, "middle")
+    s += pill(J5, "DEVIS GRATUIT · LIEN EN BIO", 18, W / 2, 1080, CH, BX, 0.22, 44, 80, "middle")
+    s += T(J3, "Enregistrez ce post pour votre projet", 24, W / 2, 1210, CR, 0.02, "middle")
+    s += dots(4, dark=True, y=1270)
+    return s
+
+
+CAROUSEL = [("04_conseil_page-2", lambda: carousel_page(0)), ("04_conseil_page-3", lambda: carousel_page(1)),
+            ("04_conseil_page-4", lambda: carousel_page(2)), ("04_conseil_page-5", carousel_fin)]
+
+
 def build():
     os.makedirs(P, exist_ok=True)
     pairs = []
     for slug, name, desc, fn in POSTS:
         f = os.path.join(P, slug)
         open(f + ".svg", "w").write(doc(fn(), title=f"DOMOVA — Instagram — {name}"))
+        pairs += [f + ".svg", f + ".png"]
+    for slug, fn in CAROUSEL:
+        f = os.path.join(P, slug)
+        open(f + ".svg", "w").write(doc(fn(), title="DOMOVA — Instagram — carrousel 3 erreurs"))
         pairs += [f + ".svg", f + ".png"]
     for slug, fn in (("story_chantier", story_chantier), ("story_question", story_devis)):
         f = os.path.join(P, slug)

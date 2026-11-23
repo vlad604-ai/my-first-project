@@ -3,7 +3,7 @@ DOMOVA — publications prêtes à poster
 INSTAGRAM (dossier instagram/)
 - Publiez dans l’ordre : Post-01 en premier, Post-12 en dernier. Le profil affichera alors la grille prévue.
 - Chaque image (1080 x 1350, format portrait 4:5) a sa légende dans le fichier _legende.txt du même numéro : copiez-collez.
-- Post-04 (Conseil) est la couverture d’un carrousel : ajoutez-y les pages intérieures.
+- Post-04 (Conseil) est un carrousel : sélectionnez les 5 images page-1 à page-5 dans l’ordre, en une seule publication.
 - Les stories (1080 x 1920) se publient quand vous voulez, avec les stickers indiqués.
 - La bio : choisissez une des propositions de 00_BIO-instagram.txt.
 
