@@ -598,14 +598,14 @@
       "cutout": "images/bureaux/arrondi-bordeaux.png",
       "lines": "images/bureaux/arrondi-bordeaux-lignes.png",
       "size": [
-        900,
-        1200
+        1757,
+        811
       ],
       "bbox": [
-        18,
-        336,
-        822,
-        754
+        40,
+        40,
+        1717,
+        771
       ],
       "led": true
     },

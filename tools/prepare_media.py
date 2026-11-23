@@ -152,7 +152,7 @@ def process_photo(src, dst, logo_box=None, max_side=2400):
     cv2.imwrite(str(dst), img, [cv2.IMWRITE_JPEG_QUALITY, 92])
 
 
-if __name__ == "__main__" and "--bureaux" not in __import__("sys").argv:
+if __name__ == "__main__" and len(__import__("sys").argv) == 1:
     process_video(SRC / "avant_video-447.mov", A / "videos/avant/avant.mp4")
     process_video(
         SRC / "apres_video-610.mov",
@@ -262,3 +262,99 @@ def line_drawings():
 
 if __name__ == "__main__" and "--bureaux" in __import__("sys").argv:
     line_drawings()
+
+
+def refine_bordeaux():
+    """Comptoir bordeaux : contour géométriquement lissé, en pleine résolution.
+
+    Le détourage automatique suivait la lueur des LED au sol (bas irrégulier,
+    côté droit cabossé). On ajuste des courbes lisses sur le contour (droite à
+    gauche, polynômes en bas et à droite), on reconstruit le masque, puis on
+    redessine un ruban LED régulier au pied du comptoir.
+    """
+    src = cv2.imread(str(SRC / "bureau_arrondi_bordeaux.jpg"))
+    H0, W0 = src.shape[:2]
+    cut = cv2.imread(str(SRC / "_cut" / "bureau_arrondi_bordeaux.png"), cv2.IMREAD_UNCHANGED)
+    a = cv2.resize(cut[..., 3], (W0, H0), interpolation=cv2.INTER_LINEAR)
+    m = (a > 128).astype(np.uint8)
+    # garder la pièce principale (retire le bout de balai)
+    n, lab, stats, _ = cv2.connectedComponentsWithStats(m, 8)
+    m = (lab == 1 + np.argmax(stats[1:, cv2.CC_STAT_AREA])).astype(np.uint8)
+
+    ys, xs = np.where(m > 0)
+    # ligne du plateau (bord avant avec LED) : rangée la plus large dans le haut du meuble
+    rows = np.arange(ys.min(), ys.max())
+    widths = np.array([m[r].sum() for r in rows])
+    plate = rows[np.argmax(widths[: len(rows) // 2])]
+    fac_top = plate + int(0.02 * H0)
+
+    def robust_fit(x, y, deg, iters=4, k=2.0):
+        keep = np.ones_like(x, bool)
+        for _ in range(iters):
+            c = np.polyfit(x[keep], y[keep], deg)
+            r = y - np.polyval(c, x)
+            s = np.std(r[keep]) + 1e-6
+            keep = np.abs(r) < k * s
+        return c
+
+    # côté gauche : droite x = f(y)
+    rr = np.arange(fac_top, ys.max() - int(0.03 * H0))
+    left = np.array([np.argmax(m[r] > 0) if m[r].any() else np.nan for r in rr], float)
+    ok = ~np.isnan(left)
+    cl = robust_fit(rr[ok], left[ok], 1)
+    # côté droit : courbe x = f(y) de degré 2
+    right = np.array([W0 - 1 - np.argmax(m[r, ::-1] > 0) if m[r].any() else np.nan for r in rr], float)
+    ok = ~np.isnan(right)
+    cr = robust_fit(rr[ok], right[ok], 2)
+    cr[-1] -= 0.012 * W0  # resserre : exclut le chambranle du mur à droite
+    # bas : courbe y = f(x) de degré 4 entre les côtés
+    x0 = int(np.polyval(cl, ys.max()))
+    x1 = int(np.polyval(cr, ys.max() - int(0.08 * H0)))
+    cc = np.arange(x0 + 10, x1 - 10)
+    bottom = np.array([np.max(np.where(m[:, c] > 0)[0]) if m[:, c].any() else np.nan for c in cc], float)
+    ok = ~np.isnan(bottom)
+    cb = robust_fit(cc[ok], bottom[ok], 4, k=1.5)
+
+    # nouveau masque (suréchantillonné x2 pour des bords nets et lisses)
+    S = 2
+    yy, xx = np.mgrid[0 : H0 * S, 0 : W0 * S].astype(np.float32) / S
+    inside = (xx >= np.polyval(cl, yy)) & (xx <= np.polyval(cr, yy)) & (yy <= np.polyval(cb, xx))
+    body = inside & (yy >= fac_top)
+    up = cv2.resize(m * 255, (W0 * S, H0 * S), interpolation=cv2.INTER_LINEAR) > 127
+    top = up & (yy < fac_top) & (xx >= np.polyval(cl, yy) - 6) & (xx <= np.polyval(cr, yy) + 0.006 * W0)
+    new = (body | top).astype(np.float32)
+    new = cv2.resize(cv2.GaussianBlur(new, (0, 0), 0.8 * S), (W0, H0), interpolation=cv2.INTER_AREA)
+
+    out = np.dstack([src, (new * 255).astype(np.uint8)])
+    # ruban LED régulier au pied : dégradé chaud le long du bord bas
+    yb = np.polyval(cb, np.arange(W0))
+    Y = np.arange(H0)[:, None].astype(np.float32)
+    dist = yb[None, :] - Y  # distance au bord bas (px, positif à l'intérieur)
+    band = np.clip(1 - dist / (0.0045 * H0), 0, 1) * (dist >= -1)
+    glow = np.clip(1 - dist / (0.012 * H0), 0, 1) * 0.18
+    k = np.maximum(band, glow)[..., None] * (new[..., None] > 0.01)
+    led = np.array([225, 238, 255], np.float32)  # BGR blanc chaud
+    out[..., :3] = np.clip(out[..., :3] * (1 - k) + led * k, 0, 255).astype(np.uint8)
+
+    # recadrage autour du meuble
+    ys, xs = np.where(out[..., 3] > 10)
+    pad = 40
+    y0, y1 = max(0, ys.min() - pad), min(H0, ys.max() + pad)
+    x0, x1 = max(0, xs.min() - pad), min(W0, xs.max() + pad)
+    out = out[y0:y1, x0:x1]
+    dst = A / "images/bureaux/arrondi-bordeaux.png"
+    cv2.imwrite(str(dst), out)
+    ys, xs = np.where(out[..., 3] > 40)
+    info = {"size": [out.shape[1], out.shape[0]], "bbox": [int(xs.min()), int(ys.min()), int(xs.max()), int(ys.max())]}
+    print("bordeaux", info)
+    return info
+
+
+if __name__ == "__main__" and "--bordeaux" in __import__("sys").argv:
+    info = refine_bordeaux()
+    line_drawings()
+    import json as _j
+    p = ROOT / "video/src/content/domova.json"
+    d = _j.load(open(p))
+    d["bureaux"]["arrondi"].update(info)
+    _j.dump(d, open(p, "w"), ensure_ascii=False, indent=2)
