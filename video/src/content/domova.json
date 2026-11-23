@@ -40,9 +40,10 @@
   ],
   "audio": {
     "music": "audio/music/musique.mp3",
-    "musicVolume": 0.55,
-    "musicVolumeUnderVoice": 0.22,
-    "voiceVolume": 1.0
+    "musicVolume": 1.0,
+    "musicVolumeUnderVoice": 0.3,
+    "voiceVolume": 1.0,
+    "_musique": "« Lounging By Moonlight » — Mixkit (mixkit.co), Mixkit Stock Music Free License. Déjà mixée : fondu d'entrée, fondu de sortie, -16 LUFS. Alternative : sources/musique_alternative_smooth_like_jazz.mp3"
   },
   "scenes": {
     "s1": {
