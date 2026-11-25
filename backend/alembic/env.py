@@ -18,7 +18,12 @@ target_metadata = Base.metadata
 
 
 def get_url() -> str:
-    return os.environ.get("DATABASE_URL") or config.get_main_option("sqlalchemy.url") or settings.database_url
+    # Settings reads DATABASE_URL from the environment and normalises postgres:// URLs.
+    if os.environ.get("DATABASE_URL"):
+        from app.config import Settings
+
+        return Settings().database_url
+    return config.get_main_option("sqlalchemy.url") or settings.database_url
 
 
 def run_migrations_offline() -> None:

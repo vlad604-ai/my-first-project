@@ -1,0 +1,67 @@
+# Render Blueprint — creates everything in one click (Dashboard -> New -> Blueprint).
+# Only TELEGRAM_BOT_TOKEN (and optionally ADMIN_TELEGRAM_IDS / ANTHROPIC_API_KEY)
+# must be typed in; secrets are generated automatically.
+
+services:
+  - type: web
+    name: universal-booking
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    plan: starter            # always on (free plans sleep after inactivity: slow bot, no reminders)
+    region: frankfurt
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: universal-booking-db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          type: keyvalue
+          name: universal-booking-redis
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: TELEGRAM_WEBHOOK_SECRET
+        generateValue: true
+      - key: ADMIN_PASSWORD
+        generateValue: true  # read it in the service's "Environment" tab to log into /admin
+      - key: ADMIN_EMAIL
+        value: admin@example.com
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false          # asked when you create the Blueprint (token from @BotFather)
+      - key: TELEGRAM_BOT_USERNAME
+        sync: false          # your bot's username, without @
+      - key: ADMIN_TELEGRAM_IDS
+        sync: false          # your Telegram id (from @userinfobot), e.g. 123456789
+      - key: ANTHROPIC_API_KEY
+        sync: false          # optional: leave empty to use the built-in rules engine
+      - key: RUN_SCHEDULER
+        value: "true"        # reminders run inside this single service
+      - key: SEED_DEMO
+        value: "false"       # "true" loads 31 fictitious professionals (testing only)
+      - key: AUTO_APPROVE_PROFESSIONALS
+        value: "false"
+      - key: DB_POOL_SIZE
+        value: "5"
+      - key: DB_MAX_OVERFLOW
+        value: "5"
+
+  - type: keyvalue
+    name: universal-booking-redis
+    plan: free
+    region: frankfurt
+    maxmemoryPolicy: allkeys-lru
+    ipAllowList: []          # private network only
+
+databases:
+  - name: universal-booking-db
+    plan: basic-256mb
+    region: frankfurt
+    databaseName: universal_booking
+    user: universal_booking
+    postgresMajorVersion: "16"

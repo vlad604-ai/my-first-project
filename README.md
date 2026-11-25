@@ -154,7 +154,13 @@ docker-compose.yml   # db, redis, migrate, api, bot (profil polling), worker, we
 
 ## Démarrage rapide
 
-### Option A — Docker (recommandé)
+### Le plus simple — en ligne avec Render, sans rien installer
+
+Suivez le guide pas à pas **[DEPLOIEMENT_RENDER.md](DEPLOIEMENT_RENDER.md)** : `render.yaml` crée
+l'application, PostgreSQL et Redis en un clic. Un seul service fait tourner l'API, le bot (webhook enregistré
+automatiquement sur l'adresse Render), les rappels et la Mini App ; seul le jeton Telegram est à saisir.
+
+### Option A — Docker
 
 ```bash
 cp .env.example .env          # puis renseignez TELEGRAM_BOT_TOKEN (et ANTHROPIC_API_KEY si souhaité)

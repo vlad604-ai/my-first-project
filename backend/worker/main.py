@@ -29,6 +29,16 @@ def _wrap(job):
     return runner
 
 
+def build_scheduler() -> AsyncIOScheduler:
+    scheduler = AsyncIOScheduler(timezone="UTC")
+    scheduler.add_job(_wrap(jobs.send_reminders), "interval", minutes=1, max_instances=1, coalesce=True)
+    scheduler.add_job(_wrap(jobs.expire_pending), "interval", minutes=5, max_instances=1, coalesce=True)
+    scheduler.add_job(_wrap(jobs.auto_complete), "interval", minutes=10, max_instances=1, coalesce=True)
+    scheduler.add_job(_wrap(jobs.expire_quote_requests), "interval", hours=1, max_instances=1, coalesce=True)
+    scheduler.add_job(_wrap(jobs.pro_daily_agenda), "interval", minutes=10, max_instances=1, coalesce=True)
+    return scheduler
+
+
 async def main() -> None:
     setup_logging()
     if settings.telegram_bot_token:
@@ -38,12 +48,7 @@ async def main() -> None:
         set_notifier(TelegramNotifier(build_bot()))
     else:
         log.warning("TELEGRAM_BOT_TOKEN missing: notifications are only logged")
-    scheduler = AsyncIOScheduler(timezone="UTC")
-    scheduler.add_job(_wrap(jobs.send_reminders), "interval", minutes=1, max_instances=1, coalesce=True)
-    scheduler.add_job(_wrap(jobs.expire_pending), "interval", minutes=5, max_instances=1, coalesce=True)
-    scheduler.add_job(_wrap(jobs.auto_complete), "interval", minutes=10, max_instances=1, coalesce=True)
-    scheduler.add_job(_wrap(jobs.expire_quote_requests), "interval", hours=1, max_instances=1, coalesce=True)
-    scheduler.add_job(_wrap(jobs.pro_daily_agenda), "interval", minutes=10, max_instances=1, coalesce=True)
+    scheduler = build_scheduler()
     scheduler.start()
     log.info("Worker started")
     await asyncio.Event().wait()

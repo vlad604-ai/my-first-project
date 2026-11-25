@@ -54,8 +54,8 @@ def main_menu(lang: str, is_pro: bool, is_admin: bool) -> InlineKeyboardMarkup:
         [btn(t("menu.pro_space", lang) if is_pro else t("menu.become_pro", lang), "pd:home"),
          btn(t("menu.settings", lang), "menu:settings")],
     ]
-    if settings.webapp_url:
-        rows.insert(0, [btn(t("menu.webapp", lang), webapp=settings.webapp_url)])
+    if settings.effective_webapp_url:
+        rows.insert(0, [btn(t("menu.webapp", lang), webapp=settings.effective_webapp_url)])
     if is_admin:
         rows.append([btn(t("menu.admin", lang), "adm:home")])
     return kb(*rows)
