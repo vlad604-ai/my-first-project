@@ -1,0 +1,71 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-ub}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ub}
+      POSTGRES_DB: ${POSTGRES_DB:-universal_booking}
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-ub}"]
+      interval: 5s
+      retries: 10
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes: [redisdata:/data]
+    restart: unless-stopped
+
+  migrate:
+    build: ./backend
+    env_file: .env
+    environment: &dbenv
+      DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER:-ub}:${POSTGRES_PASSWORD:-ub}@db:5432/${POSTGRES_DB:-universal_booking}
+      REDIS_URL: redis://redis:6379/0
+    command: ["sh", "-c", "alembic upgrade head && python -m scripts.seed ${SEED_FLAGS:-}"]
+    depends_on: { db: { condition: service_healthy } }
+
+  api:
+    build: ./backend
+    env_file: .env
+    environment: *dbenv
+    depends_on:
+      migrate: { condition: service_completed_successfully }
+      redis: { condition: service_started }
+    ports: ["8000:8000"]
+    restart: unless-stopped
+
+  bot:
+    # Long-polling mode. In production set TELEGRAM_WEBHOOK_URL instead: the API then
+    # serves the webhook and this service can be scaled to 0.
+    build: ./backend
+    env_file: .env
+    environment: *dbenv
+    command: ["python", "-m", "bot.main"]
+    depends_on:
+      migrate: { condition: service_completed_successfully }
+    profiles: ["polling"]
+    restart: unless-stopped
+
+  worker:
+    build: ./backend
+    env_file: .env
+    environment: *dbenv
+    command: ["python", "-m", "worker.main"]
+    depends_on:
+      migrate: { condition: service_completed_successfully }
+    restart: unless-stopped
+
+  web:
+    build:
+      context: ./web
+      args: { VITE_API_URL: "" }
+    depends_on: [api]
+    ports: ["8080:80"]
+    restart: unless-stopped
+
+volumes:
+  pgdata:
+  redisdata:
