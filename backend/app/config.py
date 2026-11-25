@@ -8,7 +8,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore")
+    model_config = SettingsConfigDict(env_file=(".env", "../.env"), env_file_encoding="utf-8", extra="ignore")
 
     # --- General ---
     app_name: str = "Universal Booking"
@@ -67,6 +67,16 @@ class Settings(BaseSettings):
     @property
     def is_test(self) -> bool:
         return self.environment == "test"
+
+    def check_production(self) -> None:
+        """Refuse to run in production with default secrets."""
+        if self.environment != "production":
+            return
+        weak = [name for name, value in (("SECRET_KEY", self.secret_key), ("ADMIN_PASSWORD", self.admin_password),
+                                         ("TELEGRAM_WEBHOOK_SECRET", self.telegram_webhook_secret))
+                if value.startswith("change-me") or len(value) < 12]
+        if weak:
+            raise RuntimeError(f"Insecure production configuration, set: {', '.join(weak)}")
 
 
 @lru_cache

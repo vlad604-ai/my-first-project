@@ -26,6 +26,7 @@ _dispatcher = None
 async def lifespan(app: FastAPI):
     global _bot, _dispatcher
     setup_logging()
+    settings.check_production()
     if settings.telegram_bot_token and settings.telegram_webhook_url:
         from app.services.notifier import set_notifier
         from bot.main import build_bot, build_dispatcher, build_storage, set_commands

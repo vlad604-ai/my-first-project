@@ -85,6 +85,7 @@ async def set_commands(bot: Bot) -> None:
 
 async def main() -> None:
     setup_logging()
+    settings.check_production()
     bot = build_bot()
     storage, redis = build_storage()
     dp = build_dispatcher(storage, redis)

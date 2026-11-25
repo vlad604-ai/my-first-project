@@ -106,9 +106,18 @@ async def platform_stats(session: AsyncSession, days: int = 30) -> dict:
                                              .where(Report.status == ReportStatus.OPEN)) or 0,
         "quote_requests": await session.scalar(select(func.count(QuoteRequest.id))
                                                .where(QuoteRequest.created_at >= since)) or 0,
-        "daily_bookings": [{"day": d.date().isoformat(), "count": c} for d, c in daily],
+        "daily_bookings": _fill_days(since, {d.date(): c for d, c in daily}),
         "top_categories": [{"slug": s, "name": n.get("fr", s), "bookings": c} for s, n, c in top_categories],
     }
+
+
+def _fill_days(since: datetime, counts: dict) -> list[dict]:
+    """Continuous daily series (zero for days without bookings)."""
+    out, day, today = [], since.date(), datetime.now(UTC).date()
+    while day <= today:
+        out.append({"day": day.isoformat(), "count": counts.get(day, 0)})
+        day += timedelta(days=1)
+    return out
 
 
 async def get_setting(session: AsyncSession, key: str, default: dict | None = None) -> dict:
